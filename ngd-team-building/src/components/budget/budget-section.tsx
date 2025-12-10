@@ -304,6 +304,28 @@ Số TK: ${bankInfo.accountNumber}
         </Card>
       </div>
 
+      {/* Important Note about Excel Update */}
+      <Card className="border-amber-500/30 bg-gradient-to-r from-amber-500/10 to-orange-500/10 animate-fade-in">
+        <CardContent className="p-6">
+          <div className="flex items-start gap-4">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-amber-500/20">
+              <AlertCircle className="h-6 w-6 text-amber-600 dark:text-amber-400" />
+            </div>
+            <div className="flex-1 space-y-2">
+              <h3 className="text-lg font-bold text-foreground">
+                📊 Cập nhật chi phí & Sao kê
+              </h3>
+              <p className="text-base font-medium text-foreground">
+                Sẽ gửi file Excel cập nhật chi phí + sao kê chi phí qua thread riêng
+              </p>
+              <p className="text-sm text-muted-foreground">
+                File Excel sẽ bao gồm chi tiết các khoản chi phí thực tế và sao kê ngân hàng để mọi người theo dõi minh bạch.
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* QR Code Payment */}
       <Card className="overflow-hidden">
         <CardHeader>

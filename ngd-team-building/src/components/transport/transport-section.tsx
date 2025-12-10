@@ -16,7 +16,6 @@ import { formatCurrency } from '@/lib/utils';
 function TransportSection() {
   const mainBus = vehicles.find((v) => v.isMain);
   const privateCars = vehicles.filter((v) => !v.isMain);
-  const totalCapacity = vehicles.reduce((sum, v) => sum + v.capacity, 0);
 
   return (
     <div className="space-y-6">
@@ -52,8 +51,9 @@ function TransportSection() {
               <Users className="h-6 w-6 text-white" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-foreground">{totalCapacity}</p>
+              <p className="text-2xl font-bold text-foreground">37</p>
               <p className="text-sm text-muted-foreground">Tổng số chỗ</p>
+              <p className="text-xs text-muted-foreground/70">(28 khách + 1 tài xế + 8 xe riêng)</p>
             </div>
           </CardContent>
         </Card>
@@ -129,8 +129,13 @@ function TransportSection() {
             <div className="flex flex-wrap gap-2">
               <Badge className="gap-1">
                 <Users className="h-3 w-3" />
-                {mainBus.capacity} chỗ ngồi
+                {mainBus.capacity} chỗ khách
               </Badge>
+              {mainBus.note && (
+                <Badge variant="outline" className="text-xs">
+                  {mainBus.note}
+                </Badge>
+              )}
               <Badge variant="success">Khứ hồi Sài Gòn - Mũi Né</Badge>
             </div>
             <div className="rounded-xl bg-muted/50 p-4">

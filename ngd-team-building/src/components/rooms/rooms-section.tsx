@@ -47,7 +47,7 @@ function RoomsSection() {
           </CardContent>
         </Card>
 
-        <Card hover={false} className="animate-fade-in" style={{ animationDelay: '150ms' }}>
+        <Card hover={false} className="animate-fade-in border-emerald-500/20" style={{ animationDelay: '150ms' }}>
           <CardContent className="flex items-center gap-4 p-5">
             <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 shadow-lg shadow-emerald-500/25">
               <Plus className="h-6 w-6 text-white" />
@@ -55,6 +55,7 @@ function RoomsSection() {
             <div>
               <p className="text-2xl font-bold text-foreground">{roomSummary.extraBed}</p>
               <p className="text-sm text-muted-foreground">Giường phụ</p>
+              <p className="text-xs text-muted-foreground/70 mt-0.5">Có thể xếp ở phòng bất kỳ</p>
             </div>
           </CardContent>
         </Card>

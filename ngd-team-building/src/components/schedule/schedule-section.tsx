@@ -83,7 +83,7 @@ function EventItem({ event, isLast, index }: EventItemProps) {
       {/* Content */}
       <div className="flex-1 pb-6">
         <div className="flex flex-wrap items-center gap-2">
-          <span className={cn('text-sm font-semibold', periodTextColors[event.period])}>
+          <span className={cn('text-sm font-bold', periodTextColors[event.period])}>
             {event.time}
           </span>
           <Badge variant="outline" size="sm">
