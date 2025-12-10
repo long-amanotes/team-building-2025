@@ -251,6 +251,12 @@ body {
   display: none;
 }
 
+/* Touch optimization for mobile */
+.touch-manipulation {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
 /* ===== THEME TRANSITION ===== */
 .theme-transition,
 .theme-transition *,

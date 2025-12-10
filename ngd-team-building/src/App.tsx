@@ -74,7 +74,7 @@ function App() {
         <Header />
         <TabNavigation activeTab={activeTab} onTabChange={setActiveTab} />
 
-        <main className="container mx-auto px-4 py-6">
+        <main className="container mx-auto px-3 sm:px-4 py-4 sm:py-6">
           <div key={activeTab} className="animate-fade-in">
             {renderContent()}
           </div>
@@ -82,13 +82,13 @@ function App() {
 
         {/* Footer */}
         <footer className="border-t border-border/50 bg-background/80 backdrop-blur-xl">
-          <div className="container mx-auto px-4 py-6">
-            <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
+          <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-6">
+            <div className="flex flex-col items-center justify-between gap-3 sm:gap-4 sm:flex-row">
               <div className="text-center sm:text-left">
-                <p className="text-sm text-muted-foreground">
+                <p className="text-xs sm:text-sm text-muted-foreground">
                   NGD Team Building 2025 • Asteria Mui Ne Resort
                 </p>
-                <p className="text-xs text-muted-foreground/70">
+                <p className="text-[10px] sm:text-xs text-muted-foreground/70 mt-0.5">
                   18-19/12/2025 • Mũi Né, Phan Thiết, Bình Thuận
                 </p>
               </div>
@@ -97,7 +97,7 @@ function App() {
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
                 </span>
-                <span className="text-xs text-muted-foreground">
+                <span className="text-[10px] sm:text-xs text-muted-foreground">
                   Made with 💙 by NGD Team
                 </span>
               </div>
