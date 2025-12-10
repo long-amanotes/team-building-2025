@@ -1,7 +1,7 @@
-import { Waves, MapPin, ExternalLink } from 'lucide-react';
+import { MapPin, ExternalLink } from 'lucide-react';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
 import { eventInfo } from '@/data';
-import { cn } from '@/lib/utils';
+import logo from '@/assets/logo.avif';
 
 function Header() {
   return (
@@ -9,12 +9,12 @@ function Header() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
         {/* Logo & Title */}
         <div className="flex items-center gap-3">
-          <div className={cn(
-            'flex h-10 w-10 items-center justify-center rounded-xl',
-            'bg-gradient-to-br from-primary to-sky-500',
-            'shadow-lg shadow-primary/25 dark:shadow-primary/15'
-          )}>
-            <Waves className="h-5 w-5 text-primary-foreground" />
+          <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded-xl">
+            <img
+              src={logo}
+              alt="NGD Team Building Logo"
+              className="h-full w-full object-cover"
+            />
           </div>
           <div>
             <h1 className="text-lg font-bold text-foreground">NGD Team Building</h1>

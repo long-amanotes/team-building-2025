@@ -1,6 +1,5 @@
 import { Bed, Users, Star } from 'lucide-react';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import type { RoomAssignment } from '@/types';
 
@@ -17,6 +16,7 @@ function RoomCard({ room, className }: RoomCardProps) {
     <Card
       className={cn(
         'group transition-all duration-300',
+        'hover:shadow-xl hover:-translate-y-1',
         isFamily && 'border-amber-500/30 dark:border-amber-500/20',
         className
       )}
@@ -39,33 +39,52 @@ function RoomCard({ room, className }: RoomCardProps) {
             <p className="text-lg font-bold text-foreground">#{room.roomId}</p>
           </div>
         </div>
-        <Badge variant={isFamily ? 'warning' : 'default'}>
-          {room.type}
-        </Badge>
       </CardHeader>
-      <CardContent className="space-y-3">
-        <div className="flex items-start gap-2">
-          <Users className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground" />
-          <div className="flex flex-wrap gap-1.5">
+
+      <CardContent className="space-y-4">
+        <div className="space-y-2">
+          <div className="flex items-center gap-2 pb-1 border-b border-border/50">
+            <Users className="h-4 w-4 shrink-0 text-primary" />
+            <p className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+              Người ở ({room.occupants.length})
+            </p>
+          </div>
+          <div className="space-y-2">
             {room.occupants.map((name, index) => (
-              <span
+              <div
                 key={index}
                 className={cn(
-                  'inline-block rounded-md px-2 py-0.5 text-sm',
-                  index === 0
-                    ? 'bg-secondary text-foreground font-medium'
-                    : 'bg-muted text-muted-foreground'
+                  'flex items-center gap-3 rounded-lg px-3 py-2.5 transition-all',
+                  'bg-muted/50 hover:bg-muted border border-border/50',
+                  index === 0 && 'bg-primary/5 dark:bg-primary/10 border-primary/20'
                 )}
               >
-                {name}
-              </span>
+                <div
+                  className={cn(
+                    'flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold',
+                    index === 0
+                      ? 'bg-primary text-primary-foreground'
+                      : 'bg-muted-foreground/20 text-foreground'
+                  )}
+                >
+                  {index + 1}
+                </div>
+                <p
+                  className={cn(
+                    'flex-1 text-base font-semibold',
+                    index === 0 ? 'text-foreground' : 'text-foreground'
+                  )}
+                >
+                  {name}
+                </p>
+              </div>
             ))}
           </div>
         </div>
         {hasSpecial && (
-          <div className="flex items-center gap-2 rounded-lg bg-amber-500/10 px-3 py-2 dark:bg-amber-500/15">
-            <Star className="h-4 w-4 text-amber-500" />
-            <span className="text-sm font-medium text-amber-600 dark:text-amber-400">{room.special}</span>
+          <div className="flex items-center gap-2 rounded-lg bg-amber-500/10 px-3 py-2.5 dark:bg-amber-500/15 border border-amber-500/20">
+            <Star className="h-4 w-4 text-amber-500 shrink-0" />
+            <span className="text-sm font-semibold text-amber-600 dark:text-amber-400">{room.special}</span>
           </div>
         )}
       </CardContent>

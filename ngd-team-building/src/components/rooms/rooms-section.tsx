@@ -1,14 +1,89 @@
-import { BedDouble, Users, Plus, Home } from 'lucide-react';
+import { useState } from 'react';
+import { BedDouble, Users, Plus, Home, Images } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { RoomCard } from './room-card';
+import { RoomImageGallery } from './room-image-gallery';
+import { getRoomPrimaryImage, getRoomImages } from '@/data/room-images';
 import { roomAssignments, roomSummary } from '@/data/rooms';
 
 function RoomsSection() {
+  const [galleryOpen, setGalleryOpen] = useState<{ type: 'Twin' | 'Double' | null; roomId: number | null }>({
+    type: null,
+    roomId: null,
+  });
+
   const twinRooms = roomAssignments.filter((r) => r.type === 'Twin');
   const doubleRooms = roomAssignments.filter((r) => r.type === 'Double');
 
+  const twinImages = getRoomImages('Twin');
+  const doubleImages = getRoomImages('Double');
+  const twinPrimary = getRoomPrimaryImage('Twin');
+  const doublePrimary = getRoomPrimaryImage('Double');
+
   return (
     <div className="space-y-6">
+      {/* Room Type Showcase */}
+      <div className="grid gap-6 lg:grid-cols-2">
+        {/* Deluxe Twin Showcase */}
+        <Card className="overflow-hidden border-primary/20">
+          <div className="relative h-64 w-full overflow-hidden bg-muted">
+            <img
+              src={twinPrimary.src}
+              alt={twinPrimary.alt}
+              className="h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-primary/20 backdrop-blur-sm mb-4">
+                <BedDouble className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">Deluxe Twin</h3>
+              <p className="text-sm text-white/90 mb-4">
+                {twinRooms.length} phòng • {twinImages.length} ảnh
+              </p>
+              <Button
+                onClick={() => setGalleryOpen({ type: 'Twin', roomId: 1 })}
+                variant="secondary"
+                className="gap-2 bg-white/20 backdrop-blur-sm text-white border-white/30 hover:bg-white/30"
+              >
+                <Images className="h-4 w-4" />
+                Xem hình ảnh phòng
+              </Button>
+            </div>
+          </div>
+        </Card>
+
+        {/* Deluxe Double Showcase */}
+        <Card className="overflow-hidden border-amber-500/20">
+          <div className="relative h-64 w-full overflow-hidden bg-muted">
+            <img
+              src={doublePrimary.src}
+              alt={doublePrimary.alt}
+              className="h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+              <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-500/20 backdrop-blur-sm mb-4">
+                <Users className="h-8 w-8 text-white" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">Deluxe Double</h3>
+              <p className="text-sm text-white/90 mb-4">
+                {doubleRooms.length} phòng • {doubleImages.length} ảnh
+              </p>
+              <Button
+                onClick={() => setGalleryOpen({ type: 'Double', roomId: 15 })}
+                variant="secondary"
+                className="gap-2 bg-white/20 backdrop-blur-sm text-white border-white/30 hover:bg-white/30"
+              >
+                <Images className="h-4 w-4" />
+                Xem hình ảnh phòng
+              </Button>
+            </div>
+          </div>
+        </Card>
+      </div>
+
       {/* Summary Cards */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Card hover={false} className="animate-fade-in" style={{ animationDelay: '0ms' }}>
@@ -110,6 +185,16 @@ function RoomsSection() {
           </div>
         </CardContent>
       </Card>
+
+      {/* Image Gallery Modals */}
+      {galleryOpen.type && galleryOpen.roomId && (
+        <RoomImageGallery
+          roomType={galleryOpen.type}
+          roomId={galleryOpen.roomId}
+          isOpen={true}
+          onClose={() => setGalleryOpen({ type: null, roomId: null })}
+        />
+      )}
     </div>
   );
 }

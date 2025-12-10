@@ -18,7 +18,7 @@ export const roomAssignments: RoomAssignment[] = [
     { roomId: 15, type: "Double", occupants: ["Vũ Hoàng", "Vợ", "Con"] },
     { roomId: 16, type: "Twin", occupants: ["Norlan", "Nam Hoàng"] },
     { roomId: 17, type: "Twin", occupants: ["Phúc", "Nhơn Triệu"] },
-    { roomId: 18, type: "Double", occupants: ["Tha Hồ", "Vợ", "Con 1", "Con 2"] },
+    { roomId: 18, type: "Double", occupants: ["Tha Hồ", "Vợ", "Con cả", "Con thứ"] },
 ];
 
 export const roomSummary: RoomSummary = {
