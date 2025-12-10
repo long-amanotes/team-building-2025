@@ -9,6 +9,7 @@ export const vehicles: Vehicle[] = [
 
 export const transportInfo: TransportInfo = {
     meetPoint: "Văn phòng Amanotes - 141-143 Nguyễn Cơ Thạch, P. An Khánh, TP. HCM",
+    meetPointMapsUrl: "https://www.google.com/maps/place/Amanotes/@10.7851,106.7546,17z",
     gatherTime: "08:30 ngày 18/12/2025",
     departTime: "09:00 ngày 18/12/2025",
     returnTime: "14:30 - 17:30 ngày 19/12/2025",

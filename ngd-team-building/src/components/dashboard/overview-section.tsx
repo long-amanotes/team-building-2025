@@ -10,6 +10,8 @@ import {
   Sun,
   Waves,
   PartyPopper,
+  ExternalLink,
+  Navigation,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -57,32 +59,50 @@ function OverviewSection() {
           </div>
 
           <div className="flex flex-wrap items-center gap-6">
-            <div className="flex items-center gap-3">
+            <a
+              href={eventInfo.googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 group"
+            >
               <div className={cn(
                 'flex h-10 w-10 items-center justify-center rounded-xl',
                 'bg-gradient-to-br from-amber-500 to-orange-500',
-                'shadow-lg shadow-amber-500/20'
+                'shadow-lg shadow-amber-500/20',
+                'group-hover:scale-110 transition-transform'
               )}>
                 <Sun className="h-5 w-5 text-white" />
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Resort</p>
-                <p className="font-semibold text-foreground">{eventInfo.resortName}</p>
+                <p className="font-semibold text-foreground group-hover:text-primary transition-colors flex items-center gap-1">
+                  {eventInfo.resortName}
+                  <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </p>
               </div>
-            </div>
-            <div className="flex items-center gap-3">
+            </a>
+            <a
+              href={eventInfo.googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 group"
+            >
               <div className={cn(
                 'flex h-10 w-10 items-center justify-center rounded-xl',
                 'bg-gradient-to-br from-rose-500 to-pink-500',
-                'shadow-lg shadow-rose-500/20'
+                'shadow-lg shadow-rose-500/20',
+                'group-hover:scale-110 transition-transform'
               )}>
                 <MapPin className="h-5 w-5 text-white" />
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Địa điểm</p>
-                <p className="font-semibold text-foreground">{eventInfo.location}</p>
+                <p className="font-semibold text-foreground group-hover:text-primary transition-colors flex items-center gap-1">
+                  {eventInfo.location}
+                  <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </p>
               </div>
-            </div>
+            </a>
           </div>
 
           <div className="flex flex-wrap gap-4 border-t border-border pt-4">
@@ -176,6 +196,44 @@ function OverviewSection() {
           </CardContent>
         </Card>
       </div>
+
+      {/* Google Maps */}
+      <Card className="overflow-hidden">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500/15 to-green-500/15">
+              <Navigation className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+            </div>
+            Vị trí trên bản đồ
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-0">
+          <div className="relative w-full h-[300px] sm:h-[400px]">
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=108.27%2C10.93%2C108.30%2C10.95&layer=mapnik&marker=10.9385%2C108.2872"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              title="Asteria Mui Ne Resort - Map"
+              className="rounded-b-xl"
+            />
+          </div>
+          <div className="p-4 bg-muted/30 border-t border-border">
+            <a
+              href={eventInfo.googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 text-sm text-primary hover:underline"
+            >
+              <MapPin className="h-4 w-4" />
+              Mở trong Google Maps
+              <ExternalLink className="h-3 w-3" />
+            </a>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }

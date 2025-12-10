@@ -11,6 +11,8 @@ export interface EventInfo {
   themeTagline: string;
   checkInTime: string;
   checkOutTime: string;
+  googleMapsUrl: string;
+  googleMapsEmbedUrl: string;
 }
 
 export interface ResortPackage {
@@ -102,6 +104,7 @@ export interface Vehicle {
 
 export interface TransportInfo {
   meetPoint: string;
+  meetPointMapsUrl: string;
   gatherTime: string;
   departTime: string;
   returnTime: string;

@@ -1,5 +1,6 @@
-import { Waves, MapPin } from 'lucide-react';
+import { Waves, MapPin, ExternalLink } from 'lucide-react';
 import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { eventInfo } from '@/data';
 import { cn } from '@/lib/utils';
 
 function Header() {
@@ -23,15 +24,21 @@ function Header() {
 
         {/* Right Section */}
         <div className="flex items-center gap-3">
-          {/* Resort Badge */}
-          <div className="hidden items-center gap-2 rounded-full bg-secondary/50 px-3 py-1.5 text-sm sm:flex">
+          {/* Resort Badge - Clickable to Google Maps */}
+          <a
+            href={eventInfo.googleMapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden items-center gap-2 rounded-full bg-secondary/50 px-3 py-1.5 text-sm sm:flex hover:bg-secondary/80 transition-colors group"
+          >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
             </span>
             <MapPin className="h-3.5 w-3.5 text-muted-foreground" />
-            <span className="text-muted-foreground">Asteria Mui Ne Resort</span>
-          </div>
+            <span className="text-muted-foreground group-hover:text-foreground transition-colors">Asteria Mui Ne Resort</span>
+            <ExternalLink className="h-3 w-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+          </a>
 
           {/* Theme Toggle */}
           <ThemeToggle />

@@ -1,11 +1,11 @@
 import {
   Bus,
   Car,
-  MapPin,
   Clock,
   Users,
   ArrowRight,
   Building2,
+  ExternalLink,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -77,15 +77,23 @@ function TransportSection() {
       <Card className="border-primary/20 bg-gradient-to-r from-primary/5 to-sky-500/5" hover={false}>
         <CardContent className="p-5">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
-            <div className="flex items-start gap-3">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/15">
+            <a
+              href={transportInfo.meetPointMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start gap-3 group"
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/15 group-hover:scale-110 transition-transform">
                 <Building2 className="h-5 w-5 text-primary" />
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">Điểm tập trung</p>
-                <p className="font-semibold text-foreground">{transportInfo.meetPoint}</p>
+                <p className="font-semibold text-foreground group-hover:text-primary transition-colors flex items-center gap-1">
+                  {transportInfo.meetPoint}
+                  <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </p>
               </div>
-            </div>
+            </a>
             <div className="flex flex-wrap gap-4">
               <div className="flex items-center gap-2 rounded-lg bg-card border border-border px-3 py-2">
                 <Clock className="h-4 w-4 text-amber-500" />
