@@ -1,0 +1,101 @@
+You are an expert in TypeScript, React, Vite, Tailwind CSS, Shadcn UI, Radix UI, and Zustand.
+
+Project Context:
+This is the NGD Team Building 2025 Dashboard - a React application displaying event information for Amanotes New Games Division team building at Asteria Mui Ne Resort (18-19/12/2025). The app shows schedule, room assignments, participants, menu, transport, and budget information.
+
+Code Style and Structure:
+- Write concise, technical TypeScript code with accurate examples
+- Use functional and declarative programming patterns; avoid classes
+- Prefer iteration and modularization over code duplication
+- Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError)
+- Structure files: exported component, subcomponents, helpers, static content, types
+- Use lowercase with dashes for directories (e.g., components/room-card)
+
+Naming Conventions:
+- Use PascalCase for components (e.g., RoomCard, ScheduleSection)
+- Use kebab-case for file names (e.g., room-card.tsx, schedule-section.tsx)
+- Use camelCase for variables, functions, and hooks
+- Prefix event handlers with "handle" (e.g., handleTabChange, handleSearch)
+- Prefix boolean variables with is/has/should (e.g., isFamily, hasSpecialNote)
+- Favor named exports for components
+
+TypeScript Usage:
+- Use TypeScript for all code; prefer interfaces over types
+- Avoid enums; use objects or maps instead
+- Avoid using `any` or `unknown` unless absolutely necessary
+- Use functional components with TypeScript interfaces for props
+
+Syntax and Formatting:
+- Use the "function" keyword for component definitions
+- Avoid unnecessary curly braces in conditionals; use concise syntax
+- Use early returns for error conditions to avoid deep nesting
+- Use declarative JSX, keeping JSX minimal and readable
+
+UI and Styling:
+- Use Tailwind CSS for all styling with utility-first approach
+- Use Shadcn UI components as the base (Card, Badge, Button, Tabs)
+- Use Radix UI primitives for custom accessible components
+- Implement responsive design with mobile-first approach
+- Use consistent spacing (p-4, p-5, p-6) and rounded corners (rounded-2xl, rounded-3xl)
+- Follow ocean theme color palette: cyan primary, slate backgrounds, emerald/amber accents
+
+Component Architecture:
+- Keep components small and focused (Single Responsibility)
+- Use composition pattern to build complex UIs
+- Extract reusable logic into custom hooks (use- prefix)
+- Use React.memo() strategically for list items
+- Implement proper key props in lists (use unique IDs, not index)
+
+Data Structure:
+- All data is static, imported from /data directory
+- Types are defined in /types directory
+- Use Zod schemas if validation is needed
+
+Key Files Structure:
+```
+src/
+├── components/
+│   ├── ui/           # Shadcn components
+│   ├── layout/       # Header, Footer, TabNav
+│   ├── dashboard/    # Overview section
+│   ├── schedule/     # Timeline components
+│   ├── rooms/        # Room assignment cards
+│   ├── participants/ # Team member list
+│   ├── menu/         # Meal/restaurant info
+│   ├── transport/    # Vehicle info
+│   └── budget/       # Expense tracking
+├── hooks/
+├── data/
+├── types/
+├── lib/
+└── store/
+```
+
+Vietnamese Language:
+- All UI text should be in Vietnamese
+- Use proper Vietnamese diacritics
+- Common labels: "Tổng quan", "Lịch trình", "Xếp phòng", "Ăn uống", "Di chuyển", "Ngân sách"
+
+Performance:
+- Use dynamic imports for non-critical components
+- Optimize images: WebP format, lazy loading
+- Minimize re-renders with proper memoization
+
+Accessibility:
+- Use semantic HTML elements
+- Implement proper ARIA labels for icons and interactive elements
+- Ensure keyboard navigation support
+- Maintain color contrast for readability
+
+Error Handling:
+- Handle edge cases at the beginning of functions
+- Use guard clauses for preconditions
+- Provide user-friendly fallback UI for empty states
+
+Do NOT:
+- Use CSS classes or inline styles (use Tailwind only)
+- Use class components
+- Use any or unknown types without good reason
+- Use index as key in lists
+- Create oversized components (split if > 150 lines)
+- Hardcode colors outside of Tailwind config
