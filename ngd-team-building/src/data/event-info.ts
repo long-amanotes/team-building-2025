@@ -1,4 +1,5 @@
 import type { EventInfo, ResortPackage } from '@/types';
+import { participants } from './participants';
 
 export const eventInfo: EventInfo = {
     eventName: "NGD Team Building 2025",
@@ -7,7 +8,7 @@ export const eventInfo: EventInfo = {
     startDate: "18/12/2025",
     endDate: "19/12/2025",
     nightsLabel: "2 ngày 1 đêm",
-    totalPax: 32,
+    totalPax: participants.length,
     totalRooms: 18,
     themeTagline: "Gió biển mát, team chill xả stress 🌊",
     checkInTime: "14:30",
