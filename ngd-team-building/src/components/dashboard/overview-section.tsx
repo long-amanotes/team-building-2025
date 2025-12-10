@@ -210,6 +210,43 @@ function OverviewSection() {
         </Card>
       </div>
 
+      {/* BB Service Pack PDF */}
+      <Card className="overflow-hidden">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500/15 to-pink-500/15">
+              <FileText className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+            </div>
+            Gói dịch vụ BB (Bed & Breakfast)
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="p-0">
+          <div className="relative w-full h-[600px] sm:h-[700px]">
+            <iframe
+              src={bbServicePackPdf}
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              title="BB Service Pack PDF"
+              className="rounded-b-xl"
+            />
+          </div>
+          <div className="p-4 bg-muted/30 border-t border-border">
+            <a
+              href={bbServicePackPdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              download="BB-service-pack.pdf"
+              className="flex items-center justify-center gap-2 text-sm text-primary hover:underline group"
+            >
+              <Download className="h-4 w-4 group-hover:scale-110 transition-transform" />
+              Tải xuống file PDF
+              <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </a>
+          </div>
+        </CardContent>
+      </Card>
+
       {/* Google Maps */}
       <Card className="overflow-hidden">
         <CardHeader>
@@ -244,43 +281,6 @@ function OverviewSection() {
               <MapPin className="h-4 w-4" />
               Mở trong Google Maps
               <ExternalLink className="h-3 w-3" />
-            </a>
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* BB Service Pack PDF */}
-      <Card className="overflow-hidden">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500/15 to-pink-500/15">
-              <FileText className="h-5 w-5 text-purple-600 dark:text-purple-400" />
-            </div>
-            Gói dịch vụ BB (Bed & Breakfast)
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="p-0">
-          <div className="relative w-full h-[600px] sm:h-[700px]">
-            <iframe
-              src={bbServicePackPdf}
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              title="BB Service Pack PDF"
-              className="rounded-b-xl"
-            />
-          </div>
-          <div className="p-4 bg-muted/30 border-t border-border">
-            <a
-              href={bbServicePackPdf}
-              target="_blank"
-              rel="noopener noreferrer"
-              download="BB-service-pack.pdf"
-              className="flex items-center justify-center gap-2 text-sm text-primary hover:underline group"
-            >
-              <Download className="h-4 w-4 group-hover:scale-110 transition-transform" />
-              Tải xuống file PDF
-              <ExternalLink className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
             </a>
           </div>
         </CardContent>
