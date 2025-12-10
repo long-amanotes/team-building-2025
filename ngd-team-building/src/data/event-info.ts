@@ -13,7 +13,7 @@ export const eventInfo: EventInfo = {
     themeTagline: "Gió biển mát, team chill xả stress 🌊",
     checkInTime: "14:30",
     checkOutTime: "12:00",
-    googleMapsUrl: "https://www.google.com/maps/place/Asteria+Mui+Ne+Resort/@10.9385,108.2872,17z",
+    googleMapsUrl: "https://maps.app.goo.gl/Cbn88Jz4tbH2eA7h7",
     googleMapsEmbedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3914.1234!2d108.2872!3d10.9385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3176830a8f1c1c1d%3A0x1234567890abcdef!2sAsteria%20Mui%20Ne%20Resort!5e0!3m2!1sen!2s!4v1234567890",
 };
 

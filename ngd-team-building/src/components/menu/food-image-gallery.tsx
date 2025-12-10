@@ -1,19 +1,17 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { X, ChevronLeft, ChevronRight, Image as ImageIcon } from 'lucide-react';
-import { getRoomImages } from '@/data/room-images';
 import { cn } from '@/lib/utils';
 
-interface RoomImageGalleryProps {
-  roomType: 'Twin' | 'Double';
-  roomId: number;
+interface FoodImageGalleryProps {
+  images: string[];
+  restaurantName: string;
   isOpen: boolean;
   onClose: () => void;
 }
 
-function RoomImageGallery({ roomType, roomId, isOpen, onClose }: RoomImageGalleryProps) {
+function FoodImageGallery({ images, restaurantName, isOpen, onClose }: FoodImageGalleryProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const roomImages = getRoomImages(roomType);
 
   // Reset to first image when modal opens
   useEffect(() => {
@@ -28,9 +26,9 @@ function RoomImageGallery({ roomType, roomId, isOpen, onClose }: RoomImageGaller
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'ArrowLeft') {
-        setCurrentImageIndex((prev) => (prev - 1 + roomImages.length) % roomImages.length);
+        setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
       } else if (e.key === 'ArrowRight') {
-        setCurrentImageIndex((prev) => (prev + 1) % roomImages.length);
+        setCurrentImageIndex((prev) => (prev + 1) % images.length);
       } else if (e.key === 'Escape') {
         onClose();
       }
@@ -38,14 +36,14 @@ function RoomImageGallery({ roomType, roomId, isOpen, onClose }: RoomImageGaller
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isOpen, roomImages.length, onClose]);
+  }, [isOpen, images.length, onClose]);
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % roomImages.length);
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + roomImages.length) % roomImages.length);
+    setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
   const goToImage = (index: number) => {
@@ -54,7 +52,7 @@ function RoomImageGallery({ roomType, roomId, isOpen, onClose }: RoomImageGaller
 
   if (!isOpen) return null;
 
-  const currentImage = roomImages[currentImageIndex];
+  const currentImage = images[currentImageIndex];
 
   const modalContent = (
     <div
@@ -65,7 +63,7 @@ function RoomImageGallery({ roomType, roomId, isOpen, onClose }: RoomImageGaller
       {/* Backdrop */}
       <div className="absolute inset-0 bg-black/90 backdrop-blur-sm" />
 
-      {/* Modal Content - Fullscreen */}
+      {/* Modal Content */}
       <div
         className="relative z-50 w-full h-full flex flex-col bg-background overflow-hidden"
         onClick={(e) => e.stopPropagation()}
@@ -78,10 +76,10 @@ function RoomImageGallery({ roomType, roomId, isOpen, onClose }: RoomImageGaller
             </div>
             <div>
               <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
-                Phòng #{roomId} - {roomType}
+                {restaurantName}
               </h2>
               <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mt-0.5">
-                {currentImageIndex + 1} / {roomImages.length} ảnh
+                {currentImageIndex + 1} / {images.length} ảnh
               </p>
             </div>
           </div>
@@ -97,40 +95,34 @@ function RoomImageGallery({ roomType, roomId, isOpen, onClose }: RoomImageGaller
         {/* Main Image Display */}
         <div className="relative flex-1 flex items-center justify-center bg-black/50 p-4 overflow-hidden">
           {/* Main Image */}
-          <div className="relative w-full h-full max-w-5xl flex items-center justify-center">
+          <div className="relative w-full h-full flex items-center justify-center">
             <img
-              src={currentImage.src}
-              alt={currentImage.alt}
-              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+              src={currentImage}
+              alt={`${restaurantName} - Ảnh ${currentImageIndex + 1}`}
+              className="max-w-full max-h-full object-contain"
             />
           </div>
 
           {/* Navigation Arrows */}
-          {roomImages.length > 1 && (
+          {images.length > 1 && (
             <>
               <button
-                onClick={prevImage}
-                className={cn(
-                  'absolute left-4 top-1/2 -translate-y-1/2 z-10',
-                  'flex h-12 w-12 items-center justify-center rounded-full',
-                  'bg-black/60 backdrop-blur-sm text-white',
-                  'hover:bg-black/80 hover:scale-110 transition-all duration-200',
-                  'focus:outline-none focus:ring-2 focus:ring-white/50'
-                )}
-                aria-label="Previous image"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  prevImage();
+                }}
+                className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 backdrop-blur-sm p-3 text-white hover:bg-black/70 transition-colors z-10"
+                aria-label="Ảnh trước"
               >
                 <ChevronLeft className="h-6 w-6" />
               </button>
               <button
-                onClick={nextImage}
-                className={cn(
-                  'absolute right-4 top-1/2 -translate-y-1/2 z-10',
-                  'flex h-12 w-12 items-center justify-center rounded-full',
-                  'bg-black/60 backdrop-blur-sm text-white',
-                  'hover:bg-black/80 hover:scale-110 transition-all duration-200',
-                  'focus:outline-none focus:ring-2 focus:ring-white/50'
-                )}
-                aria-label="Next image"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  nextImage();
+                }}
+                className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 backdrop-blur-sm p-3 text-white hover:bg-black/70 transition-colors z-10"
+                aria-label="Ảnh sau"
               >
                 <ChevronRight className="h-6 w-6" />
               </button>
@@ -139,30 +131,29 @@ function RoomImageGallery({ roomType, roomId, isOpen, onClose }: RoomImageGaller
         </div>
 
         {/* Thumbnail Strip */}
-        {roomImages.length > 1 && (
-          <div className="p-4 border-t border-border/50 bg-white dark:bg-gray-900 shrink-0 shadow-lg">
-            <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent">
-              {roomImages.map((img, index) => (
+        {images.length > 1 && (
+          <div className="border-t border-border/50 bg-white dark:bg-gray-900 p-4 shrink-0 shadow-lg">
+            <div className="flex items-center justify-center gap-2 overflow-x-auto scrollbar-none">
+              {images.map((image, index) => (
                 <button
                   key={index}
-                  onClick={() => goToImage(index)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    goToImage(index);
+                  }}
                   className={cn(
-                    'relative shrink-0 h-20 w-20 rounded-lg overflow-hidden border-2 transition-all duration-200',
-                    'hover:scale-105 focus:outline-none focus:ring-2 focus:ring-primary',
-                    currentImageIndex === index
-                      ? 'border-primary shadow-lg shadow-primary/20'
-                      : 'border-border opacity-60 hover:opacity-100'
+                    'relative shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all',
+                    index === currentImageIndex
+                      ? 'border-primary scale-105'
+                      : 'border-transparent opacity-60 hover:opacity-100'
                   )}
-                  aria-label={`View image ${index + 1}`}
+                  aria-label={`Xem ảnh ${index + 1}`}
                 >
                   <img
-                    src={img.src}
-                    alt={img.alt}
-                    className="h-full w-full object-cover"
+                    src={image}
+                    alt={`Thumbnail ${index + 1}`}
+                    className="w-full h-full object-cover"
                   />
-                  {currentImageIndex === index && (
-                    <div className="absolute inset-0 bg-primary/20" />
-                  )}
                 </button>
               ))}
             </div>
@@ -176,4 +167,4 @@ function RoomImageGallery({ roomType, roomId, isOpen, onClose }: RoomImageGaller
   return createPortal(modalContent, document.body);
 }
 
-export { RoomImageGallery };
+export { FoodImageGallery };
