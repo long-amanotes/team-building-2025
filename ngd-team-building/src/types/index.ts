@@ -86,6 +86,9 @@ export interface Meal {
   name: string;
   restaurant: string;
   address: string;
+  phone?: string;
+  menuUrl?: string;
+  mapsUrl?: string;
   date: string;
   time: string;
   items: MenuItem[];

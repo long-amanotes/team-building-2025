@@ -27,12 +27,15 @@ export const dinnerDay18: Meal = {
 export const lunchDay19: Meal = {
   id: "lunch-19",
   name: "Ăn trưa ngày 19",
-  restaurant: "Phố Mũi Né - Cơm Niêu Hải Sản Tươi Sống",
+  restaurant: "Phố Mũi Né - Cơm Niêu Hải Sản",
   address: "55 Huỳnh Tấn Phát, Mũi Né, Thành phố Phan Thiết, Bình Thuận",
+  phone: "0984 555 207 / 097 214 7973",
+  menuUrl: "https://dungjuntvhk.my.canva.site/setmenu",
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=Pho+Mui+Ne+55+Huynh+Tan+Phat+Mui+Ne",
   date: "19/12/2025",
   time: "12:30 - 14:30",
   items: [
-    { name: "Set 150k", quantity: 40, pricePerUnit: 150000, total: 6000000 },
+    { name: "Set Menu 150k/người", quantity: 40, pricePerUnit: 150000, total: 6000000, note: "Cơm niêu + hải sản tươi sống" },
   ],
   totalCost: 6000000,
   perPaxCost: 150000

@@ -1,4 +1,4 @@
-import { MapPin, Clock, Users, ExternalLink } from 'lucide-react';
+import { MapPin, Clock, Users, ExternalLink, Phone, Menu } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { formatCurrency } from '@/lib/utils';
@@ -10,7 +10,7 @@ interface MealCardProps {
 }
 
 function MealCard({ meal }: MealCardProps) {
-  const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+  const googleMapsUrl = meal.mapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
     meal.restaurant + ' ' + meal.address
   )}`;
 
@@ -23,10 +23,27 @@ function MealCard({ meal }: MealCardProps) {
               {meal.date}
             </Badge>
             <CardTitle className="text-xl">{meal.name}</CardTitle>
-            <p className="mt-1 text-lg font-semibold text-amber-600 dark:text-amber-400">
+            <a
+              href={googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-1 text-lg font-semibold text-amber-600 dark:text-amber-400 hover:underline inline-flex items-center gap-1 group"
+            >
               {meal.restaurant}
-            </p>
+              <ExternalLink className="h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </a>
           </div>
+          {meal.menuUrl && (
+            <a
+              href={meal.menuUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 text-xs text-primary hover:underline px-2 py-1 rounded-md bg-primary/10 hover:bg-primary/20 transition-colors"
+            >
+              <Menu className="h-3.5 w-3.5" />
+              Xem Menu
+            </a>
+          )}
         </div>
       </CardHeader>
       <CardContent className="space-y-4 pt-4">
@@ -46,6 +63,15 @@ function MealCard({ meal }: MealCardProps) {
             <span className="underline-offset-2 hover:underline">{meal.address}</span>
             <ExternalLink className="h-3 w-3" />
           </a>
+          {meal.phone && (
+            <a
+              href={`tel:${meal.phone.split('/')[0].replace(/\s/g, '')}`}
+              className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
+            >
+              <Phone className="h-4 w-4" />
+              <span className="underline-offset-2 hover:underline">{meal.phone}</span>
+            </a>
+          )}
         </div>
 
         {/* Menu Items */}
