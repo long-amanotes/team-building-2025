@@ -31,6 +31,7 @@ export const resortPackage: ResortPackage = {
         "Gym",
         "Hoạt động giải trí do resort tổ chức",
         "Xe trung chuyển trong Mũi Né/Phan Thiết",
+        "Pickleball",
     ],
     notIncluded: [
         "Buffet trưa/tối",
