@@ -5,19 +5,20 @@ import {
   Users,
   Copy,
   Check,
-  Building2,
   CreditCard,
   AlertCircle,
+  QrCode,
+  Smartphone,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { budgetItems, budgetSummary, bankInfo } from '@/data/budget';
 import { formatCurrency } from '@/lib/utils';
 import { cn } from '@/lib/utils';
+import paymentQRImage from '@/assets/Images/payment-info.png';
 
 function BudgetSection() {
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState<'all' | 'account' | null>(null);
 
   const handleCopyBankInfo = async () => {
     const text = `
@@ -27,8 +28,14 @@ Số TK: ${bankInfo.accountNumber}
     `.trim();
 
     await navigator.clipboard.writeText(text);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    setCopied('all');
+    setTimeout(() => setCopied(null), 2000);
+  };
+
+  const handleCopyAccountNumber = async () => {
+    await navigator.clipboard.writeText(bankInfo.accountNumber);
+    setCopied('account');
+    setTimeout(() => setCopied(null), 2000);
   };
 
   return (
@@ -248,9 +255,23 @@ Số TK: ${bankInfo.accountNumber}
               </div>
               <div className="rounded-xl bg-gradient-to-r from-emerald-500/10 to-teal-500/10 p-4">
                 <p className="text-xs uppercase tracking-wider text-muted-foreground">Số tài khoản</p>
-                <p className="mt-1 text-xl font-bold tracking-wider text-emerald-600 dark:text-emerald-400">
-                  {bankInfo.accountNumber}
-                </p>
+                <div className="flex items-center justify-between gap-2 mt-1">
+                  <p className="text-lg font-bold tracking-wider text-emerald-600 dark:text-emerald-400">
+                    {bankInfo.accountNumber}
+                  </p>
+                  <Button
+                    onClick={handleCopyAccountNumber}
+                    variant="ghost"
+                    size="sm"
+                    className="h-8 px-2"
+                  >
+                    {copied === 'account' ? (
+                      <Check className="h-4 w-4 text-emerald-500" />
+                    ) : (
+                      <Copy className="h-4 w-4" />
+                    )}
+                  </Button>
+                </div>
               </div>
             </div>
 
@@ -259,7 +280,7 @@ Số TK: ${bankInfo.accountNumber}
               variant="secondary"
               className="w-full"
             >
-              {copied ? (
+              {copied === 'all' ? (
                 <>
                   <Check className="h-4 w-4 text-emerald-500" />
                   <span className="text-emerald-600 dark:text-emerald-400">Đã copy!</span>
@@ -267,13 +288,91 @@ Số TK: ${bankInfo.accountNumber}
               ) : (
                 <>
                   <Copy className="h-4 w-4" />
-                  Copy thông tin
+                  Copy tất cả thông tin
                 </>
               )}
             </Button>
           </CardContent>
         </Card>
       </div>
+
+      {/* QR Code Payment */}
+      <Card className="overflow-hidden">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-pink-500/15 to-purple-500/15">
+              <QrCode className="h-5 w-5 text-pink-600 dark:text-pink-400" />
+            </div>
+            Quét mã QR để chuyển khoản
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
+          <div className="flex flex-col items-center gap-4">
+            {/* QR Code Image */}
+            <div className="relative group">
+              <div className="absolute -inset-1 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 rounded-2xl blur opacity-25 group-hover:opacity-40 transition duration-300"></div>
+              <div className="relative rounded-xl overflow-hidden bg-white p-2 shadow-xl">
+                <img
+                  src={paymentQRImage}
+                  alt="QR Code thanh toán - Quét bằng app ngân hàng hoặc MoMo"
+                  className="w-full max-w-sm mx-auto rounded-lg"
+                />
+              </div>
+            </div>
+
+            {/* Instructions */}
+            <div className="text-center space-y-2 max-w-md">
+              <div className="flex items-center justify-center gap-2 text-muted-foreground">
+                <Smartphone className="h-4 w-4" />
+                <span className="text-sm">Mở app ngân hàng hoặc MoMo → Quét QR</span>
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Hỗ trợ: MoMo, VietQR, Napas 247 và tất cả app ngân hàng
+              </p>
+            </div>
+
+            {/* Quick copy buttons */}
+            <div className="flex flex-wrap justify-center gap-2 pt-2">
+              <Button
+                onClick={handleCopyAccountNumber}
+                variant="outline"
+                size="sm"
+                className="gap-2"
+              >
+                {copied === 'account' ? (
+                  <>
+                    <Check className="h-3.5 w-3.5 text-emerald-500" />
+                    <span className="text-emerald-600 dark:text-emerald-400">Đã copy STK!</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="h-3.5 w-3.5" />
+                    Copy số tài khoản
+                  </>
+                )}
+              </Button>
+              <Button
+                onClick={handleCopyBankInfo}
+                variant="outline"
+                size="sm"
+                className="gap-2"
+              >
+                {copied === 'all' ? (
+                  <>
+                    <Check className="h-3.5 w-3.5 text-emerald-500" />
+                    <span className="text-emerald-600 dark:text-emerald-400">Đã copy!</span>
+                  </>
+                ) : (
+                  <>
+                    <CreditCard className="h-3.5 w-3.5" />
+                    Copy thông tin đầy đủ
+                  </>
+                )}
+              </Button>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
     </div>
   );
 }
