@@ -58781,10 +58781,18 @@ Additional data:
 
 ```json
 {
-  "status": "running"
+  "status": "success"
 }
 ```
-Status: **loading**
+Result:
+
+```json
+{
+  "output": "dist/assets/Deluxe Double 2-B-xMpURh.jpg          33,523.93 kB\ndist/assets/Bathroom (2)-GNPnJLUu.jpg             35,466.03 kB\ndist/assets/index-mCnyZeRa.css                        68.60 kB │ gzip: 11.17 kB\ndist/assets/index-Dt8wCXQU.js                        323.73 kB │ gzip: 92.05 kB\n✓ built in 1.79s\n",
+  "rejected": false
+}
+```
+Status: **completed**
 
 
 </details>
@@ -58797,6 +58805,19 @@ Status: **loading**
 ---
 
 
+Đã cập nhật link Google Maps cho Asteria Mui Ne Resort.
+
+**Thay đổi:**
+- Cập nhật `googleMapsUrl` trong `src/data/event-info.ts`
+- Từ: `https://www.google.com/maps/place/Asteria+Mui+Ne+Resort/@10.9385,108.2872,17z`
+- Thành: `https://maps.app.goo.gl/Cbn88Jz4tbH2eA7h7`
+
+**Kết quả:**
+- Link trong header (desktop và mobile) đã được cập nhật
+- Click vào "Asteria Mui Ne Resort" sẽ mở link mới
+- Build thành công
+
+Link Google Maps cho resort trong header đã được cập nhật.
 
 ---
 
@@ -58815,6 +58836,8 @@ _**Agent (model default, mode Agent)**_
 ---
 
 
+Đang tìm các vị trí hiển thị "Asteria Mui Ne Resort" và "Mũi Né, Phan Thiết, Bình Thuận" để cập nhật link:
+
 
 ---
 
@@ -58822,7 +58845,4622 @@ _**Agent (model default, mode Agent)**_
 <details>
 <summary>Tool use: **ripgrep_raw_search**</summary>
 
-Status: **loading**
+
+Parameters:
+
+```json
+{
+  "pattern": "Asteria Mui Ne Resort|Mũi Né, Phan Thiết",
+  "path": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building/src",
+  "caseInsensitive": false
+}
+```
+Result:
+
+```json
+{
+  "success": {
+    "pattern": "Asteria Mui Ne Resort|Mũi Né, Phan Thiết",
+    "path": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building/src",
+    "outputMode": "content",
+    "workspaceResults": {
+      "/Users/long.lnt/Desktop/Projects/team-building-2025": {
+        "content": {
+          "matches": [
+            {
+              "file": "ngd-team-building/src/data/event-info.ts",
+              "matches": [
+                {
+                  "lineNumber": 6,
+                  "content": "    resortName: \"Asteria Mui Ne Resort\","
+                },
+                {
+                  "lineNumber": 7,
+                  "content": "    location: \"Mũi Né, Phan Thiết, Bình Thuận\","
+                }
+              ]
+            },
+            {
+              "file": "ngd-team-building/src/data/menu.ts",
+              "matches": [
+                {
+                  "lineNumber": 31,
+                  "content": "    address: \"Mũi Né, Phan Thiết, Bình Thuận\","
+                }
+              ]
+            },
+            {
+              "file": "ngd-team-building/src/App.tsx",
+              "matches": [
+                {
+                  "lineNumber": 89,
+                  "content": "                  NGD Team Building 2025 • Asteria Mui Ne Resort"
+                },
+                {
+                  "lineNumber": 92,
+                  "content": "                  18-19/12/2025 • Mũi Né, Phan Thiết, Bình Thuận"
+                }
+              ]
+            },
+            {
+              "file": "ngd-team-building/src/components/layout/header.tsx",
+              "matches": [
+                {
+                  "lineNumber": 39,
+                  "content": "            &lt;span className=\"text-muted-foreground group-hover:text-foreground transition-colors whitespace-nowrap\"&gt;Asteria Mui Ne Resort&lt;/span&gt;"
+                },
+                {
+                  "lineNumber": 49,
+                  "content": "            aria-label=\"Asteria Mui Ne Resort\""
+                }
+              ]
+            },
+            {
+              "file": "ngd-team-building/src/components/dashboard/overview-section.tsx",
+              "matches": [
+                {
+                  "lineNumber": 270,
+                  "content": "              title=\"Asteria Mui Ne Resort - Google Maps\""
+                }
+              ]
+            }
+          ],
+          "totalLines": 8,
+          "totalMatchedLines": 8
+        }
+      }
+    }
+  }
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="unknown" data-tool-name="semantic_search_full">
+<details>
+<summary>Tool use: **semantic_search_full**</summary>
+
+
+Parameters:
+
+```json
+{
+  "query": "Asteria Mui Ne Resort link Google Maps CardContent",
+  "topK": 10,
+  "explanation": ""
+}
+```
+Result:
+
+```json
+{
+  "codeResults": [
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/src/components/dashboard/overview-section.tsx",
+        "range": {
+          "startPosition": {
+            "line": 25
+          },
+          "endPosition": {
+            "line": 291,
+            "column": 27
+          }
+        },
+        "contents": "function OverviewSection() {\n\n\n      {/* Google Maps */}\n      &lt;Card className=\"overflow-hidden\"&gt;\n        &lt;CardHeader&gt;\n          &lt;CardTitle className=\"flex items-center gap-2\"&gt;\n            &lt;div className=\"flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500/15 to-green-500/15\"&gt;\n              &lt;Navigation className=\"h-5 w-5 text-blue-600 dark:text-blue-400\" /&gt;\n            &lt;/div&gt;\n            Vị trí trên bản đồ\n          &lt;/CardTitle&gt;\n        &lt;/CardHeader&gt;\n        &lt;CardContent className=\"p-0\"&gt;\n          &lt;div className=\"relative w-full h-[300px] sm:h-[400px]\"&gt;\n            &lt;iframe\n              src=\"https://maps.google.com/maps?q=Asteria+Mui+Ne+Resort,+Mui+Ne,+Phan+Thiet,+Vietnam&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed\"\n              width=\"100%\"\n              height=\"100%\"\n              style={{ border: 0 }}\n              allowFullScreen\n              loading=\"lazy\"\n              referrerPolicy=\"no-referrer-when-downgrade\"\n              title=\"Asteria Mui Ne Resort - Google Maps\"\n              className=\"rounded-b-xl\"\n            /&gt;\n          &lt;/div&gt;\n          &lt;div className=\"p-4 bg-muted/30 border-t border-border\"&gt;\n            &lt;a\n              href={eventInfo.googleMapsUrl}\n              target=\"_blank\"\n              rel=\"noopener noreferrer\"\n              className=\"flex items-center justify-center gap-2 text-sm text-primary hover:underline\"\n            &gt;\n              &lt;MapPin className=\"h-4 w-4\" /&gt;\n              Mở trong Google Maps\n              &lt;ExternalLink className=\"h-3 w-3\" /&gt;\n            &lt;/a&gt;\n          &lt;/div&gt;\n        &lt;/CardContent&gt;\n      &lt;/Card&gt;\n    &lt;/div&gt;\n  );\n}\n\nexport { OverviewSection };",
+        "signatures": {
+          "ranges": [
+            {
+              "startPosition": {
+                "line": 26,
+                "column": 1
+              },
+              "endPosition": {
+                "line": 27,
+                "column": 3
+              }
+            }
+          ]
+        },
+        "detailedLines": [
+          {
+            "text": "function OverviewSection() {",
+            "lineNumber": 26,
+            "isSignature": true
+          },
+          {
+            "lineNumber": 248
+          },
+          {
+            "lineNumber": 249
+          },
+          {
+            "text": "      {/* Google Maps */}",
+            "lineNumber": 250
+          },
+          {
+            "text": "      &lt;Card className=\"overflow-hidden\"&gt;",
+            "lineNumber": 251
+          },
+          {
+            "text": "        &lt;CardHeader&gt;",
+            "lineNumber": 252
+          },
+          {
+            "text": "          &lt;CardTitle className=\"flex items-center gap-2\"&gt;",
+            "lineNumber": 253
+          },
+          {
+            "text": "            &lt;div className=\"flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500/15 to-green-500/15\"&gt;",
+            "lineNumber": 254
+          },
+          {
+            "text": "              &lt;Navigation className=\"h-5 w-5 text-blue-600 dark:text-blue-400\" /&gt;",
+            "lineNumber": 255
+          },
+          {
+            "text": "            &lt;/div&gt;",
+            "lineNumber": 256
+          },
+          {
+            "text": "            Vị trí trên bản đồ",
+            "lineNumber": 257
+          },
+          {
+            "text": "          &lt;/CardTitle&gt;",
+            "lineNumber": 258
+          },
+          {
+            "text": "        &lt;/CardHeader&gt;",
+            "lineNumber": 259
+          },
+          {
+            "text": "        &lt;CardContent className=\"p-0\"&gt;",
+            "lineNumber": 260
+          },
+          {
+            "text": "          &lt;div className=\"relative w-full h-[300px] sm:h-[400px]\"&gt;",
+            "lineNumber": 261
+          },
+          {
+            "text": "            &lt;iframe",
+            "lineNumber": 262
+          },
+          {
+            "text": "              src=\"https://maps.google.com/maps?q=Asteria+Mui+Ne+Resort,+Mui+Ne,+Phan+Thiet,+Vietnam&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed\"",
+            "lineNumber": 263
+          },
+          {
+            "text": "              width=\"100%\"",
+            "lineNumber": 264
+          },
+          {
+            "text": "              height=\"100%\"",
+            "lineNumber": 265
+          },
+          {
+            "text": "              style={{ border: 0 }}",
+            "lineNumber": 266
+          },
+          {
+            "text": "              allowFullScreen",
+            "lineNumber": 267
+          },
+          {
+            "text": "              loading=\"lazy\"",
+            "lineNumber": 268
+          },
+          {
+            "text": "              referrerPolicy=\"no-referrer-when-downgrade\"",
+            "lineNumber": 269
+          },
+          {
+            "text": "              title=\"Asteria Mui Ne Resort - Google Maps\"",
+            "lineNumber": 270
+          },
+          {
+            "text": "              className=\"rounded-b-xl\"",
+            "lineNumber": 271
+          },
+          {
+            "text": "            /&gt;",
+            "lineNumber": 272
+          },
+          {
+            "text": "          &lt;/div&gt;",
+            "lineNumber": 273
+          },
+          {
+            "text": "          &lt;div className=\"p-4 bg-muted/30 border-t border-border\"&gt;",
+            "lineNumber": 274
+          },
+          {
+            "text": "            &lt;a",
+            "lineNumber": 275
+          },
+          {
+            "text": "              href={eventInfo.googleMapsUrl}",
+            "lineNumber": 276
+          },
+          {
+            "text": "              target=\"_blank\"",
+            "lineNumber": 277
+          },
+          {
+            "text": "              rel=\"noopener noreferrer\"",
+            "lineNumber": 278
+          },
+          {
+            "text": "              className=\"flex items-center justify-center gap-2 text-sm text-primary hover:underline\"",
+            "lineNumber": 279
+          },
+          {
+            "text": "            &gt;",
+            "lineNumber": 280
+          },
+          {
+            "text": "              &lt;MapPin className=\"h-4 w-4\" /&gt;",
+            "lineNumber": 281
+          },
+          {
+            "text": "              Mở trong Google Maps",
+            "lineNumber": 282
+          },
+          {
+            "text": "              &lt;ExternalLink className=\"h-3 w-3\" /&gt;",
+            "lineNumber": 283
+          },
+          {
+            "text": "            &lt;/a&gt;",
+            "lineNumber": 284
+          },
+          {
+            "text": "          &lt;/div&gt;",
+            "lineNumber": 285
+          },
+          {
+            "text": "        &lt;/CardContent&gt;",
+            "lineNumber": 286
+          },
+          {
+            "text": "      &lt;/Card&gt;",
+            "lineNumber": 287
+          },
+          {
+            "text": "    &lt;/div&gt;",
+            "lineNumber": 288
+          },
+          {
+            "text": "  );",
+            "lineNumber": 289
+          },
+          {
+            "text": "}",
+            "lineNumber": 290,
+            "isSignature": true
+          },
+          {
+            "lineNumber": 291
+          },
+          {
+            "text": "export { OverviewSection };",
+            "lineNumber": 292
+          }
+        ]
+      },
+      "score": 0.519736111164093
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/src/components/layout/header.tsx",
+        "range": {
+          "startPosition": {
+            "line": 5
+          },
+          "endPosition": {
+            "line": 61,
+            "column": 18
+          }
+        },
+        "contents": "function Header() {\n\n\n        {/* Right Section */}\n        &lt;div className=\"flex items-center gap-2 sm:gap-3 shrink-0\"&gt;\n          {/* Resort Badge - Clickable to Google Maps */}\n          &lt;a\n            href={eventInfo.googleMapsUrl}\n            target=\"_blank\"\n            rel=\"noopener noreferrer\"\n            className=\"hidden items-center gap-1.5 sm:gap-2 rounded-full bg-secondary/50 px-2 sm:px-3 py-1.5 text-xs sm:text-sm lg:flex hover:bg-secondary/80 transition-colors group\"\n          &gt;\n            &lt;span className=\"relative flex h-2 w-2 shrink-0\"&gt;\n              &lt;span className=\"absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75\" /&gt;\n              &lt;span className=\"relative inline-flex h-2 w-2 rounded-full bg-emerald-500\" /&gt;\n            &lt;/span&gt;\n            &lt;MapPin className=\"h-3.5 w-3.5 text-muted-foreground shrink-0\" /&gt;\n            &lt;span className=\"text-muted-foreground group-hover:text-foreground transition-colors whitespace-nowrap\"&gt;Asteria Mui Ne Resort&lt;/span&gt;\n            &lt;ExternalLink className=\"h-3 w-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity shrink-0\" /&gt;\n          &lt;/a&gt;\n\n          {/* Mobile Resort Link */}\n          &lt;a\n            href={eventInfo.googleMapsUrl}\n            target=\"_blank\"\n            rel=\"noopener noreferrer\"\n            className=\"flex lg:hidden items-center justify-center h-9 w-9 rounded-full bg-secondary/50 hover:bg-secondary/80 transition-colors\"\n            aria-label=\"Asteria Mui Ne Resort\"\n          &gt;\n            &lt;MapPin className=\"h-4 w-4 text-muted-foreground\" /&gt;\n          &lt;/a&gt;\n\n          {/* Theme Toggle */}\n          &lt;ThemeToggle /&gt;\n        &lt;/div&gt;\n      &lt;/div&gt;\n    &lt;/header&gt;\n  );\n}\n\nexport { Header };",
+        "signatures": {
+          "ranges": [
+            {
+              "startPosition": {
+                "line": 6,
+                "column": 1
+              },
+              "endPosition": {
+                "line": 7,
+                "column": 3
+              }
+            }
+          ]
+        },
+        "detailedLines": [
+          {
+            "text": "function Header() {",
+            "lineNumber": 6,
+            "isSignature": true
+          },
+          {
+            "lineNumber": 23
+          },
+          {
+            "lineNumber": 24
+          },
+          {
+            "text": "        {/* Right Section */}",
+            "lineNumber": 25
+          },
+          {
+            "text": "        &lt;div className=\"flex items-center gap-2 sm:gap-3 shrink-0\"&gt;",
+            "lineNumber": 26
+          },
+          {
+            "text": "          {/* Resort Badge - Clickable to Google Maps */}",
+            "lineNumber": 27
+          },
+          {
+            "text": "          &lt;a",
+            "lineNumber": 28
+          },
+          {
+            "text": "            href={eventInfo.googleMapsUrl}",
+            "lineNumber": 29
+          },
+          {
+            "text": "            target=\"_blank\"",
+            "lineNumber": 30
+          },
+          {
+            "text": "            rel=\"noopener noreferrer\"",
+            "lineNumber": 31
+          },
+          {
+            "text": "            className=\"hidden items-center gap-1.5 sm:gap-2 rounded-full bg-secondary/50 px-2 sm:px-3 py-1.5 text-xs sm:text-sm lg:flex hover:bg-secondary/80 transition-colors group\"",
+            "lineNumber": 32
+          },
+          {
+            "text": "          &gt;",
+            "lineNumber": 33
+          },
+          {
+            "text": "            &lt;span className=\"relative flex h-2 w-2 shrink-0\"&gt;",
+            "lineNumber": 34
+          },
+          {
+            "text": "              &lt;span className=\"absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75\" /&gt;",
+            "lineNumber": 35
+          },
+          {
+            "text": "              &lt;span className=\"relative inline-flex h-2 w-2 rounded-full bg-emerald-500\" /&gt;",
+            "lineNumber": 36
+          },
+          {
+            "text": "            &lt;/span&gt;",
+            "lineNumber": 37
+          },
+          {
+            "text": "            &lt;MapPin className=\"h-3.5 w-3.5 text-muted-foreground shrink-0\" /&gt;",
+            "lineNumber": 38
+          },
+          {
+            "text": "            &lt;span className=\"text-muted-foreground group-hover:text-foreground transition-colors whitespace-nowrap\"&gt;Asteria Mui Ne Resort&lt;/span&gt;",
+            "lineNumber": 39
+          },
+          {
+            "text": "            &lt;ExternalLink className=\"h-3 w-3 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity shrink-0\" /&gt;",
+            "lineNumber": 40
+          },
+          {
+            "text": "          &lt;/a&gt;",
+            "lineNumber": 41
+          },
+          {
+            "lineNumber": 42
+          },
+          {
+            "text": "          {/* Mobile Resort Link */}",
+            "lineNumber": 43
+          },
+          {
+            "text": "          &lt;a",
+            "lineNumber": 44
+          },
+          {
+            "text": "            href={eventInfo.googleMapsUrl}",
+            "lineNumber": 45
+          },
+          {
+            "text": "            target=\"_blank\"",
+            "lineNumber": 46
+          },
+          {
+            "text": "            rel=\"noopener noreferrer\"",
+            "lineNumber": 47
+          },
+          {
+            "text": "            className=\"flex lg:hidden items-center justify-center h-9 w-9 rounded-full bg-secondary/50 hover:bg-secondary/80 transition-colors\"",
+            "lineNumber": 48
+          },
+          {
+            "text": "            aria-label=\"Asteria Mui Ne Resort\"",
+            "lineNumber": 49
+          },
+          {
+            "text": "          &gt;",
+            "lineNumber": 50
+          },
+          {
+            "text": "            &lt;MapPin className=\"h-4 w-4 text-muted-foreground\" /&gt;",
+            "lineNumber": 51
+          },
+          {
+            "text": "          &lt;/a&gt;",
+            "lineNumber": 52
+          },
+          {
+            "lineNumber": 53
+          },
+          {
+            "text": "          {/* Theme Toggle */}",
+            "lineNumber": 54
+          },
+          {
+            "text": "          &lt;ThemeToggle /&gt;",
+            "lineNumber": 55
+          },
+          {
+            "text": "        &lt;/div&gt;",
+            "lineNumber": 56
+          },
+          {
+            "text": "      &lt;/div&gt;",
+            "lineNumber": 57
+          },
+          {
+            "text": "    &lt;/header&gt;",
+            "lineNumber": 58
+          },
+          {
+            "text": "  );",
+            "lineNumber": 59
+          },
+          {
+            "text": "}",
+            "lineNumber": 60,
+            "isSignature": true
+          },
+          {
+            "lineNumber": 61
+          },
+          {
+            "text": "export { Header };",
+            "lineNumber": 62
+          }
+        ]
+      },
+      "score": 0.46363359689712524
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/src/components/menu/meal-card.tsx",
+        "range": {
+          "startPosition": {
+            "line": 20
+          },
+          "endPosition": {
+            "line": 195,
+            "column": 1
+          }
+        },
+        "contents": "function MealCard({ meal }: MealCardProps) {\n\n      &lt;/CardHeader&gt;\n      &lt;CardContent className=\"space-y-4 pt-4\"&gt;\n        {/* Info */}\n        &lt;div className=\"flex flex-wrap gap-4 text-sm\"&gt;\n          &lt;div className=\"flex items-center gap-2 text-muted-foreground\"&gt;\n            &lt;Clock className=\"h-4 w-4\" /&gt;\n            &lt;span&gt;{meal.time}&lt;/span&gt;\n          &lt;/div&gt;\n          &lt;a\n            href={googleMapsUrl}\n            target=\"_blank\"\n            rel=\"noopener noreferrer\"\n            className=\"flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary\"\n          &gt;\n            &lt;MapPin className=\"h-4 w-4\" /&gt;\n            &lt;span className=\"underline-offset-2 hover:underline\"&gt;{meal.address}&lt;/span&gt;\n            &lt;ExternalLink className=\"h-3 w-3\" /&gt;\n          &lt;/a&gt;\n          {meal.phone &amp;&amp; (\n            &lt;a\n              href={&#96;tel:${meal.phone.split('/')[0].replace(/\\s/g, '')}&#96;}\n              className=\"flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary\"\n            &gt;\n              &lt;Phone className=\"h-4 w-4\" /&gt;\n              &lt;span className=\"underline-offset-2 hover:underline\"&gt;{meal.phone}&lt;/span&gt;\n            &lt;/a&gt;\n          )}\n        &lt;/div&gt;\n\n        {/* Menu Items */}\n        &lt;div className=\"space-y-2\"&gt;\n          &lt;h4\n}",
+        "signatures": {
+          "ranges": [
+            {
+              "startPosition": {
+                "line": 21,
+                "column": 1
+              },
+              "endPosition": {
+                "line": 22,
+                "column": 3
+              }
+            }
+          ]
+        },
+        "detailedLines": [
+          {
+            "text": "function MealCard({ meal }: MealCardProps) {",
+            "lineNumber": 21,
+            "isSignature": true
+          },
+          {
+            "lineNumber": 86
+          },
+          {
+            "text": "      &lt;/CardHeader&gt;",
+            "lineNumber": 87
+          },
+          {
+            "text": "      &lt;CardContent className=\"space-y-4 pt-4\"&gt;",
+            "lineNumber": 88
+          },
+          {
+            "text": "        {/* Info */}",
+            "lineNumber": 89
+          },
+          {
+            "text": "        &lt;div className=\"flex flex-wrap gap-4 text-sm\"&gt;",
+            "lineNumber": 90
+          },
+          {
+            "text": "          &lt;div className=\"flex items-center gap-2 text-muted-foreground\"&gt;",
+            "lineNumber": 91
+          },
+          {
+            "text": "            &lt;Clock className=\"h-4 w-4\" /&gt;",
+            "lineNumber": 92
+          },
+          {
+            "text": "            &lt;span&gt;{meal.time}&lt;/span&gt;",
+            "lineNumber": 93
+          },
+          {
+            "text": "          &lt;/div&gt;",
+            "lineNumber": 94
+          },
+          {
+            "text": "          &lt;a",
+            "lineNumber": 95
+          },
+          {
+            "text": "            href={googleMapsUrl}",
+            "lineNumber": 96
+          },
+          {
+            "text": "            target=\"_blank\"",
+            "lineNumber": 97
+          },
+          {
+            "text": "            rel=\"noopener noreferrer\"",
+            "lineNumber": 98
+          },
+          {
+            "text": "            className=\"flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary\"",
+            "lineNumber": 99
+          },
+          {
+            "text": "          &gt;",
+            "lineNumber": 100
+          },
+          {
+            "text": "            &lt;MapPin className=\"h-4 w-4\" /&gt;",
+            "lineNumber": 101
+          },
+          {
+            "text": "            &lt;span className=\"underline-offset-2 hover:underline\"&gt;{meal.address}&lt;/span&gt;",
+            "lineNumber": 102
+          },
+          {
+            "text": "            &lt;ExternalLink className=\"h-3 w-3\" /&gt;",
+            "lineNumber": 103
+          },
+          {
+            "text": "          &lt;/a&gt;",
+            "lineNumber": 104
+          },
+          {
+            "text": "          {meal.phone &amp;&amp; (",
+            "lineNumber": 105
+          },
+          {
+            "text": "            &lt;a",
+            "lineNumber": 106
+          },
+          {
+            "text": "              href={&#96;tel:${meal.phone.split('/')[0].replace(/\\s/g, '')}&#96;}",
+            "lineNumber": 107
+          },
+          {
+            "text": "              className=\"flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary\"",
+            "lineNumber": 108
+          },
+          {
+            "text": "            &gt;",
+            "lineNumber": 109
+          },
+          {
+            "text": "              &lt;Phone className=\"h-4 w-4\" /&gt;",
+            "lineNumber": 110
+          },
+          {
+            "text": "              &lt;span className=\"underline-offset-2 hover:underline\"&gt;{meal.phone}&lt;/span&gt;",
+            "lineNumber": 111
+          },
+          {
+            "text": "            &lt;/a&gt;",
+            "lineNumber": 112
+          },
+          {
+            "text": "          )}",
+            "lineNumber": 113
+          },
+          {
+            "text": "        &lt;/div&gt;",
+            "lineNumber": 114
+          },
+          {
+            "lineNumber": 115
+          },
+          {
+            "text": "        {/* Menu Items */}",
+            "lineNumber": 116
+          },
+          {
+            "text": "        &lt;div className=\"space-y-2\"&gt;",
+            "lineNumber": 117
+          },
+          {
+            "text": "          &lt;h4",
+            "lineNumber": 118
+          },
+          {
+            "text": "}",
+            "lineNumber": 196,
+            "isSignature": true
+          }
+        ]
+      },
+      "score": 0.43633174896240234
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/src/components/dashboard/overview-section.tsx",
+        "range": {
+          "startPosition": {
+            "line": 25
+          },
+          "endPosition": {
+            "line": 289,
+            "column": 1
+          }
+        },
+        "contents": "function OverviewSection() {\n\n\n        &lt;CardContent className=\"relative space-y-6\"&gt;\n          &lt;div&gt;\n            &lt;div className=\"flex items-center gap-3\"&gt;\n              &lt;h1 className=\"text-3xl font-bold text-foreground sm:text-4xl\"&gt;\n                {eventInfo.eventName}\n              &lt;/h1&gt;\n              &lt;PartyPopper className=\"h-8 w-8 text-amber-500 animate-float\" /&gt;\n            &lt;/div&gt;\n            &lt;p className=\"mt-2 text-lg font-medium text-primary\"&gt;\n              {eventInfo.themeTagline}\n            &lt;/p&gt;\n          &lt;/div&gt;\n\n          &lt;div className=\"flex flex-wrap items-center gap-6\"&gt;\n            &lt;a\n              href={eventInfo.googleMapsUrl}\n              target=\"_blank\"\n              rel=\"noopener noreferrer\"\n              className=\"flex items-center gap-3 group\"\n            &gt;\n              &lt;div className={cn(\n                'flex h-10 w-10 items-center justify-center rounded-xl',\n                'bg-gradient-to-br from-amber-500 to-orange-500',\n                'shadow-lg shadow-amber-500/20',\n                'group-hover:scale-110 transition-transform'\n              )}&gt;\n                &lt;Sun className=\"h-5 w-5 text-white\" /&gt;\n              &lt;/div&gt;\n              &lt;div&gt;\n                &lt;p className=\"text-xs text-muted-foreground\"&gt;Resort&lt;/p&gt;\n                &lt;p className=\"font-semibold text-foreground group-hover:text-primary transition-colors flex items-center gap-1\"&gt;\n                  {eventInfo.resortName}\n                  &lt;ExternalLink className=\"h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity\" /&gt;\n                &lt;/p&gt;\n              &lt;/div&gt;\n            &lt;/a&gt;\n            &lt;a\n              href={eventInfo.googleMapsUrl}\n              target=\"_blank\"\n}",
+        "signatures": {
+          "ranges": [
+            {
+              "startPosition": {
+                "line": 26,
+                "column": 1
+              },
+              "endPosition": {
+                "line": 27,
+                "column": 3
+              }
+            }
+          ]
+        },
+        "detailedLines": [
+          {
+            "text": "function OverviewSection() {",
+            "lineNumber": 26,
+            "isSignature": true
+          },
+          {
+            "lineNumber": 49
+          },
+          {
+            "lineNumber": 50
+          },
+          {
+            "text": "        &lt;CardContent className=\"relative space-y-6\"&gt;",
+            "lineNumber": 51
+          },
+          {
+            "text": "          &lt;div&gt;",
+            "lineNumber": 52
+          },
+          {
+            "text": "            &lt;div className=\"flex items-center gap-3\"&gt;",
+            "lineNumber": 53
+          },
+          {
+            "text": "              &lt;h1 className=\"text-3xl font-bold text-foreground sm:text-4xl\"&gt;",
+            "lineNumber": 54
+          },
+          {
+            "text": "                {eventInfo.eventName}",
+            "lineNumber": 55
+          },
+          {
+            "text": "              &lt;/h1&gt;",
+            "lineNumber": 56
+          },
+          {
+            "text": "              &lt;PartyPopper className=\"h-8 w-8 text-amber-500 animate-float\" /&gt;",
+            "lineNumber": 57
+          },
+          {
+            "text": "            &lt;/div&gt;",
+            "lineNumber": 58
+          },
+          {
+            "text": "            &lt;p className=\"mt-2 text-lg font-medium text-primary\"&gt;",
+            "lineNumber": 59
+          },
+          {
+            "text": "              {eventInfo.themeTagline}",
+            "lineNumber": 60
+          },
+          {
+            "text": "            &lt;/p&gt;",
+            "lineNumber": 61
+          },
+          {
+            "text": "          &lt;/div&gt;",
+            "lineNumber": 62
+          },
+          {
+            "lineNumber": 63
+          },
+          {
+            "text": "          &lt;div className=\"flex flex-wrap items-center gap-6\"&gt;",
+            "lineNumber": 64
+          },
+          {
+            "text": "            &lt;a",
+            "lineNumber": 65
+          },
+          {
+            "text": "              href={eventInfo.googleMapsUrl}",
+            "lineNumber": 66
+          },
+          {
+            "text": "              target=\"_blank\"",
+            "lineNumber": 67
+          },
+          {
+            "text": "              rel=\"noopener noreferrer\"",
+            "lineNumber": 68
+          },
+          {
+            "text": "              className=\"flex items-center gap-3 group\"",
+            "lineNumber": 69
+          },
+          {
+            "text": "            &gt;",
+            "lineNumber": 70
+          },
+          {
+            "text": "              &lt;div className={cn(",
+            "lineNumber": 71
+          },
+          {
+            "text": "                'flex h-10 w-10 items-center justify-center rounded-xl',",
+            "lineNumber": 72
+          },
+          {
+            "text": "                'bg-gradient-to-br from-amber-500 to-orange-500',",
+            "lineNumber": 73
+          },
+          {
+            "text": "                'shadow-lg shadow-amber-500/20',",
+            "lineNumber": 74
+          },
+          {
+            "text": "                'group-hover:scale-110 transition-transform'",
+            "lineNumber": 75
+          },
+          {
+            "text": "              )}&gt;",
+            "lineNumber": 76
+          },
+          {
+            "text": "                &lt;Sun className=\"h-5 w-5 text-white\" /&gt;",
+            "lineNumber": 77
+          },
+          {
+            "text": "              &lt;/div&gt;",
+            "lineNumber": 78
+          },
+          {
+            "text": "              &lt;div&gt;",
+            "lineNumber": 79
+          },
+          {
+            "text": "                &lt;p className=\"text-xs text-muted-foreground\"&gt;Resort&lt;/p&gt;",
+            "lineNumber": 80
+          },
+          {
+            "text": "                &lt;p className=\"font-semibold text-foreground group-hover:text-primary transition-colors flex items-center gap-1\"&gt;",
+            "lineNumber": 81
+          },
+          {
+            "text": "                  {eventInfo.resortName}",
+            "lineNumber": 82
+          },
+          {
+            "text": "                  &lt;ExternalLink className=\"h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity\" /&gt;",
+            "lineNumber": 83
+          },
+          {
+            "text": "                &lt;/p&gt;",
+            "lineNumber": 84
+          },
+          {
+            "text": "              &lt;/div&gt;",
+            "lineNumber": 85
+          },
+          {
+            "text": "            &lt;/a&gt;",
+            "lineNumber": 86
+          },
+          {
+            "text": "            &lt;a",
+            "lineNumber": 87
+          },
+          {
+            "text": "              href={eventInfo.googleMapsUrl}",
+            "lineNumber": 88
+          },
+          {
+            "text": "              target=\"_blank\"",
+            "lineNumber": 89
+          },
+          {
+            "text": "}",
+            "lineNumber": 290,
+            "isSignature": true
+          }
+        ]
+      },
+      "score": 0.4015570878982544
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/src/components/menu/meal-card.tsx",
+        "range": {
+          "startPosition": {
+            "line": 20
+          },
+          "endPosition": {
+            "line": 195,
+            "column": 1
+          }
+        },
+        "contents": "function MealCard({ meal }: MealCardProps) {\n\n\"\n      )}&gt;\n      &lt;CardHeader className=\"bg-gradient-to-r from-amber-500/10 to-orange-500/10 pb-4\"&gt;\n        &lt;div className=\"flex items-start justify-between\"&gt;\n          &lt;div className=\"flex-1\"&gt;\n            &lt;div className=\"flex items-center gap-2 mb-2\"&gt;\n              &lt;Badge variant=\"warning\"&gt;\n                {meal.date}\n              &lt;/Badge&gt;\n              {hasImages &amp;&amp; (\n                &lt;Badge variant=\"outline\" className=\"gap-1.5 text-xs border-primary/30 text-primary bg-primary/5\"&gt;\n                  &lt;Images className=\"h-3 w-3\" /&gt;\n                  Click để xem hình ({images.length})\n                &lt;/Badge&gt;\n              )}\n            &lt;/div&gt;\n            &lt;CardTitle className=\"text-xl\"&gt;{meal.name}&lt;/CardTitle&gt;\n            &lt;a\n              href={googleMapsUrl}\n              target=\"_blank\"\n              rel=\"noopener noreferrer\"\n              className=\"mt-1 text-lg font-semibold text-amber-600 dark:text-amber-400 hover:underline inline-flex items-center gap-1 group\"\n            &gt;\n              {meal.restaurant}\n              &lt;ExternalLink className=\"h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity\" /&gt;\n            &lt;/a&gt;\n          &lt;/div&gt;\n          {meal.menuUrl &amp;&amp; (\n            &lt;a\n              href={meal.menuUrl}\n              target=\"_blank\"\n              rel=\"noopener noreferrer\"\n              onClick={(e) =&gt; e.stopPropagation()}\n              className=\"flex items-center gap-1.5 text-xs text-primary hover:underline px-2 py-1 rounded-md bg-primary/10 hover:bg-primary/20 transition-colors\"\n            &gt;\n              &lt;Menu className=\"h-3.5 w-3.5\" /&gt;\n              Xem Menu\n            &lt;/a&gt;\n          )}\n        &lt;/div&gt;\n      &lt;/CardHeader&gt;\n      &lt;CardContent className=\"space-y-4 pt-4\"&gt;\n        {/* Info */}\n}",
+        "signatures": {
+          "ranges": [
+            {
+              "startPosition": {
+                "line": 21,
+                "column": 1
+              },
+              "endPosition": {
+                "line": 22,
+                "column": 3
+              }
+            }
+          ]
+        },
+        "detailedLines": [
+          {
+            "text": "function MealCard({ meal }: MealCardProps) {",
+            "lineNumber": 21,
+            "isSignature": true
+          },
+          {
+            "lineNumber": 45
+          },
+          {
+            "text": "\"",
+            "lineNumber": 47
+          },
+          {
+            "text": "      )}&gt;",
+            "lineNumber": 48
+          },
+          {
+            "text": "      &lt;CardHeader className=\"bg-gradient-to-r from-amber-500/10 to-orange-500/10 pb-4\"&gt;",
+            "lineNumber": 49
+          },
+          {
+            "text": "        &lt;div className=\"flex items-start justify-between\"&gt;",
+            "lineNumber": 50
+          },
+          {
+            "text": "          &lt;div className=\"flex-1\"&gt;",
+            "lineNumber": 51
+          },
+          {
+            "text": "            &lt;div className=\"flex items-center gap-2 mb-2\"&gt;",
+            "lineNumber": 52
+          },
+          {
+            "text": "              &lt;Badge variant=\"warning\"&gt;",
+            "lineNumber": 53
+          },
+          {
+            "text": "                {meal.date}",
+            "lineNumber": 54
+          },
+          {
+            "text": "              &lt;/Badge&gt;",
+            "lineNumber": 55
+          },
+          {
+            "text": "              {hasImages &amp;&amp; (",
+            "lineNumber": 56
+          },
+          {
+            "text": "                &lt;Badge variant=\"outline\" className=\"gap-1.5 text-xs border-primary/30 text-primary bg-primary/5\"&gt;",
+            "lineNumber": 57
+          },
+          {
+            "text": "                  &lt;Images className=\"h-3 w-3\" /&gt;",
+            "lineNumber": 58
+          },
+          {
+            "text": "                  Click để xem hình ({images.length})",
+            "lineNumber": 59
+          },
+          {
+            "text": "                &lt;/Badge&gt;",
+            "lineNumber": 60
+          },
+          {
+            "text": "              )}",
+            "lineNumber": 61
+          },
+          {
+            "text": "            &lt;/div&gt;",
+            "lineNumber": 62
+          },
+          {
+            "text": "            &lt;CardTitle className=\"text-xl\"&gt;{meal.name}&lt;/CardTitle&gt;",
+            "lineNumber": 63
+          },
+          {
+            "text": "            &lt;a",
+            "lineNumber": 64
+          },
+          {
+            "text": "              href={googleMapsUrl}",
+            "lineNumber": 65
+          },
+          {
+            "text": "              target=\"_blank\"",
+            "lineNumber": 66
+          },
+          {
+            "text": "              rel=\"noopener noreferrer\"",
+            "lineNumber": 67
+          },
+          {
+            "text": "              className=\"mt-1 text-lg font-semibold text-amber-600 dark:text-amber-400 hover:underline inline-flex items-center gap-1 group\"",
+            "lineNumber": 68
+          },
+          {
+            "text": "            &gt;",
+            "lineNumber": 69
+          },
+          {
+            "text": "              {meal.restaurant}",
+            "lineNumber": 70
+          },
+          {
+            "text": "              &lt;ExternalLink className=\"h-3.5 w-3.5 opacity-0 group-hover:opacity-100 transition-opacity\" /&gt;",
+            "lineNumber": 71
+          },
+          {
+            "text": "            &lt;/a&gt;",
+            "lineNumber": 72
+          },
+          {
+            "text": "          &lt;/div&gt;",
+            "lineNumber": 73
+          },
+          {
+            "text": "          {meal.menuUrl &amp;&amp; (",
+            "lineNumber": 74
+          },
+          {
+            "text": "            &lt;a",
+            "lineNumber": 75
+          },
+          {
+            "text": "              href={meal.menuUrl}",
+            "lineNumber": 76
+          },
+          {
+            "text": "              target=\"_blank\"",
+            "lineNumber": 77
+          },
+          {
+            "text": "              rel=\"noopener noreferrer\"",
+            "lineNumber": 78
+          },
+          {
+            "text": "              onClick={(e) =&gt; e.stopPropagation()}",
+            "lineNumber": 79
+          },
+          {
+            "text": "              className=\"flex items-center gap-1.5 text-xs text-primary hover:underline px-2 py-1 rounded-md bg-primary/10 hover:bg-primary/20 transition-colors\"",
+            "lineNumber": 80
+          },
+          {
+            "text": "            &gt;",
+            "lineNumber": 81
+          },
+          {
+            "text": "              &lt;Menu className=\"h-3.5 w-3.5\" /&gt;",
+            "lineNumber": 82
+          },
+          {
+            "text": "              Xem Menu",
+            "lineNumber": 83
+          },
+          {
+            "text": "            &lt;/a&gt;",
+            "lineNumber": 84
+          },
+          {
+            "text": "          )}",
+            "lineNumber": 85
+          },
+          {
+            "text": "        &lt;/div&gt;",
+            "lineNumber": 86
+          },
+          {
+            "text": "      &lt;/CardHeader&gt;",
+            "lineNumber": 87
+          },
+          {
+            "text": "      &lt;CardContent className=\"space-y-4 pt-4\"&gt;",
+            "lineNumber": 88
+          },
+          {
+            "text": "        {/* Info */}",
+            "lineNumber": 89
+          },
+          {
+            "text": "}",
+            "lineNumber": 196,
+            "isSignature": true
+          }
+        ]
+      },
+      "score": 0.3935515880584717
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/src/data/event-info.ts",
+        "range": {
+          "startPosition": {
+            "column": 56
+          },
+          "endPosition": {
+            "line": 42,
+            "column": 1
+          }
+        },
+        "contents": "import { participants } from './participants';\n\nexport const eventInfo: EventInfo = {\n    eventName: \"NGD Team Building 2025\",\n    resortName: \"Asteria Mui Ne Resort\",\n    location: \"Mũi Né, Phan Thiết, Bình Thuận\",\n    startDate: \"18/12/2025\",\n    endDate: \"19/12/2025\",\n    nightsLabel: \"2 ngày 1 đêm\",\n    totalPax: participants.length,\n    totalRooms: 18,\n    themeTagline: \"Gió biển mát, team chill xả stress 🌊\",\n    checkInTime: \"14:30\",\n    checkOutTime: \"12:00\",\n    googleMapsUrl: \"https://maps.app.goo.gl/Cbn88Jz4tbH2eA7h7\",\n    googleMapsEmbedUrl: \"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3914.1234!2d108.2872!3d10.9385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3176830a8f1c1c1d%3A0x1234567890abcdef!2sAsteria%20Mui%20Ne%20Resort!5e0!3m2!1sen!2s!4v1234567890\",\n};\n\nexport const resortPackage: ResortPackage = {\n    name: \"Bed &amp; Breakfast - BB\"\n,\n};",
+        "signatures": {},
+        "detailedLines": [
+          {
+            "text": "import { participants } from './participants';",
+            "lineNumber": 2
+          },
+          {
+            "lineNumber": 3
+          },
+          {
+            "text": "export const eventInfo: EventInfo = {",
+            "lineNumber": 4
+          },
+          {
+            "text": "    eventName: \"NGD Team Building 2025\",",
+            "lineNumber": 5
+          },
+          {
+            "text": "    resortName: \"Asteria Mui Ne Resort\",",
+            "lineNumber": 6
+          },
+          {
+            "text": "    location: \"Mũi Né, Phan Thiết, Bình Thuận\",",
+            "lineNumber": 7
+          },
+          {
+            "text": "    startDate: \"18/12/2025\",",
+            "lineNumber": 8
+          },
+          {
+            "text": "    endDate: \"19/12/2025\",",
+            "lineNumber": 9
+          },
+          {
+            "text": "    nightsLabel: \"2 ngày 1 đêm\",",
+            "lineNumber": 10
+          },
+          {
+            "text": "    totalPax: participants.length,",
+            "lineNumber": 11
+          },
+          {
+            "text": "    totalRooms: 18,",
+            "lineNumber": 12
+          },
+          {
+            "text": "    themeTagline: \"Gió biển mát, team chill xả stress 🌊\",",
+            "lineNumber": 13
+          },
+          {
+            "text": "    checkInTime: \"14:30\",",
+            "lineNumber": 14
+          },
+          {
+            "text": "    checkOutTime: \"12:00\",",
+            "lineNumber": 15
+          },
+          {
+            "text": "    googleMapsUrl: \"https://maps.app.goo.gl/Cbn88Jz4tbH2eA7h7\",",
+            "lineNumber": 16
+          },
+          {
+            "text": "    googleMapsEmbedUrl: \"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3914.1234!2d108.2872!3d10.9385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3176830a8f1c1c1d%3A0x1234567890abcdef!2sAsteria%20Mui%20Ne%20Resort!5e0!3m2!1sen!2s!4v1234567890\",",
+            "lineNumber": 17
+          },
+          {
+            "text": "};",
+            "lineNumber": 18
+          },
+          {
+            "lineNumber": 19
+          },
+          {
+            "text": "export const resortPackage: ResortPackage = {",
+            "lineNumber": 20
+          },
+          {
+            "text": "    name: \"Bed &amp; Breakfast - BB\"",
+            "lineNumber": 21
+          },
+          {
+            "text": ",",
+            "lineNumber": 42
+          },
+          {
+            "text": "};",
+            "lineNumber": 43
+          }
+        ]
+      },
+      "score": 0.3758890628814697
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/src/components/menu/meal-card.tsx",
+        "range": {
+          "startPosition": {
+            "line": 16,
+            "column": 1
+          },
+          "endPosition": {
+            "line": 195,
+            "column": 1
+          }
+        },
+        "contents": "const lunchDay18Images = [foodImage1, foodImage2, foodImage3];\n\nfunction MealCard({ meal }: MealCardProps) {\n  const [isImageGalleryOpen, setIsImageGalleryOpen] = useState(false);\n  const isLunchDay18 = meal.id === 'lunch-18';\n  const images = isLunchDay18 ? lunchDay18Images : [];\n  const hasImages = images.length &gt; 0;\n\n  const googleMapsUrl = meal.mapsUrl || &#96;https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(\n    meal.restaurant + ' ' + meal.address\n  )}&#96;;\n\n  const handleCardClick = () =&gt; {\n    if (hasImages) {\n      setIsImageGalleryOpen(true);\n    }\n  };\n\n  return (\n    &lt;&gt;\n      &lt;div\n        onClick={handleCardClick}\n        className={cn(\n          hasImages &amp;&amp; \"cursor-pointer\"\n        )}\n      &gt;\n      &lt;Card className={cn(\n        \"overflow-hidden transition-all\",\n        hasImages &amp;&amp; \"hover:shadow-xl hover:scale-[1.02] hover:border-primary/30\"\n      )}&gt;\n      &lt;CardHeader className=\"bg-gradient-to-r from-amber-500/10 to-orange-500/10 pb-4\"&gt;\n        &lt;div className=\"flex items-start justify-between\"&gt;\n}",
+        "signatures": {},
+        "detailedLines": [
+          {
+            "text": "const lunchDay18Images = [foodImage1, foodImage2, foodImage3];",
+            "lineNumber": 19
+          },
+          {
+            "lineNumber": 20
+          },
+          {
+            "text": "function MealCard({ meal }: MealCardProps) {",
+            "lineNumber": 21,
+            "isSignature": true
+          },
+          {
+            "text": "  const [isImageGalleryOpen, setIsImageGalleryOpen] = useState(false);",
+            "lineNumber": 22
+          },
+          {
+            "text": "  const isLunchDay18 = meal.id === 'lunch-18';",
+            "lineNumber": 23
+          },
+          {
+            "text": "  const images = isLunchDay18 ? lunchDay18Images : [];",
+            "lineNumber": 24
+          },
+          {
+            "text": "  const hasImages = images.length &gt; 0;",
+            "lineNumber": 25
+          },
+          {
+            "lineNumber": 26
+          },
+          {
+            "text": "  const googleMapsUrl = meal.mapsUrl || &#96;https://www.google.com/maps/search/?api=1&amp;query=${encodeURIComponent(",
+            "lineNumber": 27
+          },
+          {
+            "text": "    meal.restaurant + ' ' + meal.address",
+            "lineNumber": 28
+          },
+          {
+            "text": "  )}&#96;;",
+            "lineNumber": 29
+          },
+          {
+            "lineNumber": 30
+          },
+          {
+            "text": "  const handleCardClick = () =&gt; {",
+            "lineNumber": 31
+          },
+          {
+            "text": "    if (hasImages) {",
+            "lineNumber": 32
+          },
+          {
+            "text": "      setIsImageGalleryOpen(true);",
+            "lineNumber": 33
+          },
+          {
+            "text": "    }",
+            "lineNumber": 34
+          },
+          {
+            "text": "  };",
+            "lineNumber": 35
+          },
+          {
+            "lineNumber": 36
+          },
+          {
+            "text": "  return (",
+            "lineNumber": 37
+          },
+          {
+            "text": "    &lt;&gt;",
+            "lineNumber": 38
+          },
+          {
+            "text": "      &lt;div",
+            "lineNumber": 39
+          },
+          {
+            "text": "        onClick={handleCardClick}",
+            "lineNumber": 40
+          },
+          {
+            "text": "        className={cn(",
+            "lineNumber": 41
+          },
+          {
+            "text": "          hasImages &amp;&amp; \"cursor-pointer\"",
+            "lineNumber": 42
+          },
+          {
+            "text": "        )}",
+            "lineNumber": 43
+          },
+          {
+            "text": "      &gt;",
+            "lineNumber": 44
+          },
+          {
+            "text": "      &lt;Card className={cn(",
+            "lineNumber": 45
+          },
+          {
+            "text": "        \"overflow-hidden transition-all\",",
+            "lineNumber": 46
+          },
+          {
+            "text": "        hasImages &amp;&amp; \"hover:shadow-xl hover:scale-[1.02] hover:border-primary/30\"",
+            "lineNumber": 47
+          },
+          {
+            "text": "      )}&gt;",
+            "lineNumber": 48
+          },
+          {
+            "text": "      &lt;CardHeader className=\"bg-gradient-to-r from-amber-500/10 to-orange-500/10 pb-4\"&gt;",
+            "lineNumber": 49
+          },
+          {
+            "text": "        &lt;div className=\"flex items-start justify-between\"&gt;",
+            "lineNumber": 50
+          },
+          {
+            "text": "}",
+            "lineNumber": 196,
+            "isSignature": true
+          }
+        ]
+      },
+      "score": 0.37417006492614746
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/src/components/dashboard/overview-section.tsx",
+        "range": {
+          "startPosition": {
+            "line": 25
+          },
+          "endPosition": {
+            "line": 289,
+            "column": 1
+          }
+        },
+        "contents": "function OverviewSection() {\n\n            &lt;a\n              href={eventInfo.googleMapsUrl}\n              target=\"_blank\"\n              rel=\"noopener noreferrer\"\n              className=\"flex items-center gap-3 group\"\n            &gt;\n              &lt;div className={cn(\n                'flex h-10 w-10 items-center justify-center rounded-xl',\n                'bg-gradient-to-br from-rose-500 to-pink-500',\n                'shadow-lg shadow-rose-500/20',\n                'group-hover:scale-110 transition-transform'\n              )}&gt;\n                &lt;MapPin className=\"h-5 w-5 text-white\" /&gt;\n              &lt;/div&gt;\n              &lt;div&gt;\n                &lt;p className=\"text-xs text-muted-foreground\"&gt;Địa điểm&lt;/p&gt;\n                &lt;p className=\"font-semibold text-foreground group-hover:text-primary transition-colors flex items-center gap-1\"&gt;\n                  {eventInfo.location}\n                  &lt;ExternalLink className=\"h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity\" /&gt;\n                &lt;/p&gt;\n              &lt;/div&gt;\n            &lt;/a&gt;\n          &lt;/div&gt;\n\n          &lt;div className=\"flex flex-wrap gap-4 border-t border-border pt-4\"&gt;\n            &lt;div className=\"flex items-center gap-2 rounded-lg bg-secondary/50 px-3 py-2\"&gt;\n              &lt;Clock className=\"h-4 w-4 text-muted-foreground\" /&gt;\n              &lt;span className=\"text-sm text-muted-foreground\"&gt;Check-in:&lt;/span&gt;\n              &lt;span className=\"text-sm font-semibold text-foreground\"&gt;{eventInfo.checkInTime}&lt;/span&gt;\n            &lt;/div&gt;\n            &lt;div className=\"flex items-center gap-2 rounded-lg bg-secondary/50 px-3 py-2\"&gt;\n              &lt;Clock className=\"h-4 w-4 text-muted-foreground\" /&gt;\n              &lt;span className=\"text-sm text-muted-foreground\"&gt;Check-out:&lt;/span&gt;\n              &lt;span className=\"text-sm font-semibold text-foreground\"&gt;{eventInfo.checkOutTime}&lt;/span&gt;\n            &lt;/div&gt;\n          &lt;/div&gt;\n        &lt;/CardContent&gt;\n      &lt;/Card&gt;\n\n      {/* Stats Grid */}\n      &lt;div className=\"grid gap-4 sm:grid-cols-2 lg:grid-cols-4\"&gt;\n        &lt;StatsCard\n          icon={Users}\n          label=\"Thành viên\"\n}",
+        "signatures": {
+          "ranges": [
+            {
+              "startPosition": {
+                "line": 26,
+                "column": 1
+              },
+              "endPosition": {
+                "line": 27,
+                "column": 3
+              }
+            }
+          ]
+        },
+        "detailedLines": [
+          {
+            "text": "function OverviewSection() {",
+            "lineNumber": 26,
+            "isSignature": true
+          },
+          {
+            "lineNumber": 86
+          },
+          {
+            "text": "            &lt;a",
+            "lineNumber": 87
+          },
+          {
+            "text": "              href={eventInfo.googleMapsUrl}",
+            "lineNumber": 88
+          },
+          {
+            "text": "              target=\"_blank\"",
+            "lineNumber": 89
+          },
+          {
+            "text": "              rel=\"noopener noreferrer\"",
+            "lineNumber": 90
+          },
+          {
+            "text": "              className=\"flex items-center gap-3 group\"",
+            "lineNumber": 91
+          },
+          {
+            "text": "            &gt;",
+            "lineNumber": 92
+          },
+          {
+            "text": "              &lt;div className={cn(",
+            "lineNumber": 93
+          },
+          {
+            "text": "                'flex h-10 w-10 items-center justify-center rounded-xl',",
+            "lineNumber": 94
+          },
+          {
+            "text": "                'bg-gradient-to-br from-rose-500 to-pink-500',",
+            "lineNumber": 95
+          },
+          {
+            "text": "                'shadow-lg shadow-rose-500/20',",
+            "lineNumber": 96
+          },
+          {
+            "text": "                'group-hover:scale-110 transition-transform'",
+            "lineNumber": 97
+          },
+          {
+            "text": "              )}&gt;",
+            "lineNumber": 98
+          },
+          {
+            "text": "                &lt;MapPin className=\"h-5 w-5 text-white\" /&gt;",
+            "lineNumber": 99
+          },
+          {
+            "text": "              &lt;/div&gt;",
+            "lineNumber": 100
+          },
+          {
+            "text": "              &lt;div&gt;",
+            "lineNumber": 101
+          },
+          {
+            "text": "                &lt;p className=\"text-xs text-muted-foreground\"&gt;Địa điểm&lt;/p&gt;",
+            "lineNumber": 102
+          },
+          {
+            "text": "                &lt;p className=\"font-semibold text-foreground group-hover:text-primary transition-colors flex items-center gap-1\"&gt;",
+            "lineNumber": 103
+          },
+          {
+            "text": "                  {eventInfo.location}",
+            "lineNumber": 104
+          },
+          {
+            "text": "                  &lt;ExternalLink className=\"h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity\" /&gt;",
+            "lineNumber": 105
+          },
+          {
+            "text": "                &lt;/p&gt;",
+            "lineNumber": 106
+          },
+          {
+            "text": "              &lt;/div&gt;",
+            "lineNumber": 107
+          },
+          {
+            "text": "            &lt;/a&gt;",
+            "lineNumber": 108
+          },
+          {
+            "text": "          &lt;/div&gt;",
+            "lineNumber": 109
+          },
+          {
+            "lineNumber": 110
+          },
+          {
+            "text": "          &lt;div className=\"flex flex-wrap gap-4 border-t border-border pt-4\"&gt;",
+            "lineNumber": 111
+          },
+          {
+            "text": "            &lt;div className=\"flex items-center gap-2 rounded-lg bg-secondary/50 px-3 py-2\"&gt;",
+            "lineNumber": 112
+          },
+          {
+            "text": "              &lt;Clock className=\"h-4 w-4 text-muted-foreground\" /&gt;",
+            "lineNumber": 113
+          },
+          {
+            "text": "              &lt;span className=\"text-sm text-muted-foreground\"&gt;Check-in:&lt;/span&gt;",
+            "lineNumber": 114
+          },
+          {
+            "text": "              &lt;span className=\"text-sm font-semibold text-foreground\"&gt;{eventInfo.checkInTime}&lt;/span&gt;",
+            "lineNumber": 115
+          },
+          {
+            "text": "            &lt;/div&gt;",
+            "lineNumber": 116
+          },
+          {
+            "text": "            &lt;div className=\"flex items-center gap-2 rounded-lg bg-secondary/50 px-3 py-2\"&gt;",
+            "lineNumber": 117
+          },
+          {
+            "text": "              &lt;Clock className=\"h-4 w-4 text-muted-foreground\" /&gt;",
+            "lineNumber": 118
+          },
+          {
+            "text": "              &lt;span className=\"text-sm text-muted-foreground\"&gt;Check-out:&lt;/span&gt;",
+            "lineNumber": 119
+          },
+          {
+            "text": "              &lt;span className=\"text-sm font-semibold text-foreground\"&gt;{eventInfo.checkOutTime}&lt;/span&gt;",
+            "lineNumber": 120
+          },
+          {
+            "text": "            &lt;/div&gt;",
+            "lineNumber": 121
+          },
+          {
+            "text": "          &lt;/div&gt;",
+            "lineNumber": 122
+          },
+          {
+            "text": "        &lt;/CardContent&gt;",
+            "lineNumber": 123
+          },
+          {
+            "text": "      &lt;/Card&gt;",
+            "lineNumber": 124
+          },
+          {
+            "lineNumber": 125
+          },
+          {
+            "text": "      {/* Stats Grid */}",
+            "lineNumber": 126
+          },
+          {
+            "text": "      &lt;div className=\"grid gap-4 sm:grid-cols-2 lg:grid-cols-4\"&gt;",
+            "lineNumber": 127
+          },
+          {
+            "text": "        &lt;StatsCard",
+            "lineNumber": 128
+          },
+          {
+            "text": "          icon={Users}",
+            "lineNumber": 129
+          },
+          {
+            "text": "          label=\"Thành viên\"",
+            "lineNumber": 130
+          },
+          {
+            "text": "}",
+            "lineNumber": 290,
+            "isSignature": true
+          }
+        ]
+      },
+      "score": 0.3611181378364563
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/src/components/transport/transport-section.tsx",
+        "range": {
+          "startPosition": {
+            "line": 15
+          },
+          "endPosition": {
+            "line": 214,
+            "column": 1
+          }
+        },
+        "contents": "function TransportSection() {\n\n\n      {/* Meeting Point */}\n      &lt;Card className=\"border-primary/20 bg-gradient-to-r from-primary/5 to-sky-500/5\" hover={false}&gt;\n        &lt;CardContent className=\"p-5\"&gt;\n          &lt;div className=\"flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between\"&gt;\n            &lt;a\n              href={transportInfo.meetPointMapsUrl}\n              target=\"_blank\"\n              rel=\"noopener noreferrer\"\n              className=\"flex items-start gap-3 group\"\n            &gt;\n              &lt;div className=\"flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/15 group-hover:scale-110 transition-transform\"&gt;\n                &lt;Building2 className=\"h-5 w-5 text-primary\" /&gt;\n              &lt;/div&gt;\n              &lt;div&gt;\n                &lt;p className=\"text-sm text-muted-foreground\"&gt;Điểm tập trung&lt;/p&gt;\n                &lt;p className=\"font-semibold text-foreground group-hover:text-primary transition-colors flex items-center gap-1\"&gt;\n                  {transportInfo.meetPoint}\n                  &lt;ExternalLink className=\"h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity\" /&gt;\n                &lt;/p&gt;\n              &lt;/div&gt;\n            &lt;/a&gt;\n            &lt;div className=\"flex flex-wrap gap-4\"&gt;\n              &lt;div className=\"flex items-center gap-2 rounded-lg bg-card border border-border px-3 py-2\"&gt;\n                &lt;Clock className=\"h-4 w-4 text-amber-500\" /&gt;\n                &lt;div&gt;\n                  &lt;p className=\"text-xs text-muted-foreground\"&gt;Tập trung&lt;/p&gt;\n                  &lt;p className=\"text-sm font-medium text-foreground\"&gt;08:30&lt;/p&gt;\n                &lt;/div&gt;\n              &lt;/div&gt;\n              &lt;div className=\"flex items-center gap-2 rounded-lg bg-card border border-border px-3 py-2\"&gt;\n                &lt;ArrowRight className=\"h-4 w-4 text-emerald-500\" /&gt;\n                &lt;div&gt;\n                  &lt;p className=\"text-xs text-muted-foreground\"&gt;Xuất phát&lt;/p&gt;\n                  &lt;p className=\"text-sm font-medium text-foreground\"&gt;09:00&lt;/p&gt;\n                &lt;/div&gt;\n              &lt;/div&gt;\n            &lt;/div&gt;\n          &lt;/div&gt;\n        &lt;/CardContent&gt;\n      &lt;/Card&gt;\n\n      {/* Main Bus */}\n}",
+        "signatures": {
+          "ranges": [
+            {
+              "startPosition": {
+                "line": 16,
+                "column": 1
+              },
+              "endPosition": {
+                "line": 17,
+                "column": 3
+              }
+            }
+          ]
+        },
+        "detailedLines": [
+          {
+            "text": "function TransportSection() {",
+            "lineNumber": 16,
+            "isSignature": true
+          },
+          {
+            "lineNumber": 74
+          },
+          {
+            "lineNumber": 75
+          },
+          {
+            "text": "      {/* Meeting Point */}",
+            "lineNumber": 76
+          },
+          {
+            "text": "      &lt;Card className=\"border-primary/20 bg-gradient-to-r from-primary/5 to-sky-500/5\" hover={false}&gt;",
+            "lineNumber": 77
+          },
+          {
+            "text": "        &lt;CardContent className=\"p-5\"&gt;",
+            "lineNumber": 78
+          },
+          {
+            "text": "          &lt;div className=\"flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between\"&gt;",
+            "lineNumber": 79
+          },
+          {
+            "text": "            &lt;a",
+            "lineNumber": 80
+          },
+          {
+            "text": "              href={transportInfo.meetPointMapsUrl}",
+            "lineNumber": 81
+          },
+          {
+            "text": "              target=\"_blank\"",
+            "lineNumber": 82
+          },
+          {
+            "text": "              rel=\"noopener noreferrer\"",
+            "lineNumber": 83
+          },
+          {
+            "text": "              className=\"flex items-start gap-3 group\"",
+            "lineNumber": 84
+          },
+          {
+            "text": "            &gt;",
+            "lineNumber": 85
+          },
+          {
+            "text": "              &lt;div className=\"flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/15 group-hover:scale-110 transition-transform\"&gt;",
+            "lineNumber": 86
+          },
+          {
+            "text": "                &lt;Building2 className=\"h-5 w-5 text-primary\" /&gt;",
+            "lineNumber": 87
+          },
+          {
+            "text": "              &lt;/div&gt;",
+            "lineNumber": 88
+          },
+          {
+            "text": "              &lt;div&gt;",
+            "lineNumber": 89
+          },
+          {
+            "text": "                &lt;p className=\"text-sm text-muted-foreground\"&gt;Điểm tập trung&lt;/p&gt;",
+            "lineNumber": 90
+          },
+          {
+            "text": "                &lt;p className=\"font-semibold text-foreground group-hover:text-primary transition-colors flex items-center gap-1\"&gt;",
+            "lineNumber": 91
+          },
+          {
+            "text": "                  {transportInfo.meetPoint}",
+            "lineNumber": 92
+          },
+          {
+            "text": "                  &lt;ExternalLink className=\"h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity\" /&gt;",
+            "lineNumber": 93
+          },
+          {
+            "text": "                &lt;/p&gt;",
+            "lineNumber": 94
+          },
+          {
+            "text": "              &lt;/div&gt;",
+            "lineNumber": 95
+          },
+          {
+            "text": "            &lt;/a&gt;",
+            "lineNumber": 96
+          },
+          {
+            "text": "            &lt;div className=\"flex flex-wrap gap-4\"&gt;",
+            "lineNumber": 97
+          },
+          {
+            "text": "              &lt;div className=\"flex items-center gap-2 rounded-lg bg-card border border-border px-3 py-2\"&gt;",
+            "lineNumber": 98
+          },
+          {
+            "text": "                &lt;Clock className=\"h-4 w-4 text-amber-500\" /&gt;",
+            "lineNumber": 99
+          },
+          {
+            "text": "                &lt;div&gt;",
+            "lineNumber": 100
+          },
+          {
+            "text": "                  &lt;p className=\"text-xs text-muted-foreground\"&gt;Tập trung&lt;/p&gt;",
+            "lineNumber": 101
+          },
+          {
+            "text": "                  &lt;p className=\"text-sm font-medium text-foreground\"&gt;08:30&lt;/p&gt;",
+            "lineNumber": 102
+          },
+          {
+            "text": "                &lt;/div&gt;",
+            "lineNumber": 103
+          },
+          {
+            "text": "              &lt;/div&gt;",
+            "lineNumber": 104
+          },
+          {
+            "text": "              &lt;div className=\"flex items-center gap-2 rounded-lg bg-card border border-border px-3 py-2\"&gt;",
+            "lineNumber": 105
+          },
+          {
+            "text": "                &lt;ArrowRight className=\"h-4 w-4 text-emerald-500\" /&gt;",
+            "lineNumber": 106
+          },
+          {
+            "text": "                &lt;div&gt;",
+            "lineNumber": 107
+          },
+          {
+            "text": "                  &lt;p className=\"text-xs text-muted-foreground\"&gt;Xuất phát&lt;/p&gt;",
+            "lineNumber": 108
+          },
+          {
+            "text": "                  &lt;p className=\"text-sm font-medium text-foreground\"&gt;09:00&lt;/p&gt;",
+            "lineNumber": 109
+          },
+          {
+            "text": "                &lt;/div&gt;",
+            "lineNumber": 110
+          },
+          {
+            "text": "              &lt;/div&gt;",
+            "lineNumber": 111
+          },
+          {
+            "text": "            &lt;/div&gt;",
+            "lineNumber": 112
+          },
+          {
+            "text": "          &lt;/div&gt;",
+            "lineNumber": 113
+          },
+          {
+            "text": "        &lt;/CardContent&gt;",
+            "lineNumber": 114
+          },
+          {
+            "text": "      &lt;/Card&gt;",
+            "lineNumber": 115
+          },
+          {
+            "lineNumber": 116
+          },
+          {
+            "text": "      {/* Main Bus */}",
+            "lineNumber": 117
+          },
+          {
+            "text": "}",
+            "lineNumber": 215,
+            "isSignature": true
+          }
+        ]
+      },
+      "score": 0.2950178384780884
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/docs/IMAGE_RESOURCES_GUIDE.md",
+        "range": {
+          "startPosition": {},
+          "endPosition": {
+            "line": 31
+          }
+        },
+        "contents": "# NGD Team Building 2025 Dashboard: Complete Image Resource Guide\n\nA comprehensive collection of **150+ images** has been curated for the Asteria Mui Ne team building dashboard project. This guide organizes resources by source, provides direct URLs, and includes placement recommendations for a casual \"chill xả stress\" vibe.\n\n---\n\n## Asteria Mui Ne Resort: Official imagery from 816+ verified sources\n\nThe resort offers **343 rooms** across a **200m private beachfront** with Azure Pool, Sandora Restaurant, and Stellar Spa. TripAdvisor provides the highest-quality accessible images with direct URLs.\n\n### Resort Exterior &amp; Overview\n\n| Direct Image URL | Description | Quality | Recommended Use |\n|-----------------|-------------|---------|-----------------|\n| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/c3/3a/a2/caption.jpg?w=900&amp;h=500&amp;s=1&#96; | Resort main exterior view | High (900px) | Hero section background |\n| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/d0/bb/70/caption.jpg?w=900&amp;h=-1&amp;s=1&#96; | Resort property overview | High | About/overview section |\n| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/d9/bc/ec/caption.jpg?w=900&amp;h=500&amp;s=1&#96; | Resort facade with grounds | High | Welcome card thumbnail |\n\n### Pool &amp; Beach Areas\n\n| Direct Image URL | Description | Quality | Recommended Use |\n|-----------------|-------------|---------|-----------------|\n| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/2b/e3/3f/caption.jpg?w=300&amp;h=200&amp;s=1&#96; | Pool &amp; Beach area | Medium-High | Activity section header |\n| &#96;https://images.trvl-media.com/lodging/100000000/99380000/99370500/99370406/754da3c1.jpg?impolicy=resizecrop&amp;rw=1200&amp;ra=fit&#96; | Beach/ocean view | High | Day 2 activity banner |\n\n### Room Types (Deluxe &amp; Senior Deluxe)\n\n| Direct Image URL | Description | Room Type | Recommended Use |\n|-----------------|-------------|-----------|-----------------|\n| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/e4/6d/29/caption.jpg?w=1100&amp;h=1100&amp;s=1&#96; | Room interior - bed view | General | Room info card |\n| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/e2/be/d4/caption.jpg?w=1100&amp;h=1100&amp;s=1&#96; | Room with balcony view | Senior Deluxe | Accommodation section |",
+        "signatures": {},
+        "detailedLines": [
+          {
+            "text": "# NGD Team Building 2025 Dashboard: Complete Image Resource Guide",
+            "lineNumber": 1
+          },
+          {
+            "lineNumber": 2
+          },
+          {
+            "text": "A comprehensive collection of **150+ images** has been curated for the Asteria Mui Ne team building dashboard project. This guide organizes resources by source, provides direct URLs, and includes placement recommendations for a casual \"chill xả stress\" vibe.",
+            "lineNumber": 3
+          },
+          {
+            "lineNumber": 4
+          },
+          {
+            "text": "---",
+            "lineNumber": 5
+          },
+          {
+            "lineNumber": 6
+          },
+          {
+            "text": "## Asteria Mui Ne Resort: Official imagery from 816+ verified sources",
+            "lineNumber": 7
+          },
+          {
+            "lineNumber": 8
+          },
+          {
+            "text": "The resort offers **343 rooms** across a **200m private beachfront** with Azure Pool, Sandora Restaurant, and Stellar Spa. TripAdvisor provides the highest-quality accessible images with direct URLs.",
+            "lineNumber": 9
+          },
+          {
+            "lineNumber": 10
+          },
+          {
+            "text": "### Resort Exterior &amp; Overview",
+            "lineNumber": 11
+          },
+          {
+            "lineNumber": 12
+          },
+          {
+            "text": "| Direct Image URL | Description | Quality | Recommended Use |",
+            "lineNumber": 13
+          },
+          {
+            "text": "|-----------------|-------------|---------|-----------------|",
+            "lineNumber": 14
+          },
+          {
+            "text": "| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/c3/3a/a2/caption.jpg?w=900&amp;h=500&amp;s=1&#96; | Resort main exterior view | High (900px) | Hero section background |",
+            "lineNumber": 15
+          },
+          {
+            "text": "| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2c/d0/bb/70/caption.jpg?w=900&amp;h=-1&amp;s=1&#96; | Resort property overview | High | About/overview section |",
+            "lineNumber": 16
+          },
+          {
+            "text": "| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/d9/bc/ec/caption.jpg?w=900&amp;h=500&amp;s=1&#96; | Resort facade with grounds | High | Welcome card thumbnail |",
+            "lineNumber": 17
+          },
+          {
+            "lineNumber": 18
+          },
+          {
+            "text": "### Pool &amp; Beach Areas",
+            "lineNumber": 19
+          },
+          {
+            "lineNumber": 20
+          },
+          {
+            "text": "| Direct Image URL | Description | Quality | Recommended Use |",
+            "lineNumber": 21
+          },
+          {
+            "text": "|-----------------|-------------|---------|-----------------|",
+            "lineNumber": 22
+          },
+          {
+            "text": "| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2b/2b/e3/3f/caption.jpg?w=300&amp;h=200&amp;s=1&#96; | Pool &amp; Beach area | Medium-High | Activity section header |",
+            "lineNumber": 23
+          },
+          {
+            "text": "| &#96;https://images.trvl-media.com/lodging/100000000/99380000/99370500/99370406/754da3c1.jpg?impolicy=resizecrop&amp;rw=1200&amp;ra=fit&#96; | Beach/ocean view | High | Day 2 activity banner |",
+            "lineNumber": 24
+          },
+          {
+            "lineNumber": 25
+          },
+          {
+            "text": "### Room Types (Deluxe &amp; Senior Deluxe)",
+            "lineNumber": 26
+          },
+          {
+            "lineNumber": 27
+          },
+          {
+            "text": "| Direct Image URL | Description | Room Type | Recommended Use |",
+            "lineNumber": 28
+          },
+          {
+            "text": "|-----------------|-------------|-----------|-----------------|",
+            "lineNumber": 29
+          },
+          {
+            "text": "| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/e4/6d/29/caption.jpg?w=1100&amp;h=1100&amp;s=1&#96; | Room interior - bed view | General | Room info card |",
+            "lineNumber": 30
+          },
+          {
+            "text": "| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/31/e2/be/d4/caption.jpg?w=1100&amp;h=1100&amp;s=1&#96; | Room with balcony view | Senior Deluxe | Accommodation section |",
+            "lineNumber": 31
+          }
+        ]
+      },
+      "score": 0.283699631690979
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/docs/IMAGE_RESOURCES_GUIDE.md",
+        "range": {
+          "startPosition": {
+            "line": 243
+          },
+          "endPosition": {
+            "line": 282
+          }
+        },
+        "contents": "- **Official resort images:** Contact Asteria Mui Ne directly for high-res versions if needed for external use\n\n### Recommended Attribution Block (Optional)\n\n&#96;&#96;&#96;html\n&lt;!-- Footer attribution for transparency --&gt;\n&lt;small&gt;Resort images courtesy of Asteria Mui Ne Resort.\nStock photos from Unsplash and Pexels contributors.&lt;/small&gt;\n&#96;&#96;&#96;\n\n---\n\n## Quick-access URL collection\n\n### Resort Official Sources\n&#96;&#96;&#96;\nOfficial Website: https://asteriamuineresort.com/gallery/\nTripAdvisor: https://www.tripadvisor.com/Hotel_Review-g1009804-d26686213\nExpedia: https://www.expedia.com/Phan-Thiet-Hotels-Asteria-Mui-Ne-Resort.h99370406\n&#96;&#96;&#96;\n\n### Restaurant Sources\n&#96;&#96;&#96;\nThịnh Phát (Foody): https://www.foody.vn/binh-thuan/thinh-phat-hai-san-tuoi-song\nPhố Mũi Né (TripAdvisor): https://www.tripadvisor.com/Restaurant_Review-g298086-d27662023\n&#96;&#96;&#96;\n\n### Stock Image Search Pages\n&#96;&#96;&#96;\nVietnam Beach: https://unsplash.com/s/photos/vietnam-beach\nTeam Activities: https://www.pexels.com/search/friends%20beach/\nGrilled Seafood: https://www.pexels.com/search/grilled%20seafood/\nResort Pool: https://unsplash.com/s/photos/tropical-resort\nVietnamese Coffee: https://unsplash.com/s/photos/vietnamese-coffee\n&#96;&#96;&#96;\n\n---\n\nThis collection provides **150+ curated images** covering all dashboard needs. The mix of authentic resort imagery, real restaurant photos, and high-quality stock images creates a cohesive visual identity that captures the casual, relaxed \"chill xả stress\" atmosphere perfect for NGD Team Building 2025. All stock images are free for commercial use, and resort/restaurant images are suitable for internal team reference.",
+        "signatures": {},
+        "detailedLines": [
+          {
+            "text": "- **Official resort images:** Contact Asteria Mui Ne directly for high-res versions if needed for external use",
+            "lineNumber": 244
+          },
+          {
+            "lineNumber": 245
+          },
+          {
+            "text": "### Recommended Attribution Block (Optional)",
+            "lineNumber": 246
+          },
+          {
+            "lineNumber": 247
+          },
+          {
+            "text": "&#96;&#96;&#96;html",
+            "lineNumber": 248
+          },
+          {
+            "text": "&lt;!-- Footer attribution for transparency --&gt;",
+            "lineNumber": 249
+          },
+          {
+            "text": "&lt;small&gt;Resort images courtesy of Asteria Mui Ne Resort.",
+            "lineNumber": 250
+          },
+          {
+            "text": "Stock photos from Unsplash and Pexels contributors.&lt;/small&gt;",
+            "lineNumber": 251
+          },
+          {
+            "text": "&#96;&#96;&#96;",
+            "lineNumber": 252
+          },
+          {
+            "lineNumber": 253
+          },
+          {
+            "text": "---",
+            "lineNumber": 254
+          },
+          {
+            "lineNumber": 255
+          },
+          {
+            "text": "## Quick-access URL collection",
+            "lineNumber": 256
+          },
+          {
+            "lineNumber": 257
+          },
+          {
+            "text": "### Resort Official Sources",
+            "lineNumber": 258
+          },
+          {
+            "text": "&#96;&#96;&#96;",
+            "lineNumber": 259
+          },
+          {
+            "text": "Official Website: https://asteriamuineresort.com/gallery/",
+            "lineNumber": 260
+          },
+          {
+            "text": "TripAdvisor: https://www.tripadvisor.com/Hotel_Review-g1009804-d26686213",
+            "lineNumber": 261
+          },
+          {
+            "text": "Expedia: https://www.expedia.com/Phan-Thiet-Hotels-Asteria-Mui-Ne-Resort.h99370406",
+            "lineNumber": 262
+          },
+          {
+            "text": "&#96;&#96;&#96;",
+            "lineNumber": 263
+          },
+          {
+            "lineNumber": 264
+          },
+          {
+            "text": "### Restaurant Sources",
+            "lineNumber": 265
+          },
+          {
+            "text": "&#96;&#96;&#96;",
+            "lineNumber": 266
+          },
+          {
+            "text": "Thịnh Phát (Foody): https://www.foody.vn/binh-thuan/thinh-phat-hai-san-tuoi-song",
+            "lineNumber": 267
+          },
+          {
+            "text": "Phố Mũi Né (TripAdvisor): https://www.tripadvisor.com/Restaurant_Review-g298086-d27662023",
+            "lineNumber": 268
+          },
+          {
+            "text": "&#96;&#96;&#96;",
+            "lineNumber": 269
+          },
+          {
+            "lineNumber": 270
+          },
+          {
+            "text": "### Stock Image Search Pages",
+            "lineNumber": 271
+          },
+          {
+            "text": "&#96;&#96;&#96;",
+            "lineNumber": 272
+          },
+          {
+            "text": "Vietnam Beach: https://unsplash.com/s/photos/vietnam-beach",
+            "lineNumber": 273
+          },
+          {
+            "text": "Team Activities: https://www.pexels.com/search/friends%20beach/",
+            "lineNumber": 274
+          },
+          {
+            "text": "Grilled Seafood: https://www.pexels.com/search/grilled%20seafood/",
+            "lineNumber": 275
+          },
+          {
+            "text": "Resort Pool: https://unsplash.com/s/photos/tropical-resort",
+            "lineNumber": 276
+          },
+          {
+            "text": "Vietnamese Coffee: https://unsplash.com/s/photos/vietnamese-coffee",
+            "lineNumber": 277
+          },
+          {
+            "text": "&#96;&#96;&#96;",
+            "lineNumber": 278
+          },
+          {
+            "lineNumber": 279
+          },
+          {
+            "text": "---",
+            "lineNumber": 280
+          },
+          {
+            "lineNumber": 281
+          },
+          {
+            "text": "This collection provides **150+ curated images** covering all dashboard needs. The mix of authentic resort imagery, real restaurant photos, and high-quality stock images creates a cohesive visual identity that captures the casual, relaxed \"chill xả stress\" atmosphere perfect for NGD Team Building 2025. All stock images are free for commercial use, and resort/restaurant images are suitable for internal team reference.",
+            "lineNumber": 282
+          }
+        ]
+      },
+      "score": 0.2826390862464905
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/src/components/dashboard/overview-section.tsx",
+        "range": {
+          "startPosition": {
+            "line": 25
+          },
+          "endPosition": {
+            "line": 289,
+            "column": 1
+          }
+        },
+        "contents": "function OverviewSection() {\n\n      &lt;Card className=\"overflow-hidden\"&gt;\n        &lt;CardHeader&gt;\n          &lt;CardTitle className=\"flex items-center gap-2\"&gt;\n            &lt;div className=\"flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500/15 to-pink-500/15\"&gt;\n              &lt;FileText className=\"h-5 w-5 text-purple-600 dark:text-purple-400\" /&gt;\n            &lt;/div&gt;\n            Gói dịch vụ BB (Bed &amp; Breakfast)\n          &lt;/CardTitle&gt;\n        &lt;/CardHeader&gt;\n        &lt;CardContent className=\"p-0\"&gt;\n          &lt;div className=\"relative w-full h-[600px] sm:h-[700px]\"&gt;\n            &lt;iframe\n              src={bbServicePackPdf}\n              width=\"100%\"\n              height=\"100%\"\n              style={{ border: 0 }}\n              title=\"BB Service Pack PDF\"\n              className=\"rounded-b-xl\"\n            /&gt;\n          &lt;/div&gt;\n          &lt;div className=\"p-4 bg-muted/30 border-t border-border\"&gt;\n            &lt;a\n              href={bbServicePackPdf}\n              target=\"_blank\"\n              rel=\"noopener noreferrer\"\n              download=\"BB-service-pack.pdf\"\n              className=\"flex items-center justify-center gap-2 text-sm text-primary hover:underline group\"\n            &gt;\n              &lt;Download className=\"h-4 w-4 group-hover:scale-110 transition-transform\" /&gt;\n              Tải xuống file PDF\n              &lt;ExternalLink className=\"h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity\" /&gt;\n            &lt;/a&gt;\n          &lt;/div&gt;\n        &lt;/CardContent&gt;\n      &lt;/Card&gt;\n\n      {/* Google Maps */}\n      &lt;Card className=\"overflow-hidden\"&gt;\n        &lt;CardHeader&gt;\n          &lt;CardTitle className=\"flex items-center gap-2\"&gt;\n}",
+        "signatures": {
+          "ranges": [
+            {
+              "startPosition": {
+                "line": 26,
+                "column": 1
+              },
+              "endPosition": {
+                "line": 27,
+                "column": 3
+              }
+            }
+          ]
+        },
+        "detailedLines": [
+          {
+            "text": "function OverviewSection() {",
+            "lineNumber": 26,
+            "isSignature": true
+          },
+          {
+            "lineNumber": 213
+          },
+          {
+            "text": "      &lt;Card className=\"overflow-hidden\"&gt;",
+            "lineNumber": 214
+          },
+          {
+            "text": "        &lt;CardHeader&gt;",
+            "lineNumber": 215
+          },
+          {
+            "text": "          &lt;CardTitle className=\"flex items-center gap-2\"&gt;",
+            "lineNumber": 216
+          },
+          {
+            "text": "            &lt;div className=\"flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500/15 to-pink-500/15\"&gt;",
+            "lineNumber": 217
+          },
+          {
+            "text": "              &lt;FileText className=\"h-5 w-5 text-purple-600 dark:text-purple-400\" /&gt;",
+            "lineNumber": 218
+          },
+          {
+            "text": "            &lt;/div&gt;",
+            "lineNumber": 219
+          },
+          {
+            "text": "            Gói dịch vụ BB (Bed &amp; Breakfast)",
+            "lineNumber": 220
+          },
+          {
+            "text": "          &lt;/CardTitle&gt;",
+            "lineNumber": 221
+          },
+          {
+            "text": "        &lt;/CardHeader&gt;",
+            "lineNumber": 222
+          },
+          {
+            "text": "        &lt;CardContent className=\"p-0\"&gt;",
+            "lineNumber": 223
+          },
+          {
+            "text": "          &lt;div className=\"relative w-full h-[600px] sm:h-[700px]\"&gt;",
+            "lineNumber": 224
+          },
+          {
+            "text": "            &lt;iframe",
+            "lineNumber": 225
+          },
+          {
+            "text": "              src={bbServicePackPdf}",
+            "lineNumber": 226
+          },
+          {
+            "text": "              width=\"100%\"",
+            "lineNumber": 227
+          },
+          {
+            "text": "              height=\"100%\"",
+            "lineNumber": 228
+          },
+          {
+            "text": "              style={{ border: 0 }}",
+            "lineNumber": 229
+          },
+          {
+            "text": "              title=\"BB Service Pack PDF\"",
+            "lineNumber": 230
+          },
+          {
+            "text": "              className=\"rounded-b-xl\"",
+            "lineNumber": 231
+          },
+          {
+            "text": "            /&gt;",
+            "lineNumber": 232
+          },
+          {
+            "text": "          &lt;/div&gt;",
+            "lineNumber": 233
+          },
+          {
+            "text": "          &lt;div className=\"p-4 bg-muted/30 border-t border-border\"&gt;",
+            "lineNumber": 234
+          },
+          {
+            "text": "            &lt;a",
+            "lineNumber": 235
+          },
+          {
+            "text": "              href={bbServicePackPdf}",
+            "lineNumber": 236
+          },
+          {
+            "text": "              target=\"_blank\"",
+            "lineNumber": 237
+          },
+          {
+            "text": "              rel=\"noopener noreferrer\"",
+            "lineNumber": 238
+          },
+          {
+            "text": "              download=\"BB-service-pack.pdf\"",
+            "lineNumber": 239
+          },
+          {
+            "text": "              className=\"flex items-center justify-center gap-2 text-sm text-primary hover:underline group\"",
+            "lineNumber": 240
+          },
+          {
+            "text": "            &gt;",
+            "lineNumber": 241
+          },
+          {
+            "text": "              &lt;Download className=\"h-4 w-4 group-hover:scale-110 transition-transform\" /&gt;",
+            "lineNumber": 242
+          },
+          {
+            "text": "              Tải xuống file PDF",
+            "lineNumber": 243
+          },
+          {
+            "text": "              &lt;ExternalLink className=\"h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity\" /&gt;",
+            "lineNumber": 244
+          },
+          {
+            "text": "            &lt;/a&gt;",
+            "lineNumber": 245
+          },
+          {
+            "text": "          &lt;/div&gt;",
+            "lineNumber": 246
+          },
+          {
+            "text": "        &lt;/CardContent&gt;",
+            "lineNumber": 247
+          },
+          {
+            "text": "      &lt;/Card&gt;",
+            "lineNumber": 248
+          },
+          {
+            "lineNumber": 249
+          },
+          {
+            "text": "      {/* Google Maps */}",
+            "lineNumber": 250
+          },
+          {
+            "text": "      &lt;Card className=\"overflow-hidden\"&gt;",
+            "lineNumber": 251
+          },
+          {
+            "text": "        &lt;CardHeader&gt;",
+            "lineNumber": 252
+          },
+          {
+            "text": "          &lt;CardTitle className=\"flex items-center gap-2\"&gt;",
+            "lineNumber": 253
+          },
+          {
+            "text": "}",
+            "lineNumber": 290,
+            "isSignature": true
+          }
+        ]
+      },
+      "score": 0.2698417901992798
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/src/App.tsx",
+        "range": {
+          "startPosition": {
+            "line": 13
+          },
+          "endPosition": {
+            "line": 111,
+            "column": 19
+          }
+        },
+        "contents": "function App() {\n\n\n      {/* Content */}\n      &lt;div className=\"relative\"&gt;\n        &lt;Header /&gt;\n        &lt;TabNavigation activeTab={activeTab} onTabChange={setActiveTab} /&gt;\n\n        &lt;main className=\"container mx-auto px-3 sm:px-4 py-4 sm:py-6\"&gt;\n          &lt;div key={activeTab} className=\"animate-fade-in\"&gt;\n            {renderContent()}\n          &lt;/div&gt;\n        &lt;/main&gt;\n\n        {/* Footer */}\n        &lt;footer className=\"border-t border-border/50 bg-background/80 backdrop-blur-xl\"&gt;\n          &lt;div className=\"container mx-auto px-3 sm:px-4 py-4 sm:py-6\"&gt;\n            &lt;div className=\"flex flex-col items-center justify-between gap-3 sm:gap-4 sm:flex-row\"&gt;\n              &lt;div className=\"text-center sm:text-left\"&gt;\n                &lt;p className=\"text-xs sm:text-sm text-muted-foreground\"&gt;\n                  NGD Team Building 2025 • Asteria Mui Ne Resort\n                &lt;/p&gt;\n                &lt;p className=\"text-[10px] sm:text-xs text-muted-foreground/70 mt-0.5\"&gt;\n                  18-19/12/2025 • Mũi Né, Phan Thiết, Bình Thuận\n                &lt;/p&gt;\n              &lt;/div&gt;\n              &lt;div className=\"flex items-center gap-2\"&gt;\n                &lt;span className=\"relative flex h-2 w-2\"&gt;\n                  &lt;span className=\"absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75\" /&gt;\n                  &lt;span className=\"relative inline-flex h-2 w-2 rounded-full bg-emerald-500\" /&gt;\n                &lt;/span&gt;\n                &lt;span className=\"text-[10px] sm:text-xs text-muted-foreground\"&gt;\n                  Made with 💙 by NGD Team\n                &lt;/span&gt;\n              &lt;/div&gt;\n            &lt;/div&gt;\n          &lt;/div&gt;\n        &lt;/footer&gt;\n      &lt;/div&gt;\n    &lt;/div&gt;\n  );\n}\n\nexport default App;",
+        "signatures": {
+          "ranges": [
+            {
+              "startPosition": {
+                "line": 14,
+                "column": 1
+              },
+              "endPosition": {
+                "line": 15,
+                "column": 3
+              }
+            }
+          ]
+        },
+        "detailedLines": [
+          {
+            "text": "function App() {",
+            "lineNumber": 14,
+            "isSignature": true
+          },
+          {
+            "lineNumber": 70
+          },
+          {
+            "lineNumber": 71
+          },
+          {
+            "text": "      {/* Content */}",
+            "lineNumber": 72
+          },
+          {
+            "text": "      &lt;div className=\"relative\"&gt;",
+            "lineNumber": 73
+          },
+          {
+            "text": "        &lt;Header /&gt;",
+            "lineNumber": 74
+          },
+          {
+            "text": "        &lt;TabNavigation activeTab={activeTab} onTabChange={setActiveTab} /&gt;",
+            "lineNumber": 75
+          },
+          {
+            "lineNumber": 76
+          },
+          {
+            "text": "        &lt;main className=\"container mx-auto px-3 sm:px-4 py-4 sm:py-6\"&gt;",
+            "lineNumber": 77
+          },
+          {
+            "text": "          &lt;div key={activeTab} className=\"animate-fade-in\"&gt;",
+            "lineNumber": 78
+          },
+          {
+            "text": "            {renderContent()}",
+            "lineNumber": 79
+          },
+          {
+            "text": "          &lt;/div&gt;",
+            "lineNumber": 80
+          },
+          {
+            "text": "        &lt;/main&gt;",
+            "lineNumber": 81
+          },
+          {
+            "lineNumber": 82
+          },
+          {
+            "text": "        {/* Footer */}",
+            "lineNumber": 83
+          },
+          {
+            "text": "        &lt;footer className=\"border-t border-border/50 bg-background/80 backdrop-blur-xl\"&gt;",
+            "lineNumber": 84
+          },
+          {
+            "text": "          &lt;div className=\"container mx-auto px-3 sm:px-4 py-4 sm:py-6\"&gt;",
+            "lineNumber": 85
+          },
+          {
+            "text": "            &lt;div className=\"flex flex-col items-center justify-between gap-3 sm:gap-4 sm:flex-row\"&gt;",
+            "lineNumber": 86
+          },
+          {
+            "text": "              &lt;div className=\"text-center sm:text-left\"&gt;",
+            "lineNumber": 87
+          },
+          {
+            "text": "                &lt;p className=\"text-xs sm:text-sm text-muted-foreground\"&gt;",
+            "lineNumber": 88
+          },
+          {
+            "text": "                  NGD Team Building 2025 • Asteria Mui Ne Resort",
+            "lineNumber": 89
+          },
+          {
+            "text": "                &lt;/p&gt;",
+            "lineNumber": 90
+          },
+          {
+            "text": "                &lt;p className=\"text-[10px] sm:text-xs text-muted-foreground/70 mt-0.5\"&gt;",
+            "lineNumber": 91
+          },
+          {
+            "text": "                  18-19/12/2025 • Mũi Né, Phan Thiết, Bình Thuận",
+            "lineNumber": 92
+          },
+          {
+            "text": "                &lt;/p&gt;",
+            "lineNumber": 93
+          },
+          {
+            "text": "              &lt;/div&gt;",
+            "lineNumber": 94
+          },
+          {
+            "text": "              &lt;div className=\"flex items-center gap-2\"&gt;",
+            "lineNumber": 95
+          },
+          {
+            "text": "                &lt;span className=\"relative flex h-2 w-2\"&gt;",
+            "lineNumber": 96
+          },
+          {
+            "text": "                  &lt;span className=\"absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75\" /&gt;",
+            "lineNumber": 97
+          },
+          {
+            "text": "                  &lt;span className=\"relative inline-flex h-2 w-2 rounded-full bg-emerald-500\" /&gt;",
+            "lineNumber": 98
+          },
+          {
+            "text": "                &lt;/span&gt;",
+            "lineNumber": 99
+          },
+          {
+            "text": "                &lt;span className=\"text-[10px] sm:text-xs text-muted-foreground\"&gt;",
+            "lineNumber": 100
+          },
+          {
+            "text": "                  Made with 💙 by NGD Team",
+            "lineNumber": 101
+          },
+          {
+            "text": "                &lt;/span&gt;",
+            "lineNumber": 102
+          },
+          {
+            "text": "              &lt;/div&gt;",
+            "lineNumber": 103
+          },
+          {
+            "text": "            &lt;/div&gt;",
+            "lineNumber": 104
+          },
+          {
+            "text": "          &lt;/div&gt;",
+            "lineNumber": 105
+          },
+          {
+            "text": "        &lt;/footer&gt;",
+            "lineNumber": 106
+          },
+          {
+            "text": "      &lt;/div&gt;",
+            "lineNumber": 107
+          },
+          {
+            "text": "    &lt;/div&gt;",
+            "lineNumber": 108
+          },
+          {
+            "text": "  );",
+            "lineNumber": 109
+          },
+          {
+            "text": "}",
+            "lineNumber": 110,
+            "isSignature": true
+          },
+          {
+            "lineNumber": 111
+          },
+          {
+            "text": "export default App;",
+            "lineNumber": 112
+          }
+        ]
+      },
+      "score": 0.25347891449928284
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/src/components/menu/menu-modal.tsx",
+        "range": {
+          "startPosition": {
+            "line": 11
+          },
+          "endPosition": {
+            "line": 97,
+            "column": 21
+          }
+        },
+        "contents": "function MenuModal({ isOpen, onClose, menuUrl, restaurantName }: MenuModalProps) {\n\n        &lt;div className=\"flex items-center justify-between p-4 sm:p-6 border-b border-border bg-card shrink-0\"&gt;\n          &lt;div className=\"flex items-center gap-3\"&gt;\n            &lt;div className=\"flex h-10 w-10 items-center justify-center rounded-lg bg-primary/15\"&gt;\n              &lt;ExternalLink className=\"h-5 w-5 text-primary\" /&gt;\n            &lt;/div&gt;\n            &lt;div&gt;\n              &lt;h2 id=\"menu-modal-title\" className=\"text-lg sm:text-xl font-bold text-foreground\"&gt;\n                Menu - {restaurantName}\n              &lt;/h2&gt;\n              &lt;p className=\"text-xs sm:text-sm text-muted-foreground\"&gt;\n                Xem thực đơn chi tiết\n              &lt;/p&gt;\n            &lt;/div&gt;\n          &lt;/div&gt;\n          &lt;div className=\"flex items-center gap-2\"&gt;\n            &lt;a\n              href={menuUrl}\n              target=\"_blank\"\n              rel=\"noopener noreferrer\"\n              className=\"flex items-center gap-1.5 text-xs sm:text-sm text-primary hover:underline px-2 sm:px-3 py-1.5 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors\"\n            &gt;\n              &lt;ExternalLink className=\"h-3.5 w-3.5\" /&gt;\n              &lt;span className=\"hidden sm:inline\"&gt;Mở trong tab mới&lt;/span&gt;\n              &lt;span className=\"sm:hidden\"&gt;Mở tab mới&lt;/span&gt;\n            &lt;/a&gt;\n            &lt;Button\n              variant=\"ghost\"\n              size=\"icon\"\n              onClick={onClose}\n              className=\"h-10 w-10\"\n              aria-label=\"Đóng menu\"\n            &gt;\n              &lt;X className=\"h-5 w-5\" /&gt;\n            &lt;/Button&gt;\n          &lt;/div&gt;\n        &lt;/div&gt;\n\n        {/* Menu Content - iframe */}\n        &lt;div className=\"flex-1 relative overflow-hidden bg-muted/30\"&gt;\n          &lt;iframe\n            src={menuUrl}\n            className=\"w-full h-full border-0\"\n            title={&#96;Menu - ${restaurantName}&#96;}\n            allow=\"fullscreen\"\n            loading=\"lazy\"\n          /&gt;\n        &lt;/div&gt;\n      &lt;/div&gt;\n    &lt;/div&gt;\n  );\n}\n\nexport { MenuModal };",
+        "signatures": {
+          "ranges": [
+            {
+              "startPosition": {
+                "line": 12,
+                "column": 1
+              },
+              "endPosition": {
+                "line": 13,
+                "column": 3
+              }
+            }
+          ]
+        },
+        "detailedLines": [
+          {
+            "text": "function MenuModal({ isOpen, onClose, menuUrl, restaurantName }: MenuModalProps) {",
+            "lineNumber": 12,
+            "isSignature": true
+          },
+          {
+            "lineNumber": 45
+          },
+          {
+            "text": "        &lt;div className=\"flex items-center justify-between p-4 sm:p-6 border-b border-border bg-card shrink-0\"&gt;",
+            "lineNumber": 46
+          },
+          {
+            "text": "          &lt;div className=\"flex items-center gap-3\"&gt;",
+            "lineNumber": 47
+          },
+          {
+            "text": "            &lt;div className=\"flex h-10 w-10 items-center justify-center rounded-lg bg-primary/15\"&gt;",
+            "lineNumber": 48
+          },
+          {
+            "text": "              &lt;ExternalLink className=\"h-5 w-5 text-primary\" /&gt;",
+            "lineNumber": 49
+          },
+          {
+            "text": "            &lt;/div&gt;",
+            "lineNumber": 50
+          },
+          {
+            "text": "            &lt;div&gt;",
+            "lineNumber": 51
+          },
+          {
+            "text": "              &lt;h2 id=\"menu-modal-title\" className=\"text-lg sm:text-xl font-bold text-foreground\"&gt;",
+            "lineNumber": 52
+          },
+          {
+            "text": "                Menu - {restaurantName}",
+            "lineNumber": 53
+          },
+          {
+            "text": "              &lt;/h2&gt;",
+            "lineNumber": 54
+          },
+          {
+            "text": "              &lt;p className=\"text-xs sm:text-sm text-muted-foreground\"&gt;",
+            "lineNumber": 55
+          },
+          {
+            "text": "                Xem thực đơn chi tiết",
+            "lineNumber": 56
+          },
+          {
+            "text": "              &lt;/p&gt;",
+            "lineNumber": 57
+          },
+          {
+            "text": "            &lt;/div&gt;",
+            "lineNumber": 58
+          },
+          {
+            "text": "          &lt;/div&gt;",
+            "lineNumber": 59
+          },
+          {
+            "text": "          &lt;div className=\"flex items-center gap-2\"&gt;",
+            "lineNumber": 60
+          },
+          {
+            "text": "            &lt;a",
+            "lineNumber": 61
+          },
+          {
+            "text": "              href={menuUrl}",
+            "lineNumber": 62
+          },
+          {
+            "text": "              target=\"_blank\"",
+            "lineNumber": 63
+          },
+          {
+            "text": "              rel=\"noopener noreferrer\"",
+            "lineNumber": 64
+          },
+          {
+            "text": "              className=\"flex items-center gap-1.5 text-xs sm:text-sm text-primary hover:underline px-2 sm:px-3 py-1.5 rounded-lg bg-primary/10 hover:bg-primary/20 transition-colors\"",
+            "lineNumber": 65
+          },
+          {
+            "text": "            &gt;",
+            "lineNumber": 66
+          },
+          {
+            "text": "              &lt;ExternalLink className=\"h-3.5 w-3.5\" /&gt;",
+            "lineNumber": 67
+          },
+          {
+            "text": "              &lt;span className=\"hidden sm:inline\"&gt;Mở trong tab mới&lt;/span&gt;",
+            "lineNumber": 68
+          },
+          {
+            "text": "              &lt;span className=\"sm:hidden\"&gt;Mở tab mới&lt;/span&gt;",
+            "lineNumber": 69
+          },
+          {
+            "text": "            &lt;/a&gt;",
+            "lineNumber": 70
+          },
+          {
+            "text": "            &lt;Button",
+            "lineNumber": 71
+          },
+          {
+            "text": "              variant=\"ghost\"",
+            "lineNumber": 72
+          },
+          {
+            "text": "              size=\"icon\"",
+            "lineNumber": 73
+          },
+          {
+            "text": "              onClick={onClose}",
+            "lineNumber": 74
+          },
+          {
+            "text": "              className=\"h-10 w-10\"",
+            "lineNumber": 75
+          },
+          {
+            "text": "              aria-label=\"Đóng menu\"",
+            "lineNumber": 76
+          },
+          {
+            "text": "            &gt;",
+            "lineNumber": 77
+          },
+          {
+            "text": "              &lt;X className=\"h-5 w-5\" /&gt;",
+            "lineNumber": 78
+          },
+          {
+            "text": "            &lt;/Button&gt;",
+            "lineNumber": 79
+          },
+          {
+            "text": "          &lt;/div&gt;",
+            "lineNumber": 80
+          },
+          {
+            "text": "        &lt;/div&gt;",
+            "lineNumber": 81
+          },
+          {
+            "lineNumber": 82
+          },
+          {
+            "text": "        {/* Menu Content - iframe */}",
+            "lineNumber": 83
+          },
+          {
+            "text": "        &lt;div className=\"flex-1 relative overflow-hidden bg-muted/30\"&gt;",
+            "lineNumber": 84
+          },
+          {
+            "text": "          &lt;iframe",
+            "lineNumber": 85
+          },
+          {
+            "text": "            src={menuUrl}",
+            "lineNumber": 86
+          },
+          {
+            "text": "            className=\"w-full h-full border-0\"",
+            "lineNumber": 87
+          },
+          {
+            "text": "            title={&#96;Menu - ${restaurantName}&#96;}",
+            "lineNumber": 88
+          },
+          {
+            "text": "            allow=\"fullscreen\"",
+            "lineNumber": 89
+          },
+          {
+            "text": "            loading=\"lazy\"",
+            "lineNumber": 90
+          },
+          {
+            "text": "          /&gt;",
+            "lineNumber": 91
+          },
+          {
+            "text": "        &lt;/div&gt;",
+            "lineNumber": 92
+          },
+          {
+            "text": "      &lt;/div&gt;",
+            "lineNumber": 93
+          },
+          {
+            "text": "    &lt;/div&gt;",
+            "lineNumber": 94
+          },
+          {
+            "text": "  );",
+            "lineNumber": 95
+          },
+          {
+            "text": "}",
+            "lineNumber": 96,
+            "isSignature": true
+          },
+          {
+            "lineNumber": 97
+          },
+          {
+            "text": "export { MenuModal };",
+            "lineNumber": 98
+          }
+        ]
+      },
+      "score": 0.2501603364944458
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/src/components/menu/meal-card.tsx",
+        "range": {
+          "startPosition": {},
+          "endPosition": {
+            "line": 18,
+            "column": 62
+          }
+        },
+        "contents": "import { useState } from 'react';\nimport { MapPin, Clock, Users, ExternalLink, Phone, Menu, Images } from 'lucide-react';\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\nimport { Badge } from '@/components/ui/badge';\nimport { formatCurrency } from '@/lib/utils';\nimport { cn } from '@/lib/utils';\nimport { FoodImageGallery } from './food-image-gallery';\nimport type { Meal } from '@/types';\n\n// Import food images for lunch day 18\nimport foodImage1 from '@/assets/Foods/image (1).png';\nimport foodImage2 from '@/assets/Foods/image (2).png';\nimport foodImage3 from '@/assets/Foods/image (3).png';\n\ninterface MealCardProps {\n  meal: Meal;\n}\n\nconst lunchDay18Images = [foodImage1, foodImage2, foodImage3];",
+        "signatures": {},
+        "detailedLines": [
+          {
+            "text": "import { useState } from 'react';",
+            "lineNumber": 1
+          },
+          {
+            "text": "import { MapPin, Clock, Users, ExternalLink, Phone, Menu, Images } from 'lucide-react';",
+            "lineNumber": 2
+          },
+          {
+            "text": "import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';",
+            "lineNumber": 3
+          },
+          {
+            "text": "import { Badge } from '@/components/ui/badge';",
+            "lineNumber": 4
+          },
+          {
+            "text": "import { formatCurrency } from '@/lib/utils';",
+            "lineNumber": 5
+          },
+          {
+            "text": "import { cn } from '@/lib/utils';",
+            "lineNumber": 6
+          },
+          {
+            "text": "import { FoodImageGallery } from './food-image-gallery';",
+            "lineNumber": 7
+          },
+          {
+            "text": "import type { Meal } from '@/types';",
+            "lineNumber": 8
+          },
+          {
+            "lineNumber": 9
+          },
+          {
+            "text": "// Import food images for lunch day 18",
+            "lineNumber": 10
+          },
+          {
+            "text": "import foodImage1 from '@/assets/Foods/image (1).png';",
+            "lineNumber": 11
+          },
+          {
+            "text": "import foodImage2 from '@/assets/Foods/image (2).png';",
+            "lineNumber": 12
+          },
+          {
+            "text": "import foodImage3 from '@/assets/Foods/image (3).png';",
+            "lineNumber": 13
+          },
+          {
+            "lineNumber": 14
+          },
+          {
+            "text": "interface MealCardProps {",
+            "lineNumber": 15,
+            "isSignature": true
+          },
+          {
+            "text": "  meal: Meal;",
+            "lineNumber": 16,
+            "isSignature": true
+          },
+          {
+            "text": "}",
+            "lineNumber": 17,
+            "isSignature": true
+          },
+          {
+            "lineNumber": 18
+          },
+          {
+            "text": "const lunchDay18Images = [foodImage1, foodImage2, foodImage3];",
+            "lineNumber": 19
+          }
+        ]
+      },
+      "score": 0.2476455569267273
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/src/data/schedule.ts",
+        "range": {
+          "startPosition": {
+            "column": 43
+          },
+          "endPosition": {
+            "line": 145,
+            "column": 1
+          }
+        },
+        "contents": "export const schedule: ScheduleDay[] = [\n  {\n    id: \"day1\",\n    date: \"18/12/2025\",\n    label: \"Ngày đi\",\n    events: [\n      {\n        time: \"08:30 - 09:00\",\n        title: \"Tập trung tại văn phòng\",\n        description: \"Xe có mặt lúc 08:30 tại Amanotes Office. Team có mặt từ 08:30. Tập trung để lên xe, 09:00 xuất phát\",\n        location: \"Amanotes Office - 141-143 Nguyễn Cơ Thạch, P. An Khánh, TP. HCM\",\n        icon: \"Users\",\n        period: \"SÁNG\"\n      },\n      {\n        time: \"09:00 - 12:00\",\n        title: \"Di chuyển đến Mũi Né\",\n        description: \"Di chuyển đến Mũi Né. Trên đường sẽ dừng chân ăn trưa tại Phan Thiết\",\n        location: \"--- di chuyển ---\",\n        icon: \"Bus\",\n        period: \"TRƯA\"\n      },\n      {\n        time: \"12:00 - 14:00\",\n        title: \"Ăn trưa\",\n        description: \"Ăn trưa tại quán ăn ở Phan Thiết\",\n        location: \"1 quán ăn ở Phan Thiết\",\n        icon: \"UtensilsCrossed\",\n        period: \"TRƯA\"\n      },\n      {\n        time: \"14:00 - 14:30\",\n        title: \"Di chuyển đến Asteria Mũi Né\",\n        description: \"Di chuyển đến resort\",\n        location: \"--- di chuyển ---\",\n        icon: \"Car\",\n        period: \"TRƯA\"\n      },\n      {\n        time: \"14:30 - 15:00\",\n        title: \"Check-in, nhận phòng\",\n        description: \"Tập trung tại sảnh resort. Check-in, nhận phòng\",\n        location: \"Asteria Mũi Né Resort\",\n        icon: \"Hotel\",\n        period: \"CHIỀU\"\n      },\n      {\n        time: \"15:00 - 18:00\",\n        title: \"Thời gian tự do\",\n        description: \"Tắm biển, thể thao ở biển, hồ bơi, pickle ball, spa, thể thao trong nhà, khám phá Mũi Né\",\n        location: \"Tự do\",\n        icon: \"Umbrella\",\n        period: \"CHIỀU\"\n      },\n      {\n        time: \"18:00 - 18:30\",\n];",
+        "signatures": {},
+        "detailedLines": [
+          {
+            "text": "export const schedule: ScheduleDay[] = [",
+            "lineNumber": 3
+          },
+          {
+            "text": "  {",
+            "lineNumber": 4
+          },
+          {
+            "text": "    id: \"day1\",",
+            "lineNumber": 5
+          },
+          {
+            "text": "    date: \"18/12/2025\",",
+            "lineNumber": 6
+          },
+          {
+            "text": "    label: \"Ngày đi\",",
+            "lineNumber": 7
+          },
+          {
+            "text": "    events: [",
+            "lineNumber": 8
+          },
+          {
+            "text": "      {",
+            "lineNumber": 9
+          },
+          {
+            "text": "        time: \"08:30 - 09:00\",",
+            "lineNumber": 10
+          },
+          {
+            "text": "        title: \"Tập trung tại văn phòng\",",
+            "lineNumber": 11
+          },
+          {
+            "text": "        description: \"Xe có mặt lúc 08:30 tại Amanotes Office. Team có mặt từ 08:30. Tập trung để lên xe, 09:00 xuất phát\",",
+            "lineNumber": 12
+          },
+          {
+            "text": "        location: \"Amanotes Office - 141-143 Nguyễn Cơ Thạch, P. An Khánh, TP. HCM\",",
+            "lineNumber": 13
+          },
+          {
+            "text": "        icon: \"Users\",",
+            "lineNumber": 14
+          },
+          {
+            "text": "        period: \"SÁNG\"",
+            "lineNumber": 15
+          },
+          {
+            "text": "      },",
+            "lineNumber": 16
+          },
+          {
+            "text": "      {",
+            "lineNumber": 17
+          },
+          {
+            "text": "        time: \"09:00 - 12:00\",",
+            "lineNumber": 18
+          },
+          {
+            "text": "        title: \"Di chuyển đến Mũi Né\",",
+            "lineNumber": 19
+          },
+          {
+            "text": "        description: \"Di chuyển đến Mũi Né. Trên đường sẽ dừng chân ăn trưa tại Phan Thiết\",",
+            "lineNumber": 20
+          },
+          {
+            "text": "        location: \"--- di chuyển ---\",",
+            "lineNumber": 21
+          },
+          {
+            "text": "        icon: \"Bus\",",
+            "lineNumber": 22
+          },
+          {
+            "text": "        period: \"TRƯA\"",
+            "lineNumber": 23
+          },
+          {
+            "text": "      },",
+            "lineNumber": 24
+          },
+          {
+            "text": "      {",
+            "lineNumber": 25
+          },
+          {
+            "text": "        time: \"12:00 - 14:00\",",
+            "lineNumber": 26
+          },
+          {
+            "text": "        title: \"Ăn trưa\",",
+            "lineNumber": 27
+          },
+          {
+            "text": "        description: \"Ăn trưa tại quán ăn ở Phan Thiết\",",
+            "lineNumber": 28
+          },
+          {
+            "text": "        location: \"1 quán ăn ở Phan Thiết\",",
+            "lineNumber": 29
+          },
+          {
+            "text": "        icon: \"UtensilsCrossed\",",
+            "lineNumber": 30
+          },
+          {
+            "text": "        period: \"TRƯA\"",
+            "lineNumber": 31
+          },
+          {
+            "text": "      },",
+            "lineNumber": 32
+          },
+          {
+            "text": "      {",
+            "lineNumber": 33
+          },
+          {
+            "text": "        time: \"14:00 - 14:30\",",
+            "lineNumber": 34
+          },
+          {
+            "text": "        title: \"Di chuyển đến Asteria Mũi Né\",",
+            "lineNumber": 35
+          },
+          {
+            "text": "        description: \"Di chuyển đến resort\",",
+            "lineNumber": 36
+          },
+          {
+            "text": "        location: \"--- di chuyển ---\",",
+            "lineNumber": 37
+          },
+          {
+            "text": "        icon: \"Car\",",
+            "lineNumber": 38
+          },
+          {
+            "text": "        period: \"TRƯA\"",
+            "lineNumber": 39
+          },
+          {
+            "text": "      },",
+            "lineNumber": 40
+          },
+          {
+            "text": "      {",
+            "lineNumber": 41
+          },
+          {
+            "text": "        time: \"14:30 - 15:00\",",
+            "lineNumber": 42
+          },
+          {
+            "text": "        title: \"Check-in, nhận phòng\",",
+            "lineNumber": 43
+          },
+          {
+            "text": "        description: \"Tập trung tại sảnh resort. Check-in, nhận phòng\",",
+            "lineNumber": 44
+          },
+          {
+            "text": "        location: \"Asteria Mũi Né Resort\",",
+            "lineNumber": 45
+          },
+          {
+            "text": "        icon: \"Hotel\",",
+            "lineNumber": 46
+          },
+          {
+            "text": "        period: \"CHIỀU\"",
+            "lineNumber": 47
+          },
+          {
+            "text": "      },",
+            "lineNumber": 48
+          },
+          {
+            "text": "      {",
+            "lineNumber": 49
+          },
+          {
+            "text": "        time: \"15:00 - 18:00\",",
+            "lineNumber": 50
+          },
+          {
+            "text": "        title: \"Thời gian tự do\",",
+            "lineNumber": 51
+          },
+          {
+            "text": "        description: \"Tắm biển, thể thao ở biển, hồ bơi, pickle ball, spa, thể thao trong nhà, khám phá Mũi Né\",",
+            "lineNumber": 52
+          },
+          {
+            "text": "        location: \"Tự do\",",
+            "lineNumber": 53
+          },
+          {
+            "text": "        icon: \"Umbrella\",",
+            "lineNumber": 54
+          },
+          {
+            "text": "        period: \"CHIỀU\"",
+            "lineNumber": 55
+          },
+          {
+            "text": "      },",
+            "lineNumber": 56
+          },
+          {
+            "text": "      {",
+            "lineNumber": 57
+          },
+          {
+            "text": "        time: \"18:00 - 18:30\",",
+            "lineNumber": 58
+          },
+          {
+            "text": "];",
+            "lineNumber": 146
+          }
+        ]
+      },
+      "score": 0.2433883547782898
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/src/data/images.ts",
+        "range": {
+          "startPosition": {
+            "line": 44
+          },
+          "endPosition": {
+            "line": 456,
+            "column": 1
+          }
+        },
+        "contents": "export const imageResources: ImageCollection = {\n\n            },\n        ],\n        coffeeBreakfast: [\n            {\n                url: 'https://unsplash.com/s/photos/vietnamese-coffee',\n                description: 'Vietnamese Coffee - Cà phê sữa đá with drip filter',\n                source: 'unsplash',\n                photographer: 'Tu Ngoc Minh',\n            },\n            {\n                url: 'https://unsplash.com/s/photos/vietnam-coffee',\n                description: 'Vietnam Café Setting - Local coffee culture atmosphere',\n                source: 'unsplash',\n                photographer: 'Nguyen Dang Hoang Nhu',\n            },\n            {\n                url: 'https://www.pexels.com/photo/12087878/',\n                description: 'Hotel Breakfast Buffet - Morning buffet spread',\n                source: 'pexels',\n            },\n            {\n                url: 'https://www.pexels.com/search/brunch/',\n                description: 'Brunch Spread - Breakfast variety options',\n                source: 'pexels',\n            },\n        ],\n    },\n    sources: {\n        resort: [\n            'https://asteriamuineresort.com/gallery/',\n            'https://asteriamuineresort.com/asteria-stay/senior-deluxe/',\n            'https://asteriamuineresort.com/asteria-stay/deluxe/',\n            'https://www.tripadvisor.com/Hotel_Review-g1009804-d26686213-Reviews-Asteria_Mui_Ne_Resort',\n            'https://www.expedia.com/Phan-Thiet-Hotels-Asteria-Mui-Ne-Resort.h99370406',\n        ],\n        restaurants: [\n            'https://www.foody.vn/binh-thuan/thinh-phat-hai-san-tuoi-song',\n            'https://www.tripadvisor.com/Restaurant_Review-g298086-d27662023',\n        ],\n        stock: [\n            'https://unsplash.com/s/photos/vietnam-beach',\n            'https://www.pexels.com/search/friends%20beach/',\n            'https://www.pexels.com/search/grilled%20seafood/',\n            'https://unsplash.com/s/photos/tropical-resort',\n            'https://unsplash.com/s/photos/vietnamese-coffee',\n        ],\n    },\n};\n\n/**\n * Helper functions to get images by use case\n */\nexport const getImageByUseCase = {\n    hero: () =&gt; imageResources.stock.beachOcean[0]\n};",
+        "signatures": {
+          "ranges": [
+            {
+              "startPosition": {
+                "line": 45,
+                "column": 1
+              },
+              "endPosition": {
+                "line": 45,
+                "column": 8
+              }
+            },
+            {
+              "startPosition": {
+                "line": 45,
+                "column": 8
+              },
+              "endPosition": {
+                "line": 45,
+                "column": 14
+              }
+            },
+            {
+              "startPosition": {
+                "line": 45,
+                "column": 14
+              },
+              "endPosition": {
+                "line": 46,
+                "column": 5
+              }
+            }
+          ]
+        },
+        "detailedLines": [
+          {
+            "text": "export const imageResources: ImageCollection = {",
+            "lineNumber": 45
+          },
+          {
+            "lineNumber": 389
+          },
+          {
+            "text": "            },",
+            "lineNumber": 390
+          },
+          {
+            "text": "        ],",
+            "lineNumber": 391
+          },
+          {
+            "text": "        coffeeBreakfast: [",
+            "lineNumber": 392
+          },
+          {
+            "text": "            {",
+            "lineNumber": 393
+          },
+          {
+            "text": "                url: 'https://unsplash.com/s/photos/vietnamese-coffee',",
+            "lineNumber": 394
+          },
+          {
+            "text": "                description: 'Vietnamese Coffee - Cà phê sữa đá with drip filter',",
+            "lineNumber": 395
+          },
+          {
+            "text": "                source: 'unsplash',",
+            "lineNumber": 396
+          },
+          {
+            "text": "                photographer: 'Tu Ngoc Minh',",
+            "lineNumber": 397
+          },
+          {
+            "text": "            },",
+            "lineNumber": 398
+          },
+          {
+            "text": "            {",
+            "lineNumber": 399
+          },
+          {
+            "text": "                url: 'https://unsplash.com/s/photos/vietnam-coffee',",
+            "lineNumber": 400
+          },
+          {
+            "text": "                description: 'Vietnam Café Setting - Local coffee culture atmosphere',",
+            "lineNumber": 401
+          },
+          {
+            "text": "                source: 'unsplash',",
+            "lineNumber": 402
+          },
+          {
+            "text": "                photographer: 'Nguyen Dang Hoang Nhu',",
+            "lineNumber": 403
+          },
+          {
+            "text": "            },",
+            "lineNumber": 404
+          },
+          {
+            "text": "            {",
+            "lineNumber": 405
+          },
+          {
+            "text": "                url: 'https://www.pexels.com/photo/12087878/',",
+            "lineNumber": 406
+          },
+          {
+            "text": "                description: 'Hotel Breakfast Buffet - Morning buffet spread',",
+            "lineNumber": 407
+          },
+          {
+            "text": "                source: 'pexels',",
+            "lineNumber": 408
+          },
+          {
+            "text": "            },",
+            "lineNumber": 409
+          },
+          {
+            "text": "            {",
+            "lineNumber": 410
+          },
+          {
+            "text": "                url: 'https://www.pexels.com/search/brunch/',",
+            "lineNumber": 411
+          },
+          {
+            "text": "                description: 'Brunch Spread - Breakfast variety options',",
+            "lineNumber": 412
+          },
+          {
+            "text": "                source: 'pexels',",
+            "lineNumber": 413
+          },
+          {
+            "text": "            },",
+            "lineNumber": 414
+          },
+          {
+            "text": "        ],",
+            "lineNumber": 415
+          },
+          {
+            "text": "    },",
+            "lineNumber": 416
+          },
+          {
+            "text": "    sources: {",
+            "lineNumber": 417
+          },
+          {
+            "text": "        resort: [",
+            "lineNumber": 418
+          },
+          {
+            "text": "            'https://asteriamuineresort.com/gallery/',",
+            "lineNumber": 419
+          },
+          {
+            "text": "            'https://asteriamuineresort.com/asteria-stay/senior-deluxe/',",
+            "lineNumber": 420
+          },
+          {
+            "text": "            'https://asteriamuineresort.com/asteria-stay/deluxe/',",
+            "lineNumber": 421
+          },
+          {
+            "text": "            'https://www.tripadvisor.com/Hotel_Review-g1009804-d26686213-Reviews-Asteria_Mui_Ne_Resort',",
+            "lineNumber": 422
+          },
+          {
+            "text": "            'https://www.expedia.com/Phan-Thiet-Hotels-Asteria-Mui-Ne-Resort.h99370406',",
+            "lineNumber": 423
+          },
+          {
+            "text": "        ],",
+            "lineNumber": 424
+          },
+          {
+            "text": "        restaurants: [",
+            "lineNumber": 425
+          },
+          {
+            "text": "            'https://www.foody.vn/binh-thuan/thinh-phat-hai-san-tuoi-song',",
+            "lineNumber": 426
+          },
+          {
+            "text": "            'https://www.tripadvisor.com/Restaurant_Review-g298086-d27662023',",
+            "lineNumber": 427
+          },
+          {
+            "text": "        ],",
+            "lineNumber": 428
+          },
+          {
+            "text": "        stock: [",
+            "lineNumber": 429
+          },
+          {
+            "text": "            'https://unsplash.com/s/photos/vietnam-beach',",
+            "lineNumber": 430
+          },
+          {
+            "text": "            'https://www.pexels.com/search/friends%20beach/',",
+            "lineNumber": 431
+          },
+          {
+            "text": "            'https://www.pexels.com/search/grilled%20seafood/',",
+            "lineNumber": 432
+          },
+          {
+            "text": "            'https://unsplash.com/s/photos/tropical-resort',",
+            "lineNumber": 433
+          },
+          {
+            "text": "            'https://unsplash.com/s/photos/vietnamese-coffee',",
+            "lineNumber": 434
+          },
+          {
+            "text": "        ],",
+            "lineNumber": 435
+          },
+          {
+            "text": "    },",
+            "lineNumber": 436
+          },
+          {
+            "text": "};",
+            "lineNumber": 437
+          },
+          {
+            "lineNumber": 438
+          },
+          {
+            "text": "/**",
+            "lineNumber": 439
+          },
+          {
+            "text": " * Helper functions to get images by use case",
+            "lineNumber": 440
+          },
+          {
+            "text": " */",
+            "lineNumber": 441
+          },
+          {
+            "text": "export const getImageByUseCase = {",
+            "lineNumber": 442
+          },
+          {
+            "text": "    hero: () =&gt; imageResources.stock.beachOcean[0]",
+            "lineNumber": 443
+          },
+          {
+            "text": "};",
+            "lineNumber": 457
+          }
+        ]
+      },
+      "score": 0.23793290555477142
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./data-files.ts",
+        "range": {
+          "startPosition": {
+            "line": 120,
+            "column": 1
+          },
+          "endPosition": {
+            "line": 265,
+            "column": 1
+          }
+        },
+        "contents": "export const schedule: ScheduleDay[] = [\n  {\n    id: \"day1\",\n    date: \"18/12/2025\",\n    label: \"Ngày đi\",\n    events: [\n      {\n        time: \"08:30 - 09:00\",\n        title: \"Tập trung tại văn phòng\",\n        description: \"Xe có mặt lúc 08:30 tại Amanotes Office. Team có mặt từ 08:30. Tập trung để lên xe, 09:00 xuất phát\",\n        location: \"Amanotes Office - 141-143 Nguyễn Cơ Thạch, P. An Khánh, TP. HCM\",\n        icon: \"Users\",\n        period: \"SÁNG\"\n      },\n      {\n        time: \"09:00 - 12:00\",\n        title: \"Di chuyển đến Mũi Né\",\n        description: \"Di chuyển đến Mũi Né. Trên đường sẽ dừng chân ăn trưa tại Phan Thiết\",\n        location: \"--- di chuyển ---\",\n        icon: \"Bus\",\n        period: \"TRƯA\"\n      },\n      {\n        time: \"12:00 - 14:00\",\n        title: \"Ăn trưa\",\n        description: \"Ăn trưa tại quán ăn ở Phan Thiết\",\n        location: \"1 quán ăn ở Phan Thiết\",\n        icon: \"UtensilsCrossed\",\n        period: \"TRƯA\"\n      },\n      {\n        time: \"14:00 - 14:30\",\n        title: \"Di chuyển đến Asteria Mũi Né\",\n        description: \"Di chuyển đến resort\",\n        location: \"--- di chuyển ---\",\n        icon: \"Car\",\n        period: \"TRƯA\"\n      },\n      {\n        time: \"14:30 - 15:00\",\n        title: \"Check-in, nhận phòng\",\n        description: \"Tập trung tại sảnh resort. Check-in, nhận phòng\",\n        location: \"Asteria Mũi Né Resort\",\n        icon: \"Hotel\",\n        period: \"CHIỀU\"\n      },\n      {\n        time: \"15:00 - 18:00\",\n        title: \"Thời gian tự do\",\n        description: \"Tắm biển, thể thao ở biển, hồ bơi, pickle ball, spa, thể thao trong nhà, khám phá Mũi Né\",\n        location: \"Tự do\",\n        icon: \"Umbrella\",\n        period: \"CHIỀU\"\n      },\n      {\n        time: \"18:00 - 18:30\",\n];",
+        "signatures": {},
+        "detailedLines": [
+          {
+            "text": "export const schedule: ScheduleDay[] = [",
+            "lineNumber": 123
+          },
+          {
+            "text": "  {",
+            "lineNumber": 124
+          },
+          {
+            "text": "    id: \"day1\",",
+            "lineNumber": 125
+          },
+          {
+            "text": "    date: \"18/12/2025\",",
+            "lineNumber": 126
+          },
+          {
+            "text": "    label: \"Ngày đi\",",
+            "lineNumber": 127
+          },
+          {
+            "text": "    events: [",
+            "lineNumber": 128
+          },
+          {
+            "text": "      {",
+            "lineNumber": 129
+          },
+          {
+            "text": "        time: \"08:30 - 09:00\",",
+            "lineNumber": 130
+          },
+          {
+            "text": "        title: \"Tập trung tại văn phòng\",",
+            "lineNumber": 131
+          },
+          {
+            "text": "        description: \"Xe có mặt lúc 08:30 tại Amanotes Office. Team có mặt từ 08:30. Tập trung để lên xe, 09:00 xuất phát\",",
+            "lineNumber": 132
+          },
+          {
+            "text": "        location: \"Amanotes Office - 141-143 Nguyễn Cơ Thạch, P. An Khánh, TP. HCM\",",
+            "lineNumber": 133
+          },
+          {
+            "text": "        icon: \"Users\",",
+            "lineNumber": 134
+          },
+          {
+            "text": "        period: \"SÁNG\"",
+            "lineNumber": 135
+          },
+          {
+            "text": "      },",
+            "lineNumber": 136
+          },
+          {
+            "text": "      {",
+            "lineNumber": 137
+          },
+          {
+            "text": "        time: \"09:00 - 12:00\",",
+            "lineNumber": 138
+          },
+          {
+            "text": "        title: \"Di chuyển đến Mũi Né\",",
+            "lineNumber": 139
+          },
+          {
+            "text": "        description: \"Di chuyển đến Mũi Né. Trên đường sẽ dừng chân ăn trưa tại Phan Thiết\",",
+            "lineNumber": 140
+          },
+          {
+            "text": "        location: \"--- di chuyển ---\",",
+            "lineNumber": 141
+          },
+          {
+            "text": "        icon: \"Bus\",",
+            "lineNumber": 142
+          },
+          {
+            "text": "        period: \"TRƯA\"",
+            "lineNumber": 143
+          },
+          {
+            "text": "      },",
+            "lineNumber": 144
+          },
+          {
+            "text": "      {",
+            "lineNumber": 145
+          },
+          {
+            "text": "        time: \"12:00 - 14:00\",",
+            "lineNumber": 146
+          },
+          {
+            "text": "        title: \"Ăn trưa\",",
+            "lineNumber": 147
+          },
+          {
+            "text": "        description: \"Ăn trưa tại quán ăn ở Phan Thiết\",",
+            "lineNumber": 148
+          },
+          {
+            "text": "        location: \"1 quán ăn ở Phan Thiết\",",
+            "lineNumber": 149
+          },
+          {
+            "text": "        icon: \"UtensilsCrossed\",",
+            "lineNumber": 150
+          },
+          {
+            "text": "        period: \"TRƯA\"",
+            "lineNumber": 151
+          },
+          {
+            "text": "      },",
+            "lineNumber": 152
+          },
+          {
+            "text": "      {",
+            "lineNumber": 153
+          },
+          {
+            "text": "        time: \"14:00 - 14:30\",",
+            "lineNumber": 154
+          },
+          {
+            "text": "        title: \"Di chuyển đến Asteria Mũi Né\",",
+            "lineNumber": 155
+          },
+          {
+            "text": "        description: \"Di chuyển đến resort\",",
+            "lineNumber": 156
+          },
+          {
+            "text": "        location: \"--- di chuyển ---\",",
+            "lineNumber": 157
+          },
+          {
+            "text": "        icon: \"Car\",",
+            "lineNumber": 158
+          },
+          {
+            "text": "        period: \"TRƯA\"",
+            "lineNumber": 159
+          },
+          {
+            "text": "      },",
+            "lineNumber": 160
+          },
+          {
+            "text": "      {",
+            "lineNumber": 161
+          },
+          {
+            "text": "        time: \"14:30 - 15:00\",",
+            "lineNumber": 162
+          },
+          {
+            "text": "        title: \"Check-in, nhận phòng\",",
+            "lineNumber": 163
+          },
+          {
+            "text": "        description: \"Tập trung tại sảnh resort. Check-in, nhận phòng\",",
+            "lineNumber": 164
+          },
+          {
+            "text": "        location: \"Asteria Mũi Né Resort\",",
+            "lineNumber": 165
+          },
+          {
+            "text": "        icon: \"Hotel\",",
+            "lineNumber": 166
+          },
+          {
+            "text": "        period: \"CHIỀU\"",
+            "lineNumber": 167
+          },
+          {
+            "text": "      },",
+            "lineNumber": 168
+          },
+          {
+            "text": "      {",
+            "lineNumber": 169
+          },
+          {
+            "text": "        time: \"15:00 - 18:00\",",
+            "lineNumber": 170
+          },
+          {
+            "text": "        title: \"Thời gian tự do\",",
+            "lineNumber": 171
+          },
+          {
+            "text": "        description: \"Tắm biển, thể thao ở biển, hồ bơi, pickle ball, spa, thể thao trong nhà, khám phá Mũi Né\",",
+            "lineNumber": 172
+          },
+          {
+            "text": "        location: \"Tự do\",",
+            "lineNumber": 173
+          },
+          {
+            "text": "        icon: \"Umbrella\",",
+            "lineNumber": 174
+          },
+          {
+            "text": "        period: \"CHIỀU\"",
+            "lineNumber": 175
+          },
+          {
+            "text": "      },",
+            "lineNumber": 176
+          },
+          {
+            "text": "      {",
+            "lineNumber": 177
+          },
+          {
+            "text": "        time: \"18:00 - 18:30\",",
+            "lineNumber": 178
+          },
+          {
+            "text": "];",
+            "lineNumber": 266
+          }
+        ]
+      },
+      "score": 0.2312760353088379
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/src/components/rooms/room-card.tsx",
+        "range": {
+          "startPosition": {
+            "line": 10
+          },
+          "endPosition": {
+            "line": 94,
+            "column": 20
+          }
+        },
+        "contents": "function RoomCard({ room, className }: RoomCardProps) {\n\n\n      &lt;CardContent className=\"space-y-4\"&gt;\n        &lt;div className=\"space-y-2\"&gt;\n          &lt;div className=\"flex items-center gap-2 pb-1 border-b border-border/50\"&gt;\n            &lt;Users className=\"h-4 w-4 shrink-0 text-primary\" /&gt;\n            &lt;p className=\"text-xs font-semibold uppercase tracking-wide text-muted-foreground\"&gt;\n              Người ở ({room.occupants.length})\n            &lt;/p&gt;\n          &lt;/div&gt;\n          &lt;div className=\"space-y-2\"&gt;\n            {room.occupants.map((name, index) =&gt; (\n              &lt;div\n                key={index}\n                className={cn(\n                  'flex items-center gap-3 rounded-lg px-3 py-2.5 transition-all',\n                  'bg-muted/50 hover:bg-muted border border-border/50',\n                  index === 0 &amp;&amp; 'bg-primary/5 dark:bg-primary/10 border-primary/20'\n                )}\n              &gt;\n                &lt;div\n                  className={cn(\n                    'flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold',\n                    index === 0\n                      ? 'bg-primary text-primary-foreground'\n                      : 'bg-muted-foreground/20 text-foreground'\n                  )}\n                &gt;\n                  {index + 1}\n                &lt;/div&gt;\n                &lt;p\n                  className={cn(\n                    'flex-1 text-base font-semibold',\n                    index === 0 ? 'text-foreground' : 'text-foreground'\n                  )}\n                &gt;\n                  {name}\n                &lt;/p&gt;\n              &lt;/div&gt;\n            ))}\n          &lt;/div&gt;\n        &lt;/div&gt;\n        {hasSpecial &amp;&amp; (\n          &lt;div className=\"flex items-center gap-2 rounded-lg bg-amber-500/10 px-3 py-2.5 dark:bg-amber-500/15 border border-amber-500/20\"&gt;\n            &lt;Star className=\"h-4 w-4 text-amber-500 shrink-0\" /&gt;\n            &lt;span className=\"text-sm font-semibold text-amber-600 dark:text-amber-400\"&gt;{room.special}&lt;/span&gt;\n          &lt;/div&gt;\n        )}\n      &lt;/CardContent&gt;\n    &lt;/Card&gt;\n  );\n}\n\nexport { RoomCard };",
+        "signatures": {
+          "ranges": [
+            {
+              "startPosition": {
+                "line": 11,
+                "column": 1
+              },
+              "endPosition": {
+                "line": 12,
+                "column": 3
+              }
+            }
+          ]
+        },
+        "detailedLines": [
+          {
+            "text": "function RoomCard({ room, className }: RoomCardProps) {",
+            "lineNumber": 11,
+            "isSignature": true
+          },
+          {
+            "lineNumber": 42
+          },
+          {
+            "lineNumber": 43
+          },
+          {
+            "text": "      &lt;CardContent className=\"space-y-4\"&gt;",
+            "lineNumber": 44
+          },
+          {
+            "text": "        &lt;div className=\"space-y-2\"&gt;",
+            "lineNumber": 45
+          },
+          {
+            "text": "          &lt;div className=\"flex items-center gap-2 pb-1 border-b border-border/50\"&gt;",
+            "lineNumber": 46
+          },
+          {
+            "text": "            &lt;Users className=\"h-4 w-4 shrink-0 text-primary\" /&gt;",
+            "lineNumber": 47
+          },
+          {
+            "text": "            &lt;p className=\"text-xs font-semibold uppercase tracking-wide text-muted-foreground\"&gt;",
+            "lineNumber": 48
+          },
+          {
+            "text": "              Người ở ({room.occupants.length})",
+            "lineNumber": 49
+          },
+          {
+            "text": "            &lt;/p&gt;",
+            "lineNumber": 50
+          },
+          {
+            "text": "          &lt;/div&gt;",
+            "lineNumber": 51
+          },
+          {
+            "text": "          &lt;div className=\"space-y-2\"&gt;",
+            "lineNumber": 52
+          },
+          {
+            "text": "            {room.occupants.map((name, index) =&gt; (",
+            "lineNumber": 53
+          },
+          {
+            "text": "              &lt;div",
+            "lineNumber": 54
+          },
+          {
+            "text": "                key={index}",
+            "lineNumber": 55
+          },
+          {
+            "text": "                className={cn(",
+            "lineNumber": 56
+          },
+          {
+            "text": "                  'flex items-center gap-3 rounded-lg px-3 py-2.5 transition-all',",
+            "lineNumber": 57
+          },
+          {
+            "text": "                  'bg-muted/50 hover:bg-muted border border-border/50',",
+            "lineNumber": 58
+          },
+          {
+            "text": "                  index === 0 &amp;&amp; 'bg-primary/5 dark:bg-primary/10 border-primary/20'",
+            "lineNumber": 59
+          },
+          {
+            "text": "                )}",
+            "lineNumber": 60
+          },
+          {
+            "text": "              &gt;",
+            "lineNumber": 61
+          },
+          {
+            "text": "                &lt;div",
+            "lineNumber": 62
+          },
+          {
+            "text": "                  className={cn(",
+            "lineNumber": 63
+          },
+          {
+            "text": "                    'flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-bold',",
+            "lineNumber": 64
+          },
+          {
+            "text": "                    index === 0",
+            "lineNumber": 65
+          },
+          {
+            "text": "                      ? 'bg-primary text-primary-foreground'",
+            "lineNumber": 66
+          },
+          {
+            "text": "                      : 'bg-muted-foreground/20 text-foreground'",
+            "lineNumber": 67
+          },
+          {
+            "text": "                  )}",
+            "lineNumber": 68
+          },
+          {
+            "text": "                &gt;",
+            "lineNumber": 69
+          },
+          {
+            "text": "                  {index + 1}",
+            "lineNumber": 70
+          },
+          {
+            "text": "                &lt;/div&gt;",
+            "lineNumber": 71
+          },
+          {
+            "text": "                &lt;p",
+            "lineNumber": 72
+          },
+          {
+            "text": "                  className={cn(",
+            "lineNumber": 73
+          },
+          {
+            "text": "                    'flex-1 text-base font-semibold',",
+            "lineNumber": 74
+          },
+          {
+            "text": "                    index === 0 ? 'text-foreground' : 'text-foreground'",
+            "lineNumber": 75
+          },
+          {
+            "text": "                  )}",
+            "lineNumber": 76
+          },
+          {
+            "text": "                &gt;",
+            "lineNumber": 77
+          },
+          {
+            "text": "                  {name}",
+            "lineNumber": 78
+          },
+          {
+            "text": "                &lt;/p&gt;",
+            "lineNumber": 79
+          },
+          {
+            "text": "              &lt;/div&gt;",
+            "lineNumber": 80
+          },
+          {
+            "text": "            ))}",
+            "lineNumber": 81
+          },
+          {
+            "text": "          &lt;/div&gt;",
+            "lineNumber": 82
+          },
+          {
+            "text": "        &lt;/div&gt;",
+            "lineNumber": 83
+          },
+          {
+            "text": "        {hasSpecial &amp;&amp; (",
+            "lineNumber": 84
+          },
+          {
+            "text": "          &lt;div className=\"flex items-center gap-2 rounded-lg bg-amber-500/10 px-3 py-2.5 dark:bg-amber-500/15 border border-amber-500/20\"&gt;",
+            "lineNumber": 85
+          },
+          {
+            "text": "            &lt;Star className=\"h-4 w-4 text-amber-500 shrink-0\" /&gt;",
+            "lineNumber": 86
+          },
+          {
+            "text": "            &lt;span className=\"text-sm font-semibold text-amber-600 dark:text-amber-400\"&gt;{room.special}&lt;/span&gt;",
+            "lineNumber": 87
+          },
+          {
+            "text": "          &lt;/div&gt;",
+            "lineNumber": 88
+          },
+          {
+            "text": "        )}",
+            "lineNumber": 89
+          },
+          {
+            "text": "      &lt;/CardContent&gt;",
+            "lineNumber": 90
+          },
+          {
+            "text": "    &lt;/Card&gt;",
+            "lineNumber": 91
+          },
+          {
+            "text": "  );",
+            "lineNumber": 92
+          },
+          {
+            "text": "}",
+            "lineNumber": 93,
+            "isSignature": true
+          },
+          {
+            "lineNumber": 94
+          },
+          {
+            "text": "export { RoomCard };",
+            "lineNumber": 95
+          }
+        ]
+      },
+      "score": 0.22833925485610962
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/docs/IMAGE_RESOURCES_GUIDE.md",
+        "range": {
+          "startPosition": {
+            "line": 45
+          },
+          "endPosition": {
+            "line": 81
+          }
+        },
+        "contents": "### Key Source Pages\n\n- **Official Website Gallery:** &#96;https://asteriamuineresort.com/gallery/&#96;\n- **Room Details - Senior Deluxe:** &#96;https://asteriamuineresort.com/asteria-stay/senior-deluxe/&#96;\n- **Room Details - Deluxe:** &#96;https://asteriamuineresort.com/asteria-stay/deluxe/&#96;\n- **TripAdvisor (816+ photos):** &#96;https://www.tripadvisor.com/Hotel_Review-g1009804-d26686213-Reviews-Asteria_Mui_Ne_Resort&#96;\n- **Expedia (49+ photos):** &#96;https://www.expedia.com/Phan-Thiet-Hotels-Asteria-Mui-Ne-Resort.h99370406&#96;\n\n**Image Resolution Tip:** For TripAdvisor images, modify URL parameters to &#96;?w=1200&amp;h=1200&amp;s=1&#96; for maximum quality. For Expedia images, change &#96;rw=297&#96; to &#96;rw=1200&#96;.\n\n---\n\n## Restaurant images capture authentic Vietnamese seafood dining\n\n### Thịnh Phát Quán (91 Huỳnh Tấn Phát, Phan Thiết)\n\nA casual family-style seafood restaurant with **126+ photos** available, featuring live seafood tanks and open-air dining for up to 200 guests.\n\n**Primary Source - Foody.vn (126+ photos):**\n\n- **Food Album (38 photos):** &#96;https://www.foody.vn/binh-thuan/thinh-phat-hai-san-tuoi-song/album-mon-an&#96;\n- **Space Album (2 photos):** &#96;https://www.foody.vn/binh-thuan/thinh-phat-hai-san-tuoi-song/album-khong-gian&#96;\n- **General Album (85 photos):** &#96;https://www.foody.vn/binh-thuan/thinh-phat-hai-san-tuoi-song/album-tong-hop&#96;\n\n**TripAdvisor Direct URLs:**\n\n| Direct Image URL | Description | Category |\n|-----------------|-------------|----------|\n| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/1c/98/68/img-20190629-173817-largejpg.jpg&#96; | Interior dining scene | Atmosphere |\n| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/1c/98/69/img-20190629-173916-largejpg.jpg&#96; | Restaurant interior view | Interior |\n| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/c8/3d/82/good.jpg&#96; | Seafood dish | Food |\n| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/c8/3d/90/good.jpg&#96; | Seafood platter | Food |\n| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/c8/3d/77/good.jpg&#96; | Food presentation | Food |\n\n### Phố Mũi Né / Cơm Niêu Hải Sản (55 Huỳnh Tấn Phát, Mũi Né)",
+        "signatures": {},
+        "detailedLines": [
+          {
+            "text": "### Key Source Pages",
+            "lineNumber": 47
+          },
+          {
+            "lineNumber": 48
+          },
+          {
+            "text": "- **Official Website Gallery:** &#96;https://asteriamuineresort.com/gallery/&#96;",
+            "lineNumber": 49
+          },
+          {
+            "text": "- **Room Details - Senior Deluxe:** &#96;https://asteriamuineresort.com/asteria-stay/senior-deluxe/&#96;",
+            "lineNumber": 50
+          },
+          {
+            "text": "- **Room Details - Deluxe:** &#96;https://asteriamuineresort.com/asteria-stay/deluxe/&#96;",
+            "lineNumber": 51
+          },
+          {
+            "text": "- **TripAdvisor (816+ photos):** &#96;https://www.tripadvisor.com/Hotel_Review-g1009804-d26686213-Reviews-Asteria_Mui_Ne_Resort&#96;",
+            "lineNumber": 52
+          },
+          {
+            "text": "- **Expedia (49+ photos):** &#96;https://www.expedia.com/Phan-Thiet-Hotels-Asteria-Mui-Ne-Resort.h99370406&#96;",
+            "lineNumber": 53
+          },
+          {
+            "lineNumber": 54
+          },
+          {
+            "text": "**Image Resolution Tip:** For TripAdvisor images, modify URL parameters to &#96;?w=1200&amp;h=1200&amp;s=1&#96; for maximum quality. For Expedia images, change &#96;rw=297&#96; to &#96;rw=1200&#96;.",
+            "lineNumber": 55
+          },
+          {
+            "lineNumber": 56
+          },
+          {
+            "text": "---",
+            "lineNumber": 57
+          },
+          {
+            "lineNumber": 58
+          },
+          {
+            "text": "## Restaurant images capture authentic Vietnamese seafood dining",
+            "lineNumber": 59
+          },
+          {
+            "lineNumber": 60
+          },
+          {
+            "text": "### Thịnh Phát Quán (91 Huỳnh Tấn Phát, Phan Thiết)",
+            "lineNumber": 61
+          },
+          {
+            "lineNumber": 62
+          },
+          {
+            "text": "A casual family-style seafood restaurant with **126+ photos** available, featuring live seafood tanks and open-air dining for up to 200 guests.",
+            "lineNumber": 63
+          },
+          {
+            "lineNumber": 64
+          },
+          {
+            "text": "**Primary Source - Foody.vn (126+ photos):**",
+            "lineNumber": 65
+          },
+          {
+            "lineNumber": 66
+          },
+          {
+            "text": "- **Food Album (38 photos):** &#96;https://www.foody.vn/binh-thuan/thinh-phat-hai-san-tuoi-song/album-mon-an&#96;",
+            "lineNumber": 67
+          },
+          {
+            "text": "- **Space Album (2 photos):** &#96;https://www.foody.vn/binh-thuan/thinh-phat-hai-san-tuoi-song/album-khong-gian&#96;",
+            "lineNumber": 68
+          },
+          {
+            "text": "- **General Album (85 photos):** &#96;https://www.foody.vn/binh-thuan/thinh-phat-hai-san-tuoi-song/album-tong-hop&#96;",
+            "lineNumber": 69
+          },
+          {
+            "lineNumber": 70
+          },
+          {
+            "text": "**TripAdvisor Direct URLs:**",
+            "lineNumber": 71
+          },
+          {
+            "lineNumber": 72
+          },
+          {
+            "text": "| Direct Image URL | Description | Category |",
+            "lineNumber": 73
+          },
+          {
+            "text": "|-----------------|-------------|----------|",
+            "lineNumber": 74
+          },
+          {
+            "text": "| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/1c/98/68/img-20190629-173817-largejpg.jpg&#96; | Interior dining scene | Atmosphere |",
+            "lineNumber": 75
+          },
+          {
+            "text": "| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/18/1c/98/69/img-20190629-173916-largejpg.jpg&#96; | Restaurant interior view | Interior |",
+            "lineNumber": 76
+          },
+          {
+            "text": "| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/c8/3d/82/good.jpg&#96; | Seafood dish | Food |",
+            "lineNumber": 77
+          },
+          {
+            "text": "| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/c8/3d/90/good.jpg&#96; | Seafood platter | Food |",
+            "lineNumber": 78
+          },
+          {
+            "text": "| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0e/c8/3d/77/good.jpg&#96; | Food presentation | Food |",
+            "lineNumber": 79
+          },
+          {
+            "lineNumber": 80
+          },
+          {
+            "text": "### Phố Mũi Né / Cơm Niêu Hải Sản (55 Huỳnh Tấn Phát, Mũi Né)",
+            "lineNumber": 81
+          }
+        ]
+      },
+      "score": 0.22831296920776367
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./data-files.ts",
+        "range": {
+          "startPosition": {
+            "line": 434,
+            "column": 1
+          },
+          "endPosition": {
+            "line": 473,
+            "column": 1
+          }
+        },
+        "contents": "export const eventInfo: EventInfo = {\n  eventName: \"NGD Team Building 2025\",\n  resortName: \"Asteria Mui Ne Resort\",\n  location: \"Mũi Né, Phan Thiết, Bình Thuận\",\n  startDate: \"18/12/2025\",\n  endDate: \"19/12/2025\",\n  nightsLabel: \"2 ngày 1 đêm\",\n  totalPax: 34,\n  totalRooms: 18,\n  themeTagline: \"Gió biển mát, team chill xả stress\",\n  checkInTime: \"14:30\",\n  checkOutTime: \"12:00\",\n};\n\nexport const resortPackage = {\n  name: \"Bed &amp; Breakfast - BB\",\n,\n};",
+        "signatures": {},
+        "detailedLines": [
+          {
+            "text": "export const eventInfo: EventInfo = {",
+            "lineNumber": 437
+          },
+          {
+            "text": "  eventName: \"NGD Team Building 2025\",",
+            "lineNumber": 438
+          },
+          {
+            "text": "  resortName: \"Asteria Mui Ne Resort\",",
+            "lineNumber": 439
+          },
+          {
+            "text": "  location: \"Mũi Né, Phan Thiết, Bình Thuận\",",
+            "lineNumber": 440
+          },
+          {
+            "text": "  startDate: \"18/12/2025\",",
+            "lineNumber": 441
+          },
+          {
+            "text": "  endDate: \"19/12/2025\",",
+            "lineNumber": 442
+          },
+          {
+            "text": "  nightsLabel: \"2 ngày 1 đêm\",",
+            "lineNumber": 443
+          },
+          {
+            "text": "  totalPax: 34,",
+            "lineNumber": 444
+          },
+          {
+            "text": "  totalRooms: 18,",
+            "lineNumber": 445
+          },
+          {
+            "text": "  themeTagline: \"Gió biển mát, team chill xả stress\",",
+            "lineNumber": 446
+          },
+          {
+            "text": "  checkInTime: \"14:30\",",
+            "lineNumber": 447
+          },
+          {
+            "text": "  checkOutTime: \"12:00\",",
+            "lineNumber": 448
+          },
+          {
+            "text": "};",
+            "lineNumber": 449
+          },
+          {
+            "lineNumber": 450
+          },
+          {
+            "text": "export const resortPackage = {",
+            "lineNumber": 451
+          },
+          {
+            "text": "  name: \"Bed &amp; Breakfast - BB\",",
+            "lineNumber": 452
+          },
+          {
+            "text": ",",
+            "lineNumber": 473
+          },
+          {
+            "text": "};",
+            "lineNumber": 474
+          }
+        ]
+      },
+      "score": 0.22083279490470886
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/index.html",
+        "range": {
+          "startPosition": {},
+          "endPosition": {
+            "line": 18
+          }
+        },
+        "contents": "&lt;!doctype html&gt;\n&lt;html lang=\"vi\"&gt;\n  &lt;head&gt;\n    &lt;meta charset=\"UTF-8\" /&gt;\n    &lt;link rel=\"icon\" type=\"image/avif\" href=\"/logo.avif\" /&gt;\n    &lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" /&gt;\n    &lt;meta name=\"description\" content=\"NGD Team Building 2025 - Asteria Mui Ne Resort - 18-19/12/2025\" /&gt;\n    &lt;meta name=\"theme-color\" content=\"#0f172a\" /&gt;\n    &lt;link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"&gt;\n    &lt;link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin&gt;\n    &lt;link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap\" rel=\"stylesheet\"&gt;\n    &lt;title&gt;NGD Team Building 2025 | Mũi Né&lt;/title&gt;\n  &lt;/head&gt;\n  &lt;body&gt;\n    &lt;div id=\"root\"&gt;&lt;/div&gt;\n    &lt;script type=\"module\" src=\"/src/main.tsx\"&gt;&lt;/script&gt;\n  &lt;/body&gt;\n&lt;/html&gt;",
+        "signatures": {},
+        "detailedLines": [
+          {
+            "text": "&lt;!doctype html&gt;",
+            "lineNumber": 1
+          },
+          {
+            "text": "&lt;html lang=\"vi\"&gt;",
+            "lineNumber": 2
+          },
+          {
+            "text": "  &lt;head&gt;",
+            "lineNumber": 3
+          },
+          {
+            "text": "    &lt;meta charset=\"UTF-8\" /&gt;",
+            "lineNumber": 4
+          },
+          {
+            "text": "    &lt;link rel=\"icon\" type=\"image/avif\" href=\"/logo.avif\" /&gt;",
+            "lineNumber": 5
+          },
+          {
+            "text": "    &lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" /&gt;",
+            "lineNumber": 6
+          },
+          {
+            "text": "    &lt;meta name=\"description\" content=\"NGD Team Building 2025 - Asteria Mui Ne Resort - 18-19/12/2025\" /&gt;",
+            "lineNumber": 7
+          },
+          {
+            "text": "    &lt;meta name=\"theme-color\" content=\"#0f172a\" /&gt;",
+            "lineNumber": 8
+          },
+          {
+            "text": "    &lt;link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"&gt;",
+            "lineNumber": 9
+          },
+          {
+            "text": "    &lt;link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin&gt;",
+            "lineNumber": 10
+          },
+          {
+            "text": "    &lt;link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap\" rel=\"stylesheet\"&gt;",
+            "lineNumber": 11
+          },
+          {
+            "text": "    &lt;title&gt;NGD Team Building 2025 | Mũi Né&lt;/title&gt;",
+            "lineNumber": 12
+          },
+          {
+            "text": "  &lt;/head&gt;",
+            "lineNumber": 13
+          },
+          {
+            "text": "  &lt;body&gt;",
+            "lineNumber": 14
+          },
+          {
+            "text": "    &lt;div id=\"root\"&gt;&lt;/div&gt;",
+            "lineNumber": 15
+          },
+          {
+            "text": "    &lt;script type=\"module\" src=\"/src/main.tsx\"&gt;&lt;/script&gt;",
+            "lineNumber": 16
+          },
+          {
+            "text": "  &lt;/body&gt;",
+            "lineNumber": 17
+          },
+          {
+            "text": "&lt;/html&gt;",
+            "lineNumber": 18
+          }
+        ]
+      },
+      "score": 0.2145734429359436
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/src/types/index.ts",
+        "range": {
+          "startPosition": {},
+          "endPosition": {
+            "line": 24,
+            "column": 1
+          }
+        },
+        "contents": "// Event Info Types\nexport interface EventInfo {\n  eventName: string;\n  resortName: string;\n  location: string;\n  startDate: string;\n  endDate: string;\n  nightsLabel: string;\n  totalPax: number;\n  totalRooms: number;\n  themeTagline: string;\n  checkInTime: string;\n  checkOutTime: string;\n  googleMapsUrl: string;\n  googleMapsEmbedUrl: string;\n}\n\nexport interface ResortPackage {\n  name: string;\n  description: string;\n;\n}",
+        "signatures": {},
+        "detailedLines": [
+          {
+            "text": "// Event Info Types",
+            "lineNumber": 1
+          },
+          {
+            "text": "export interface EventInfo {",
+            "lineNumber": 2,
+            "isSignature": true
+          },
+          {
+            "text": "  eventName: string;",
+            "lineNumber": 3
+          },
+          {
+            "text": "  resortName: string;",
+            "lineNumber": 4
+          },
+          {
+            "text": "  location: string;",
+            "lineNumber": 5
+          },
+          {
+            "text": "  startDate: string;",
+            "lineNumber": 6
+          },
+          {
+            "text": "  endDate: string;",
+            "lineNumber": 7
+          },
+          {
+            "text": "  nightsLabel: string;",
+            "lineNumber": 8
+          },
+          {
+            "text": "  totalPax: number;",
+            "lineNumber": 9
+          },
+          {
+            "text": "  totalRooms: number;",
+            "lineNumber": 10
+          },
+          {
+            "text": "  themeTagline: string;",
+            "lineNumber": 11
+          },
+          {
+            "text": "  checkInTime: string;",
+            "lineNumber": 12
+          },
+          {
+            "text": "  checkOutTime: string;",
+            "lineNumber": 13
+          },
+          {
+            "text": "  googleMapsUrl: string;",
+            "lineNumber": 14
+          },
+          {
+            "text": "  googleMapsEmbedUrl: string;",
+            "lineNumber": 15,
+            "isSignature": true
+          },
+          {
+            "text": "}",
+            "lineNumber": 16,
+            "isSignature": true
+          },
+          {
+            "lineNumber": 17
+          },
+          {
+            "text": "export interface ResortPackage {",
+            "lineNumber": 18,
+            "isSignature": true
+          },
+          {
+            "text": "  name: string;",
+            "lineNumber": 19
+          },
+          {
+            "text": "  description: string;",
+            "lineNumber": 20
+          },
+          {
+            "text": ";",
+            "lineNumber": 24,
+            "isSignature": true
+          },
+          {
+            "text": "}",
+            "lineNumber": 25,
+            "isSignature": true
+          }
+        ]
+      },
+      "score": 0.21230849623680115
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/src/data/images.ts",
+        "range": {
+          "startPosition": {
+            "line": 44
+          },
+          "endPosition": {
+            "line": 467,
+            "column": 9
+          }
+        },
+        "contents": "export const imageResources: ImageCollection = {\n,\n};\n\n/**\n * Helper functions to get images by use case\n */\nexport const getImageByUseCase = {\n    hero: () =&gt; imageResources.stock.beachOcean[0], // Mui Ne fishing village\n    day1Departure: () =&gt; imageResources.stock.transportation[0], // Bus mountain road\n    day1Dinner: () =&gt; imageResources.restaurants.thinhPhat[3], // Seafood platter\n    day2Resort: () =&gt; imageResources.resort.poolBeach[1], // Beach/ocean view\n    day2Activities: () =&gt; imageResources.stock.teamActivities[2], // Beach volleyball\n    day2SunsetParty: () =&gt; imageResources.stock.teamActivities[0], // Sunset celebration\n    day3Breakfast: () =&gt; imageResources.stock.coffeeBreakfast[0], // Vietnamese coffee\n    scheduleOverview: () =&gt; imageResources.resort.exterior[1], // Resort overview\n    accommodationCard: () =&gt; imageResources.resort.rooms[1], // Senior Deluxe room\n    diningCard: () =&gt; imageResources.restaurants.phoMuiNe[2], // Seafood platter\n    activityCard: () =&gt; imageResources.stock.teamActivities[3], // Beach campfire\n    transportCard: () =&gt; imageResources.stock.transportation[1], // Bus interior\n    spaRelaxCard: () =&gt; imageResources.resort.facilities[4], // Spa treatment\n    poolCard: () =&gt; imageResources.stock.resortAmenities[0], // Resort pool\n};\n\n/**\n * Image quality optimization tips\n */\nexport const imageQualityMatrix = {\n as const;",
+        "signatures": {},
+        "detailedLines": [
+          {
+            "text": "export const imageResources: ImageCollection = {",
+            "lineNumber": 45
+          },
+          {
+            "text": ",",
+            "lineNumber": 436
+          },
+          {
+            "text": "};",
+            "lineNumber": 437
+          },
+          {
+            "lineNumber": 438
+          },
+          {
+            "text": "/**",
+            "lineNumber": 439
+          },
+          {
+            "text": " * Helper functions to get images by use case",
+            "lineNumber": 440
+          },
+          {
+            "text": " */",
+            "lineNumber": 441
+          },
+          {
+            "text": "export const getImageByUseCase = {",
+            "lineNumber": 442
+          },
+          {
+            "text": "    hero: () =&gt; imageResources.stock.beachOcean[0], // Mui Ne fishing village",
+            "lineNumber": 443
+          },
+          {
+            "text": "    day1Departure: () =&gt; imageResources.stock.transportation[0], // Bus mountain road",
+            "lineNumber": 444
+          },
+          {
+            "text": "    day1Dinner: () =&gt; imageResources.restaurants.thinhPhat[3], // Seafood platter",
+            "lineNumber": 445
+          },
+          {
+            "text": "    day2Resort: () =&gt; imageResources.resort.poolBeach[1], // Beach/ocean view",
+            "lineNumber": 446
+          },
+          {
+            "text": "    day2Activities: () =&gt; imageResources.stock.teamActivities[2], // Beach volleyball",
+            "lineNumber": 447
+          },
+          {
+            "text": "    day2SunsetParty: () =&gt; imageResources.stock.teamActivities[0], // Sunset celebration",
+            "lineNumber": 448
+          },
+          {
+            "text": "    day3Breakfast: () =&gt; imageResources.stock.coffeeBreakfast[0], // Vietnamese coffee",
+            "lineNumber": 449
+          },
+          {
+            "text": "    scheduleOverview: () =&gt; imageResources.resort.exterior[1], // Resort overview",
+            "lineNumber": 450
+          },
+          {
+            "text": "    accommodationCard: () =&gt; imageResources.resort.rooms[1], // Senior Deluxe room",
+            "lineNumber": 451
+          },
+          {
+            "text": "    diningCard: () =&gt; imageResources.restaurants.phoMuiNe[2], // Seafood platter",
+            "lineNumber": 452
+          },
+          {
+            "text": "    activityCard: () =&gt; imageResources.stock.teamActivities[3], // Beach campfire",
+            "lineNumber": 453
+          },
+          {
+            "text": "    transportCard: () =&gt; imageResources.stock.transportation[1], // Bus interior",
+            "lineNumber": 454
+          },
+          {
+            "text": "    spaRelaxCard: () =&gt; imageResources.resort.facilities[4], // Spa treatment",
+            "lineNumber": 455
+          },
+          {
+            "text": "    poolCard: () =&gt; imageResources.stock.resortAmenities[0], // Resort pool",
+            "lineNumber": 456
+          },
+          {
+            "text": "};",
+            "lineNumber": 457
+          },
+          {
+            "lineNumber": 458
+          },
+          {
+            "text": "/**",
+            "lineNumber": 459
+          },
+          {
+            "text": " * Image quality optimization tips",
+            "lineNumber": 460
+          },
+          {
+            "text": " */",
+            "lineNumber": 461
+          },
+          {
+            "text": "export const imageQualityMatrix = {",
+            "lineNumber": 462
+          },
+          {
+            "text": " as const;",
+            "lineNumber": 468
+          }
+        ]
+      },
+      "score": 0.21080850064754486
+    },
+    {
+      "codeBlock": {
+        "relativeWorkspacePath": "./ngd-team-building/src/components/menu/meal-card.tsx",
+        "range": {
+          "startPosition": {
+            "line": 20
+          },
+          "endPosition": {
+            "line": 197,
+            "column": 20
+          }
+        },
+        "contents": "function MealCard({ meal }: MealCardProps) {\n\n        &lt;div className=\"flex flex-wrap items-center justify-between gap-4 rounded-xl bg-gradient-to-r from-amber-500/10 to-orange-500/10 p-4\"&gt;\n          &lt;div&gt;\n            &lt;p className=\"text-sm text-muted-foreground\"&gt;Tổng cộng&lt;/p&gt;\n            &lt;p className=\"text-2xl font-bold text-foreground\"&gt;\n              {formatCurrency(meal.totalCost)}\n            &lt;/p&gt;\n          &lt;/div&gt;\n          &lt;div className=\"flex items-center gap-2 rounded-lg bg-card border border-border px-3 py-2\"&gt;\n            &lt;Users className=\"h-4 w-4 text-amber-500\" /&gt;\n            &lt;span className=\"text-sm text-muted-foreground\"&gt;\n              {formatCurrency(meal.perPaxCost)} / người\n            &lt;/span&gt;\n          &lt;/div&gt;\n        &lt;/div&gt;\n      &lt;/CardContent&gt;\n    &lt;/Card&gt;\n    &lt;/div&gt;\n\n    {/* Food Image Gallery Modal */}\n    {hasImages &amp;&amp; (\n      &lt;FoodImageGallery\n        images={images}\n        restaurantName={meal.restaurant}\n        isOpen={isImageGalleryOpen}\n        onClose={() =&gt; setIsImageGalleryOpen(false)}\n      /&gt;\n    )}\n    &lt;/&gt;\n  );\n}\n\nexport { MealCard };",
+        "signatures": {
+          "ranges": [
+            {
+              "startPosition": {
+                "line": 21,
+                "column": 1
+              },
+              "endPosition": {
+                "line": 22,
+                "column": 3
+              }
+            }
+          ]
+        },
+        "detailedLines": [
+          {
+            "text": "function MealCard({ meal }: MealCardProps) {",
+            "lineNumber": 21,
+            "isSignature": true
+          },
+          {
+            "lineNumber": 166
+          },
+          {
+            "text": "        &lt;div className=\"flex flex-wrap items-center justify-between gap-4 rounded-xl bg-gradient-to-r from-amber-500/10 to-orange-500/10 p-4\"&gt;",
+            "lineNumber": 167
+          },
+          {
+            "text": "          &lt;div&gt;",
+            "lineNumber": 168
+          },
+          {
+            "text": "            &lt;p className=\"text-sm text-muted-foreground\"&gt;Tổng cộng&lt;/p&gt;",
+            "lineNumber": 169
+          },
+          {
+            "text": "            &lt;p className=\"text-2xl font-bold text-foreground\"&gt;",
+            "lineNumber": 170
+          },
+          {
+            "text": "              {formatCurrency(meal.totalCost)}",
+            "lineNumber": 171
+          },
+          {
+            "text": "            &lt;/p&gt;",
+            "lineNumber": 172
+          },
+          {
+            "text": "          &lt;/div&gt;",
+            "lineNumber": 173
+          },
+          {
+            "text": "          &lt;div className=\"flex items-center gap-2 rounded-lg bg-card border border-border px-3 py-2\"&gt;",
+            "lineNumber": 174
+          },
+          {
+            "text": "            &lt;Users className=\"h-4 w-4 text-amber-500\" /&gt;",
+            "lineNumber": 175
+          },
+          {
+            "text": "            &lt;span className=\"text-sm text-muted-foreground\"&gt;",
+            "lineNumber": 176
+          },
+          {
+            "text": "              {formatCurrency(meal.perPaxCost)} / người",
+            "lineNumber": 177
+          },
+          {
+            "text": "            &lt;/span&gt;",
+            "lineNumber": 178
+          },
+          {
+            "text": "          &lt;/div&gt;",
+            "lineNumber": 179
+          },
+          {
+            "text": "        &lt;/div&gt;",
+            "lineNumber": 180
+          },
+          {
+            "text": "      &lt;/CardContent&gt;",
+            "lineNumber": 181
+          },
+          {
+            "text": "    &lt;/Card&gt;",
+            "lineNumber": 182
+          },
+          {
+            "text": "    &lt;/div&gt;",
+            "lineNumber": 183
+          },
+          {
+            "lineNumber": 184
+          },
+          {
+            "text": "    {/* Food Image Gallery Modal */}",
+            "lineNumber": 185
+          },
+          {
+            "text": "    {hasImages &amp;&amp; (",
+            "lineNumber": 186
+          },
+          {
+            "text": "      &lt;FoodImageGallery",
+            "lineNumber": 187
+          },
+          {
+            "text": "        images={images}",
+            "lineNumber": 188
+          },
+          {
+            "text": "        restaurantName={meal.restaurant}",
+            "lineNumber": 189
+          },
+          {
+            "text": "        isOpen={isImageGalleryOpen}",
+            "lineNumber": 190
+          },
+          {
+            "text": "        onClose={() =&gt; setIsImageGalleryOpen(false)}",
+            "lineNumber": 191
+          },
+          {
+            "text": "      /&gt;",
+            "lineNumber": 192
+          },
+          {
+            "text": "    )}",
+            "lineNumber": 193
+          },
+          {
+            "text": "    &lt;/&gt;",
+            "lineNumber": 194
+          },
+          {
+            "text": "  );",
+            "lineNumber": 195
+          },
+          {
+            "text": "}",
+            "lineNumber": 196,
+            "isSignature": true
+          },
+          {
+            "lineNumber": 197
+          },
+          {
+            "text": "export { MealCard };",
+            "lineNumber": 198
+          }
+        ]
+      },
+      "score": 0.21038693189620972
+    }
+  ]
+}
+```
+Status: **completed**
 
 
 </details>
@@ -58835,9 +63473,7 @@ Status: **loading**
 ---
 
 
-
----
-
+Đang kiểm tra overview-section để xác nhận các link đã được cập nhật:
 
 
 ---
@@ -58846,7 +63482,27 @@ Status: **loading**
 <details>
 <summary>Tool use: **read_file_v2**</summary>
 
-Status: **loading**
+
+Parameters:
+
+```json
+{
+  "targetFile": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building/src/components/dashboard/overview-section.tsx",
+  "offset": 64,
+  "limit": 30,
+  "charsLimit": 1000000,
+  "effectiveUri": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building/src/components/dashboard/overview-section.tsx"
+}
+```
+Result:
+
+```json
+{
+  "contents": "          &lt;div className=\"flex flex-wrap items-center gap-6\"&gt;\n            &lt;a\n              href={eventInfo.googleMapsUrl}\n              target=\"_blank\"\n              rel=\"noopener noreferrer\"\n              className=\"flex items-center gap-3 group\"\n            &gt;\n              &lt;div className={cn(\n                'flex h-10 w-10 items-center justify-center rounded-xl',\n                'bg-gradient-to-br from-amber-500 to-orange-500',\n                'shadow-lg shadow-amber-500/20',\n                'group-hover:scale-110 transition-transform'\n              )}&gt;\n                &lt;Sun className=\"h-5 w-5 text-white\" /&gt;\n              &lt;/div&gt;\n              &lt;div&gt;\n                &lt;p className=\"text-xs text-muted-foreground\"&gt;Resort&lt;/p&gt;\n                &lt;p className=\"font-semibold text-foreground group-hover:text-primary transition-colors flex items-center gap-1\"&gt;\n                  {eventInfo.resortName}\n                  &lt;ExternalLink className=\"h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity\" /&gt;\n                &lt;/p&gt;\n              &lt;/div&gt;\n            &lt;/a&gt;\n            &lt;a\n              href={eventInfo.googleMapsUrl}\n              target=\"_blank\"\n              rel=\"noopener noreferrer\"\n              className=\"flex items-center gap-3 group\"\n            &gt;\n              &lt;div className={cn(",
+  "totalLinesInFile": 293
+}
+```
+Status: **completed**
 
 
 </details>
@@ -58858,6 +63514,8 @@ Status: **loading**
 
 ---
 
+
+Đang kiểm tra lại file event-info để xác nhận link đã được cập nhật:
 
 
 ---
@@ -58866,7 +63524,96 @@ Status: **loading**
 <details>
 <summary>Tool use: **read_file_v2**</summary>
 
-Status: **loading**
+
+Parameters:
+
+```json
+{
+  "targetFile": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building/src/data/event-info.ts",
+  "charsLimit": 1000000,
+  "effectiveUri": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building/src/data/event-info.ts"
+}
+```
+Result:
+
+```json
+{
+  "contents": "import type { EventInfo, ResortPackage } from '@/types';\nimport { participants } from './participants';\n\nexport const eventInfo: EventInfo = {\n    eventName: \"NGD Team Building 2025\",\n    resortName: \"Asteria Mui Ne Resort\",\n    location: \"Mũi Né, Phan Thiết, Bình Thuận\",\n    startDate: \"18/12/2025\",\n    endDate: \"19/12/2025\",\n    nightsLabel: \"2 ngày 1 đêm\",\n    totalPax: participants.length,\n    totalRooms: 18,\n    themeTagline: \"Gió biển mát, team chill xả stress 🌊\",\n    checkInTime: \"14:30\",\n    checkOutTime: \"12:00\",\n    googleMapsUrl: \"https://maps.app.goo.gl/Cbn88Jz4tbH2eA7h7\",\n    googleMapsEmbedUrl: \"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3914.1234!2d108.2872!3d10.9385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3176830a8f1c1c1d%3A0x1234567890abcdef!2sAsteria%20Mui%20Ne%20Resort!5e0!3m2!1sen!2s!4v1234567890\",\n};\n\nexport const resortPackage: ResortPackage = {\n    name: \"Bed &amp; Breakfast - BB\",\n    description: \"Phòng + buffet sáng\",\n    pricePerRoom: 1440000,\n    pricePerPax: 720000,\n    includes: [\n        \"Buffet sáng\",\n        \"Hồ bơi + trượt nước\",\n        \"Bãi biển riêng + thể thao ngoài trời\",\n        \"Giải trí trong nhà: Bida, bóng bàn, bi lắc\",\n        \"Phòng chiếu phim\",\n        \"Gym\",\n        \"Hoạt động giải trí do resort tổ chức\",\n        \"Xe trung chuyển trong Mũi Né/Phan Thiết\",\n        \"Pickleball\",\n    ],\n    notIncluded: [\n        \"Buffet trưa/tối\",\n        \"Mini bar trong phòng\",\n        \"Đồ uống tại quầy Bar\",\n        \"Karaoke room\",\n        \"Spa\",\n    ],\n};\n\nexport const roomTypes = {\n    deluxe: {\n        name: \"Deluxe\",\n        area: \"35-40 m²\",\n        view: \"Garden view\",\n        capacity: \"2 người lớn &amp; 2 trẻ em hoặc 3 người lớn &amp; 1 trẻ em\",\n        variants: [\"Deluxe Double\", \"Deluxe Twin\"],\n    },\n    seniorDeluxe: {\n        name: \"Senior Deluxe\",\n        area: \"35-45 m²\",\n        view: \"Sea view\",\n        capacity: \"2 người lớn &amp; 2 trẻ em hoặc 3 người lớn &amp; 1 trẻ em\",\n        variants: [\"Senior Deluxe Double\", \"Senior Deluxe Twin\"],\n    },\n};\n\nexport const policies = {\n    checkIn: \"Thời gian nhận phòng từ 15:00\",\n    checkOut: \"Trả phòng trước 12:00 trưa\",\n    earlyCheckIn: \"Nhận phòng sớm hoặc trả phòng trễ sẽ tùy thuộc vào tình trạng phòng và sẽ phụ phí theo quy định\",\n    cancellation: [\n        { days: \"Từ 10 ngày trước\", penalty: \"50% phí dựa trên số lượng phòng giảm\" },\n        { days: \"Từ dưới 07 ngày\", penalty: \"75% phí dựa trên số lượng phòng giảm\" },\n        { days: \"Từ dưới 05 ngày\", penalty: \"100% toàn bộ thời gian lưu trú\" },\n    ],\n};\n",
+  "totalLinesInFile": 72
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="unknown" data-tool-name="run_terminal_command_v2">
+<details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+
+Parameters:
+
+```json
+{
+  "command": "cd /Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building &amp;&amp; grep -r \"googleMapsUrl\" src/data/event-info.ts",
+  "cwd": "",
+  "options": {
+    "timeout": 300000
+  },
+  "parsingResult": {
+    "executableCommands": [
+      {
+        "name": "cd",
+        "args": [
+          {
+            "type": "word",
+            "value": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building"
+          }
+        ],
+        "fullText": "cd /Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building"
+      },
+      {
+        "name": "grep",
+        "args": [
+          {
+            "type": "word",
+            "value": "-r"
+          },
+          {
+            "type": "string",
+            "value": "\"googleMapsUrl\""
+          },
+          {
+            "type": "word",
+            "value": "src/data/event-info.ts"
+          }
+        ],
+        "fullText": "grep -r \"googleMapsUrl\" src/data/event-info.ts"
+      }
+    ]
+  }
+}
+```
+Additional data:
+
+```json
+{
+  "status": "success"
+}
+```
+Result:
+
+```json
+{
+  "output": "src/data/event-info.ts:    googleMapsUrl: \"https://maps.app.goo.gl/Cbn88Jz4tbH2eA7h7\",\n",
+  "rejected": false
+}
+```
+Status: **completed**
 
 
 </details>
@@ -58879,6 +63626,1097 @@ Status: **loading**
 ---
 
 
+Đang kiểm tra overview-section để xác nhận cả hai link đều dùng `eventInfo.googleMapsUrl`:
+
+
+---
+
+<tool-use data-tool-type="unknown" data-tool-name="read_file_v2">
+<details>
+<summary>Tool use: **read_file_v2**</summary>
+
+
+Parameters:
+
+```json
+{
+  "targetFile": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building/src/components/dashboard/overview-section.tsx",
+  "offset": 64,
+  "limit": 40,
+  "charsLimit": 1000000,
+  "effectiveUri": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building/src/components/dashboard/overview-section.tsx"
+}
+```
+Result:
+
+```json
+{
+  "contents": "          &lt;div className=\"flex flex-wrap items-center gap-6\"&gt;\n            &lt;a\n              href={eventInfo.googleMapsUrl}\n              target=\"_blank\"\n              rel=\"noopener noreferrer\"\n              className=\"flex items-center gap-3 group\"\n            &gt;\n              &lt;div className={cn(\n                'flex h-10 w-10 items-center justify-center rounded-xl',\n                'bg-gradient-to-br from-amber-500 to-orange-500',\n                'shadow-lg shadow-amber-500/20',\n                'group-hover:scale-110 transition-transform'\n              )}&gt;\n                &lt;Sun className=\"h-5 w-5 text-white\" /&gt;\n              &lt;/div&gt;\n              &lt;div&gt;\n                &lt;p className=\"text-xs text-muted-foreground\"&gt;Resort&lt;/p&gt;\n                &lt;p className=\"font-semibold text-foreground group-hover:text-primary transition-colors flex items-center gap-1\"&gt;\n                  {eventInfo.resortName}\n                  &lt;ExternalLink className=\"h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity\" /&gt;\n                &lt;/p&gt;\n              &lt;/div&gt;\n            &lt;/a&gt;\n            &lt;a\n              href={eventInfo.googleMapsUrl}\n              target=\"_blank\"\n              rel=\"noopener noreferrer\"\n              className=\"flex items-center gap-3 group\"\n            &gt;\n              &lt;div className={cn(\n                'flex h-10 w-10 items-center justify-center rounded-xl',\n                'bg-gradient-to-br from-rose-500 to-pink-500',\n                'shadow-lg shadow-rose-500/20',\n                'group-hover:scale-110 transition-transform'\n              )}&gt;\n                &lt;MapPin className=\"h-5 w-5 text-white\" /&gt;\n              &lt;/div&gt;\n              &lt;div&gt;\n                &lt;p className=\"text-xs text-muted-foreground\"&gt;Địa điểm&lt;/p&gt;\n                &lt;p className=\"font-semibold text-foreground group-hover:text-primary transition-colors flex items-center gap-1\"&gt;",
+  "totalLinesInFile": 293
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+---
+
+
+
+---
+
+
+Cả hai link trong overview-section đều dùng `eventInfo.googleMapsUrl`, đã được cập nhật. Đang kiểm tra xem còn nơi nào khác cần cập nhật:
+
+
+---
+
+<tool-use data-tool-type="unknown" data-tool-name="read_file_v2">
+<details>
+<summary>Tool use: **read_file_v2**</summary>
+
+
+Parameters:
+
+```json
+{
+  "targetFile": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building/src/components/dashboard/overview-section.tsx",
+  "offset": 100,
+  "limit": 10,
+  "charsLimit": 1000000,
+  "effectiveUri": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building/src/components/dashboard/overview-section.tsx"
+}
+```
+Result:
+
+```json
+{
+  "contents": "              &lt;/div&gt;\n              &lt;div&gt;\n                &lt;p className=\"text-xs text-muted-foreground\"&gt;Địa điểm&lt;/p&gt;\n                &lt;p className=\"font-semibold text-foreground group-hover:text-primary transition-colors flex items-center gap-1\"&gt;\n                  {eventInfo.location}\n                  &lt;ExternalLink className=\"h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity\" /&gt;\n                &lt;/p&gt;\n              &lt;/div&gt;\n            &lt;/a&gt;\n          &lt;/div&gt;",
+  "totalLinesInFile": 293
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="unknown" data-tool-name="run_terminal_command_v2">
+<details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+
+Parameters:
+
+```json
+{
+  "command": "cd /Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building &amp;&amp; npm run build 2&gt;&amp;1 | tail -5",
+  "cwd": "",
+  "options": {
+    "timeout": 300000
+  },
+  "parsingResult": {
+    "executableCommands": [
+      {
+        "name": "cd",
+        "args": [
+          {
+            "type": "word",
+            "value": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building"
+          }
+        ],
+        "fullText": "cd /Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building"
+      },
+      {
+        "name": "npm",
+        "args": [
+          {
+            "type": "word",
+            "value": "run"
+          },
+          {
+            "type": "word",
+            "value": "build"
+          }
+        ],
+        "fullText": "npm run build"
+      },
+      {
+        "name": "tail",
+        "args": [
+          {
+            "type": "number",
+            "value": "-5"
+          }
+        ],
+        "fullText": "tail -5"
+      }
+    ],
+    "hasRedirects": true
+  }
+}
+```
+Additional data:
+
+```json
+{
+  "status": "success"
+}
+```
+Result:
+
+```json
+{
+  "output": "dist/assets/Deluxe Double 2-B-xMpURh.jpg          33,523.93 kB\ndist/assets/Bathroom (2)-GNPnJLUu.jpg             35,466.03 kB\ndist/assets/index-mCnyZeRa.css                        68.60 kB │ gzip: 11.17 kB\ndist/assets/index-Dt8wCXQU.js                        323.73 kB │ gzip: 92.05 kB\n✓ built in 944ms\n",
+  "rejected": false
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+---
+
+
+
+---
+
+
+Đã xác nhận: cả hai link trong overview section đều dùng `eventInfo.googleMapsUrl`, đã được cập nhật.
+
+**Xác nhận:**
+- Link "Asteria Mui Ne Resort" (line 66): dùng `eventInfo.googleMapsUrl`
+- Link "Mũi Né, Phan Thiết, Bình Thuận" (line 88): dùng `eventInfo.googleMapsUrl`
+- `eventInfo.googleMapsUrl` đã được cập nhật thành: `https://maps.app.goo.gl/Cbn88Jz4tbH2eA7h7`
+
+**Kết quả:**
+- Cả hai link trong overview section đã được cập nhật
+- Link trong header cũng đã được cập nhật
+- Tất cả đều dùng link mới từ `eventInfo.googleMapsUrl`
+- Build thành công
+
+Tất cả các link Google Maps cho "Asteria Mui Ne Resort" và "Mũi Né, Phan Thiết, Bình Thuận" đã được cập nhật thành link mới.
+
+---
+
+_**User (2025-12-10 08:16Z)**_
+
+commit
+
+---
+
+_**Agent (model default, mode Agent)**_
+
+
+
+---
+
+
+Đang kiểm tra các thay đổi trước khi commit:
+
+
+---
+
+<tool-use data-tool-type="unknown" data-tool-name="run_terminal_command_v2">
+<details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+
+Parameters:
+
+```json
+{
+  "command": "cd /Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building &amp;&amp; git status",
+  "cwd": "",
+  "options": {
+    "timeout": 300000
+  },
+  "parsingResult": {
+    "executableCommands": [
+      {
+        "name": "cd",
+        "args": [
+          {
+            "type": "word",
+            "value": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building"
+          }
+        ],
+        "fullText": "cd /Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building"
+      },
+      {
+        "name": "git",
+        "args": [
+          {
+            "type": "word",
+            "value": "status"
+          }
+        ],
+        "fullText": "git status"
+      }
+    ]
+  }
+}
+```
+Additional data:
+
+```json
+{
+  "status": "success"
+}
+```
+Result:
+
+```json
+{
+  "output": "On branch main\nYour branch is up to date with 'origin/main'.\n\nChanges to be committed:\n  (use \"git restore --staged &lt;file&gt;...\" to unstage)\n\tmodified:   ../.specstory/history/2025-12-10_10-08Z-ngd-team-building-dashboard-image-guide.md\n\tnew file:   src/components/menu/food-image-gallery.tsx\n\tmodified:   src/components/menu/meal-card.tsx\n\tnew file:   src/components/menu/menu-modal.tsx\n\tmodified:   src/components/rooms/room-image-gallery.tsx\n\tmodified:   src/data/event-info.ts\n\tmodified:   src/data/transport.ts\n\n",
+  "rejected": false
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+---
+
+
+
+---
+
+
+Đang kiểm tra các file chưa được staged:
+
+
+---
+
+<tool-use data-tool-type="unknown" data-tool-name="run_terminal_command_v2">
+<details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+
+Parameters:
+
+```json
+{
+  "command": "cd /Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building &amp;&amp; git status --short",
+  "cwd": "",
+  "options": {
+    "timeout": 300000
+  },
+  "parsingResult": {
+    "executableCommands": [
+      {
+        "name": "cd",
+        "args": [
+          {
+            "type": "word",
+            "value": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building"
+          }
+        ],
+        "fullText": "cd /Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building"
+      },
+      {
+        "name": "git",
+        "args": [
+          {
+            "type": "word",
+            "value": "status"
+          },
+          {
+            "type": "word",
+            "value": "--short"
+          }
+        ],
+        "fullText": "git status --short"
+      }
+    ]
+  }
+}
+```
+Additional data:
+
+```json
+{
+  "status": "success"
+}
+```
+Result:
+
+```json
+{
+  "output": "M  ../.specstory/history/2025-12-10_10-08Z-ngd-team-building-dashboard-image-guide.md\nA  src/components/menu/food-image-gallery.tsx\nM  src/components/menu/meal-card.tsx\nA  src/components/menu/menu-modal.tsx\nM  src/components/rooms/room-image-gallery.tsx\nM  src/data/event-info.ts\nM  src/data/transport.ts\n",
+  "rejected": false
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="unknown" data-tool-name="run_terminal_command_v2">
+<details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+
+Parameters:
+
+```json
+{
+  "command": "cd /Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building &amp;&amp; git add -A &amp;&amp; git status --short",
+  "cwd": "",
+  "options": {
+    "timeout": 300000
+  },
+  "parsingResult": {
+    "executableCommands": [
+      {
+        "name": "cd",
+        "args": [
+          {
+            "type": "word",
+            "value": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building"
+          }
+        ],
+        "fullText": "cd /Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building"
+      },
+      {
+        "name": "git",
+        "args": [
+          {
+            "type": "word",
+            "value": "add"
+          },
+          {
+            "type": "word",
+            "value": "-A"
+          }
+        ],
+        "fullText": "git add -A"
+      },
+      {
+        "name": "git",
+        "args": [
+          {
+            "type": "word",
+            "value": "status"
+          },
+          {
+            "type": "word",
+            "value": "--short"
+          }
+        ],
+        "fullText": "git status --short"
+      }
+    ]
+  }
+}
+```
+Additional data:
+
+```json
+{
+  "status": "success"
+}
+```
+Result:
+
+```json
+{
+  "output": "M  ../.specstory/history/2025-12-10_10-08Z-ngd-team-building-dashboard-image-guide.md\nA  src/components/menu/food-image-gallery.tsx\nM  src/components/menu/meal-card.tsx\nA  src/components/menu/menu-modal.tsx\nM  src/components/rooms/room-image-gallery.tsx\nM  src/data/event-info.ts\nM  src/data/transport.ts\n",
+  "rejected": false
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+---
+
+
+
+---
+
+
+Đang commit các thay đổi:
+
+
+---
+
+<tool-use data-tool-type="unknown" data-tool-name="run_terminal_command_v2">
+<details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+
+Parameters:
+
+```json
+{
+  "command": "cd /Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building &amp;&amp; git commit -m \"Improve UX/UI: fullscreen popups, responsive design, and Google Maps links\n\n- Improve tab navigation: smooth scroll, mobile scroll buttons, better touch targets\n- Update menu section: remove images from cards, add fullscreen popup on click\n- Add food image gallery component with fullscreen modal\n- Improve room image gallery: fullscreen popup with React Portal\n- Update Google Maps links: Amanotes office and Asteria Mui Ne Resort\n- Improve popup readability: larger fonts, better contrast, clear close button\n- Update lunch day 18: Nhà hàng Sunrise Mũi Né (100k/người, 4M total)\n- Remove menuUrl from restaurants without actual menu links\n- Add visual indicator for clickable meal cards with images\"",
+  "cwd": "",
+  "options": {
+    "timeout": 300000
+  },
+  "parsingResult": {
+    "executableCommands": [
+      {
+        "name": "cd",
+        "args": [
+          {
+            "type": "word",
+            "value": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building"
+          }
+        ],
+        "fullText": "cd /Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building"
+      },
+      {
+        "name": "git",
+        "args": [
+          {
+            "type": "word",
+            "value": "commit"
+          },
+          {
+            "type": "word",
+            "value": "-m"
+          },
+          {
+            "type": "string",
+            "value": "\"Improve UX/UI: fullscreen popups, responsive design, and Google Maps links\n\n- Improve tab navigation: smooth scroll, mobile scroll buttons, better touch targets\n- Update menu section: remove images from cards, add fullscreen popup on click\n- Add food image gallery component with fullscreen modal\n- Improve room image gallery: fullscreen popup with React Portal\n- Update Google Maps links: Amanotes office and Asteria Mui Ne Resort\n- Improve popup readability: larger fonts, better contrast, clear close button\n- Update lunch day 18: Nhà hàng Sunrise Mũi Né (100k/người, 4M total)\n- Remove menuUrl from restaurants without actual menu links\n- Add visual indicator for clickable meal cards with images\""
+          }
+        ],
+        "fullText": "git commit -m \"Improve UX/UI: fullscreen popups, responsive design, and Google Maps links\n\n- Improve tab navigation: smooth scroll, mobile scroll buttons, better touch targets\n- Update menu section: remove images from cards, add fullscreen popup on click\n- Add food image gallery component with fullscreen modal\n- Improve room image gallery: fullscreen popup with React Portal\n- Update Google Maps links: Amanotes office and Asteria Mui Ne Resort\n- Improve popup readability: larger fonts, better contrast, clear close button\n- Update lunch day 18: Nhà hàng Sunrise Mũi Né (100k/người, 4M total)\n- Remove menuUrl from restaurants without actual menu links\n- Add visual indicator for clickable meal cards with images\""
+      }
+    ]
+  }
+}
+```
+Additional data:
+
+```json
+{
+  "status": "success"
+}
+```
+Result:
+
+```json
+{
+  "output": "[main 2be6b0e] Improve UX/UI: fullscreen popups, responsive design, and Google Maps links\n 7 files changed, 45742 insertions(+), 85 deletions(-)\n create mode 100644 ngd-team-building/src/components/menu/food-image-gallery.tsx\n create mode 100644 ngd-team-building/src/components/menu/menu-modal.tsx\n",
+  "rejected": false
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+---
+
+
+
+---
+
+
+Đã commit thành công.
+
+**Commit summary:**
+- 7 files changed
+- 45,742 insertions, 85 deletions
+- Commit hash: `2be6b0e`
+
+**Các thay đổi đã commit:**
+- Cải thiện tab navigation: smooth scroll, mobile buttons, touch targets
+- Menu section: xóa images khỏi cards, thêm fullscreen popup khi click
+- Food image gallery: component mới với fullscreen modal
+- Room image gallery: fullscreen popup với React Portal
+- Cập nhật Google Maps links: văn phòng Amanotes và Asteria Mui Ne Resort
+- Cải thiện popup: font lớn hơn, contrast tốt hơn, button close rõ ràng
+- Cập nhật bữa trưa ngày 18: Nhà hàng Sunrise Mũi Né (100k/người, 4M)
+- Xóa menuUrl khỏi các nhà hàng không có menu thực sự
+- Thêm visual indicator cho meal cards có thể click
+
+Tất cả thay đổi đã được commit.
+
+---
+
+_**User (2025-12-10 08:16Z)**_
+
+ngd-team-building/src/assets/unnamed.jpg làm ảnh thumbnail cho preview url
+
+---
+
+_**Agent (model default, mode Agent)**_
+
+
+
+---
+
+
+Đang kiểm tra và cập nhật ảnh thumbnail cho preview URL (Open Graph/social sharing):
+
+
+---
+
+<tool-use data-tool-type="unknown" data-tool-name="read_file_v2">
+<details>
+<summary>Tool use: **read_file_v2**</summary>
+
+
+Parameters:
+
+```json
+{
+  "targetFile": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building/index.html",
+  "charsLimit": 1000000,
+  "effectiveUri": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building/index.html"
+}
+```
+Result:
+
+```json
+{
+  "contents": "&lt;!doctype html&gt;\n&lt;html lang=\"vi\"&gt;\n  &lt;head&gt;\n    &lt;meta charset=\"UTF-8\" /&gt;\n    &lt;link rel=\"icon\" type=\"image/avif\" href=\"/logo.avif\" /&gt;\n    &lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" /&gt;\n    &lt;meta name=\"description\" content=\"NGD Team Building 2025 - Asteria Mui Ne Resort - 18-19/12/2025\" /&gt;\n    &lt;meta name=\"theme-color\" content=\"#0f172a\" /&gt;\n    &lt;link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"&gt;\n    &lt;link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin&gt;\n    &lt;link href=\"https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap\" rel=\"stylesheet\"&gt;\n    &lt;title&gt;NGD Team Building 2025 | Mũi Né&lt;/title&gt;\n  &lt;/head&gt;\n  &lt;body&gt;\n    &lt;div id=\"root\"&gt;&lt;/div&gt;\n    &lt;script type=\"module\" src=\"/src/main.tsx\"&gt;&lt;/script&gt;\n  &lt;/body&gt;\n&lt;/html&gt;\n",
+  "totalLinesInFile": 19
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="unknown" data-tool-name="ripgrep_raw_search">
+<details>
+<summary>Tool use: **ripgrep_raw_search**</summary>
+
+
+Parameters:
+
+```json
+{
+  "pattern": "og:image|twitter:image|preview|thumbnail",
+  "path": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building",
+  "caseInsensitive": true
+}
+```
+Result:
+
+```json
+{
+  "success": {
+    "pattern": "og:image|twitter:image|preview|thumbnail",
+    "path": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building",
+    "outputMode": "content",
+    "workspaceResults": {
+      "/Users/long.lnt/Desktop/Projects/team-building-2025": {
+        "content": {
+          "matches": [
+            {
+              "file": "ngd-team-building/src/components/menu/food-image-gallery.tsx",
+              "matches": [
+                {
+                  "lineNumber": 133,
+                  "content": "        {/* Thumbnail Strip */}"
+                },
+                {
+                  "lineNumber": 154,
+                  "content": "                    alt={&#96;Thumbnail ${index + 1}&#96;}"
+                }
+              ]
+            },
+            {
+              "file": "ngd-team-building/src/components/rooms/room-image-gallery.tsx",
+              "matches": [
+                {
+                  "lineNumber": 141,
+                  "content": "        {/* Thumbnail Strip */}"
+                }
+              ]
+            },
+            {
+              "file": "ngd-team-building/src/data/images.ts",
+              "matches": [
+                {
+                  "lineNumber": 67,
+                  "content": "                recommendedUse: 'Welcome card thumbnail',"
+                },
+                {
+                  "lineNumber": 465,
+                  "content": "    cardThumbnails: { minResolution: '600×400px', format: 'WebP', maxSize: '&lt; 50KB' },"
+                }
+              ]
+            },
+            {
+              "file": "ngd-team-building/docs/IMAGE_RESOURCES_GUIDE.md",
+              "matches": [
+                {
+                  "lineNumber": 17,
+                  "content": "| &#96;https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2a/d9/bc/ec/caption.jpg?w=900&amp;h=500&amp;s=1&#96; | Resort facade with grounds | High | Welcome card thumbnail |"
+                },
+                {
+                  "lineNumber": 178,
+                  "content": "| **Day 1: Dinner** | Thịnh Phát seafood platter | Authentic restaurant preview |"
+                },
+                {
+                  "lineNumber": 185,
+                  "content": "### Card Thumbnails (150×150px or 300×200px)"
+                },
+                {
+                  "lineNumber": 187,
+                  "content": "For consistent card design, crop images to **16:9** or **1:1** ratio. Recommended thumbnail assignments:"
+                },
+                {
+                  "lineNumber": 220,
+                  "content": "| Card Thumbnails | 600×400px | WebP | &lt; 50KB |"
+                }
+              ]
+            },
+            {
+              "file": "ngd-team-building/package.json",
+              "matches": [
+                {
+                  "lineNumber": 10,
+                  "content": "    \"preview\": \"vite preview\""
+                }
+              ]
+            }
+          ],
+          "totalLines": 11,
+          "totalMatchedLines": 11
+        }
+      }
+    }
+  }
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+---
+
+
+
+---
+
+
+Đang thêm Open Graph và Twitter Card meta tags, và copy ảnh vào public folder:
+
+
+---
+
+<tool-use data-tool-type="unknown" data-tool-name="run_terminal_command_v2">
+<details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+
+Parameters:
+
+```json
+{
+  "command": "cd /Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building &amp;&amp; cp src/assets/unnamed.jpg public/og-image.jpg",
+  "cwd": "",
+  "options": {
+    "timeout": 300000
+  },
+  "parsingResult": {
+    "executableCommands": [
+      {
+        "name": "cd",
+        "args": [
+          {
+            "type": "word",
+            "value": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building"
+          }
+        ],
+        "fullText": "cd /Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building"
+      },
+      {
+        "name": "cp",
+        "args": [
+          {
+            "type": "word",
+            "value": "src/assets/unnamed.jpg"
+          },
+          {
+            "type": "word",
+            "value": "public/og-image.jpg"
+          }
+        ],
+        "fullText": "cp src/assets/unnamed.jpg public/og-image.jpg"
+      }
+    ]
+  }
+}
+```
+Additional data:
+
+```json
+{
+  "status": "success"
+}
+```
+Result:
+
+```json
+{
+  "rejected": false
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="unknown" data-tool-name="edit_file_v2">
+<details>
+<summary>Tool use: **edit_file_v2**</summary>
+
+
+Parameters:
+
+```json
+{
+  "relativeWorkspacePath": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building/index.html"
+}
+```
+Additional data:
+
+```json
+{
+  "codeblockId": "439a5e64-c63a-4827-b981-532d576398a0"
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="unknown" data-tool-name="run_terminal_command_v2">
+<details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+
+Parameters:
+
+```json
+{
+  "command": "cd /Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building &amp;&amp; npm run build 2&gt;&amp;1 | tail -5",
+  "cwd": "",
+  "options": {
+    "timeout": 300000
+  },
+  "parsingResult": {
+    "executableCommands": [
+      {
+        "name": "cd",
+        "args": [
+          {
+            "type": "word",
+            "value": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building"
+          }
+        ],
+        "fullText": "cd /Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building"
+      },
+      {
+        "name": "npm",
+        "args": [
+          {
+            "type": "word",
+            "value": "run"
+          },
+          {
+            "type": "word",
+            "value": "build"
+          }
+        ],
+        "fullText": "npm run build"
+      },
+      {
+        "name": "tail",
+        "args": [
+          {
+            "type": "number",
+            "value": "-5"
+          }
+        ],
+        "fullText": "tail -5"
+      }
+    ],
+    "hasRedirects": true
+  }
+}
+```
+Additional data:
+
+```json
+{
+  "status": "success"
+}
+```
+Result:
+
+```json
+{
+  "output": "dist/assets/Deluxe Double 2-B-xMpURh.jpg          33,523.93 kB\ndist/assets/Bathroom (2)-GNPnJLUu.jpg             35,466.03 kB\ndist/assets/index-mCnyZeRa.css                        68.60 kB │ gzip: 11.17 kB\ndist/assets/index-Dt8wCXQU.js                        323.73 kB │ gzip: 92.05 kB\n✓ built in 1.29s\n",
+  "rejected": false
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+---
+
+
+
+---
+
+
+Đã thêm ảnh thumbnail cho preview URL. Tóm tắt:
+
+## Thêm Open Graph & Twitter Card Image
+
+### 1. **Copy ảnh vào public folder**
+   - Copy `src/assets/unnamed.jpg` → `public/og-image.jpg`
+   - File trong `public/` sẽ được serve từ root path
+
+### 2. **Thêm Open Graph Meta Tags**
+   - `og:type`: website
+   - `og:url`: URL của website
+   - `og:title`: "NGD Team Building 2025 | Mũi Né"
+   - `og:description`: Mô tả event
+   - `og:image`: `/og-image.jpg`
+
+### 3. **Thêm Twitter Card Meta Tags**
+   - `twitter:card`: summary_large_image
+   - `twitter:url`, `twitter:title`, `twitter:description`
+   - `twitter:image`: `/og-image.jpg`
+
+### 4. **Kết quả**
+   - Ảnh thumbnail hiển thị khi share link trên Facebook, Twitter, LinkedIn
+   - Open Graph tags cho social media preview
+   - Twitter Card cho preview trên Twitter
+   - Build thành công
+
+Khi share link website, ảnh `unnamed.jpg` sẽ hiển thị làm preview thumbnail trên các nền tảng social media.
+
+---
+
+_**User (2025-12-10 08:16Z)**_
+
+xong thì commit luôn 
+
+---
+
+_**Agent (model default, mode Agent)**_
+
+
+
+---
+
+
+Đang kiểm tra các thay đổi trước khi commit:
+
+
+---
+
+<tool-use data-tool-type="unknown" data-tool-name="run_terminal_command_v2">
+<details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+
+Parameters:
+
+```json
+{
+  "command": "cd /Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building &amp;&amp; git status",
+  "cwd": "",
+  "options": {
+    "timeout": 300000
+  },
+  "parsingResult": {
+    "executableCommands": [
+      {
+        "name": "cd",
+        "args": [
+          {
+            "type": "word",
+            "value": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building"
+          }
+        ],
+        "fullText": "cd /Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building"
+      },
+      {
+        "name": "git",
+        "args": [
+          {
+            "type": "word",
+            "value": "status"
+          }
+        ],
+        "fullText": "git status"
+      }
+    ]
+  }
+}
+```
+Additional data:
+
+```json
+{
+  "status": "success"
+}
+```
+Result:
+
+```json
+{
+  "output": "On branch main\nYour branch is ahead of 'origin/main' by 1 commit.\n  (use \"git push\" to publish your local commits)\n\nChanges not staged for commit:\n  (use \"git add &lt;file&gt;...\" to update what will be committed)\n  (use \"git restore &lt;file&gt;...\" to discard changes in working directory)\n\tmodified:   ../.specstory/history/2025-12-10_10-08Z-ngd-team-building-dashboard-image-guide.md\n\tmodified:   index.html\n\nUntracked files:\n  (use \"git add &lt;file&gt;...\" to include in what will be committed)\n\tpublic/og-image.jpg\n\tsrc/assets/unnamed.jpg\n\nno changes added to commit (use \"git add\" and/or \"git commit -a\")\n",
+  "rejected": false
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+---
+
+<tool-use data-tool-type="unknown" data-tool-name="run_terminal_command_v2">
+<details>
+<summary>Tool use: **run_terminal_command_v2**</summary>
+
+
+Parameters:
+
+```json
+{
+  "command": "cd /Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building &amp;&amp; git add index.html public/og-image.jpg &amp;&amp; git commit -m \"Add Open Graph and Twitter Card preview image\n\n- Add og-image.jpg as social media preview thumbnail\n- Add Open Graph meta tags for Facebook/LinkedIn sharing\n- Add Twitter Card meta tags for Twitter sharing\n- Use unnamed.jpg as preview image for URL sharing\"",
+  "cwd": "",
+  "options": {
+    "timeout": 300000
+  },
+  "parsingResult": {
+    "executableCommands": [
+      {
+        "name": "cd",
+        "args": [
+          {
+            "type": "word",
+            "value": "/Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building"
+          }
+        ],
+        "fullText": "cd /Users/long.lnt/Desktop/Projects/team-building-2025/ngd-team-building"
+      },
+      {
+        "name": "git",
+        "args": [
+          {
+            "type": "word",
+            "value": "add"
+          },
+          {
+            "type": "word",
+            "value": "index.html"
+          },
+          {
+            "type": "word",
+            "value": "public/og-image.jpg"
+          }
+        ],
+        "fullText": "git add index.html public/og-image.jpg"
+      },
+      {
+        "name": "git",
+        "args": [
+          {
+            "type": "word",
+            "value": "commit"
+          },
+          {
+            "type": "word",
+            "value": "-m"
+          },
+          {
+            "type": "string",
+            "value": "\"Add Open Graph and Twitter Card preview image\n\n- Add og-image.jpg as social media preview thumbnail\n- Add Open Graph meta tags for Facebook/LinkedIn sharing\n- Add Twitter Card meta tags for Twitter sharing\n- Use unnamed.jpg as preview image for URL sharing\""
+          }
+        ],
+        "fullText": "git commit -m \"Add Open Graph and Twitter Card preview image\n\n- Add og-image.jpg as social media preview thumbnail\n- Add Open Graph meta tags for Facebook/LinkedIn sharing\n- Add Twitter Card meta tags for Twitter sharing\n- Use unnamed.jpg as preview image for URL sharing\""
+      }
+    ]
+  }
+}
+```
+Additional data:
+
+```json
+{
+  "status": "success"
+}
+```
+Result:
+
+```json
+{
+  "output": "[main 0d74546] Add Open Graph and Twitter Card preview image\n 2 files changed, 14 insertions(+)\n create mode 100644 ngd-team-building/public/og-image.jpg\n",
+  "rejected": false
+}
+```
+Status: **completed**
+
+
+</details>
+</tool-use>
+
+---
+
+
+
+---
+
+
+Đã commit thành công.
+
+**Commit summary:**
+- 2 files changed
+- 14 insertions
+- Commit hash: `0d74546`
+
+**Các thay đổi đã commit:**
+- Thêm `og-image.jpg` vào `public/` folder
+- Thêm Open Graph meta tags cho Facebook/LinkedIn sharing
+- Thêm Twitter Card meta tags cho Twitter sharing
+- Cập nhật `index.html` với preview image
+
+Khi share link website, ảnh `og-image.jpg` sẽ hiển thị làm preview thumbnail trên các nền tảng social media.
 
 ---
 
