@@ -87,7 +87,7 @@ function ParticipantsSection() {
             </div>
             <div>
               <p className="text-2xl font-bold text-foreground">{divisionOrder.length}</p>
-              <p className="text-sm text-muted-foreground">Divisions</p>
+              <p className="text-sm text-muted-foreground">Teams</p>
             </div>
           </CardContent>
         </Card>
@@ -115,7 +115,7 @@ function ParticipantsSection() {
               />
             </div>
 
-            {/* Division Filter */}
+            {/* Team Filter */}
             <div className="flex flex-wrap gap-2">
               <button
                 onClick={() => setSelectedDivision(null)}
