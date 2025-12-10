@@ -6,3 +6,4 @@ export * from './schedule';
 export * from './menu';
 export * from './transport';
 export * from './budget';
+export * from './images';
