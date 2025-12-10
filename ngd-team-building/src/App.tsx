@@ -17,13 +17,13 @@ function App() {
 
   // Initialize theme on mount
   useEffect(() => {
-    // Check if theme is already set, if not set to dark
+    // Check if theme is already set, if not set to light
     const storedTheme = localStorage.getItem('ngd-theme');
     if (storedTheme) {
       const parsed = JSON.parse(storedTheme);
       setTheme(parsed.state.theme);
     } else {
-      setTheme('dark');
+      setTheme('light');
     }
   }, [setTheme]);
 
