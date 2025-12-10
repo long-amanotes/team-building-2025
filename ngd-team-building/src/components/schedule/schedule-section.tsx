@@ -16,7 +16,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
-import { schedule, periodColors } from '@/data/schedule';
+import { schedule } from '@/data/schedule';
 import type { ScheduleEvent, TimePeriod } from '@/types';
 
 const iconMap: Record<string, typeof Users> = {

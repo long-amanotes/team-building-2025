@@ -1,14 +1,15 @@
 import { cn } from '@/lib/utils';
-import type { ReactNode } from 'react';
+import type { ReactNode, CSSProperties } from 'react';
 
 interface CardProps {
   children: ReactNode;
   className?: string;
   hover?: boolean;
   gradient?: boolean;
+  style?: CSSProperties;
 }
 
-function Card({ children, className, hover = true, gradient = false }: CardProps) {
+function Card({ children, className, hover = true, gradient = false, style }: CardProps) {
   return (
     <div
       className={cn(
@@ -18,6 +19,7 @@ function Card({ children, className, hover = true, gradient = false }: CardProps
         gradient && 'bg-gradient-to-br from-card to-card/80',
         className
       )}
+      style={style}
     >
       {children}
     </div>

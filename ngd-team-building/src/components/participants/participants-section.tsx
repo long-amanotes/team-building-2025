@@ -8,7 +8,6 @@ import {
   participants,
   participantsByDivision,
   divisionOrder,
-  divisionColors,
 } from '@/data/participants';
 
 // Updated division colors for light/dark mode support
