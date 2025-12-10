@@ -91,7 +91,10 @@ Số TK: ${bankInfo.accountNumber}
             </div>
             <div>
               <p className="text-lg font-bold text-foreground">
-                {formatCurrency(budgetSummary.additionalPerPax)}
+                {formatCurrency(budgetSummary.additionalPerPaxRounded)}
+              </p>
+              <p className="text-xs text-muted-foreground">
+                Dự kiến: {formatCurrency(budgetSummary.additionalPerPax)}
               </p>
               <p className="text-sm text-muted-foreground">Đóng thêm / người</p>
             </div>
@@ -214,11 +217,16 @@ Số TK: ${bankInfo.accountNumber}
                   {formatCurrency(budgetSummary.additionalCost)}
                 </span>
               </div>
-              <div className="flex items-center justify-between rounded-xl bg-gradient-to-r from-rose-500/10 to-pink-500/10 p-4">
-                <span className="font-medium text-foreground">Mỗi người đóng thêm</span>
-                <span className="text-xl font-bold text-rose-600 dark:text-rose-400">
-                  {formatCurrency(budgetSummary.additionalPerPax)}
-                </span>
+              <div className="rounded-xl bg-gradient-to-r from-rose-500/10 to-pink-500/10 p-4">
+                <div className="flex items-center justify-between">
+                  <span className="font-medium text-foreground">Mỗi người đóng thêm</span>
+                  <span className="text-xl font-bold text-rose-600 dark:text-rose-400">
+                    {formatCurrency(budgetSummary.additionalPerPaxRounded)}
+                  </span>
+                </div>
+                <p className="text-xs text-muted-foreground mt-1">
+                  (Chi phí dự kiến: {formatCurrency(budgetSummary.additionalPerPax)} → làm tròn)
+                </p>
               </div>
             </div>
 

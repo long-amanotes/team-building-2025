@@ -21,6 +21,7 @@ export const budgetSummary: BudgetSummary = {
     totalExcludeFamily: 60187333,
     additionalCost: 15650533,
     additionalPerPax: 460310,
+    additionalPerPaxRounded: 500000,
 
     // Family members
     familyMemberCount: 2,

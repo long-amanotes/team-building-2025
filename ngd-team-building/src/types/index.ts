@@ -130,6 +130,7 @@ export interface BudgetSummary {
   totalExcludeFamily: number;
   additionalCost: number;
   additionalPerPax: number;
+  additionalPerPaxRounded: number;
   familyMemberCount: number;
   perPaxFamily: number;
   familyTotal: number;
