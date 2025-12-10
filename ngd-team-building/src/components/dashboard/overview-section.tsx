@@ -210,13 +210,14 @@ function OverviewSection() {
         <CardContent className="p-0">
           <div className="relative w-full h-[300px] sm:h-[400px]">
             <iframe
-              src="https://www.openstreetmap.org/export/embed.html?bbox=108.27%2C10.93%2C108.30%2C10.95&layer=mapnik&marker=10.9385%2C108.2872"
+              src="https://maps.google.com/maps?q=Asteria+Mui+Ne+Resort,+Mui+Ne,+Phan+Thiet,+Vietnam&t=&z=15&ie=UTF8&iwloc=&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
-              title="Asteria Mui Ne Resort - Map"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Asteria Mui Ne Resort - Google Maps"
               className="rounded-b-xl"
             />
           </div>
