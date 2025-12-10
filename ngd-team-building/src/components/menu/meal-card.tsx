@@ -1,21 +1,95 @@
-import { MapPin, Clock, Users, ExternalLink, Phone, Menu } from 'lucide-react';
+import { useState } from 'react';
+import { MapPin, Clock, Users, ExternalLink, Phone, Menu, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { formatCurrency } from '@/lib/utils';
 import { cn } from '@/lib/utils';
 import type { Meal } from '@/types';
 
+// Import food images for lunch day 18
+import foodImage1 from '@/assets/Foods/image (1).png';
+import foodImage2 from '@/assets/Foods/image (2).png';
+import foodImage3 from '@/assets/Foods/image (3).png';
+
 interface MealCardProps {
   meal: Meal;
 }
 
+const lunchDay18Images = [foodImage1, foodImage2, foodImage3];
+
 function MealCard({ meal }: MealCardProps) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const isLunchDay18 = meal.id === 'lunch-18';
+  const images = isLunchDay18 ? lunchDay18Images : [];
+  const hasImages = images.length > 0;
+
   const googleMapsUrl = meal.mapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
     meal.restaurant + ' ' + meal.address
   )}`;
 
+  const nextImage = () => {
+    if (hasImages) {
+      setCurrentImageIndex((prev) => (prev + 1) % images.length);
+    }
+  };
+
+  const prevImage = () => {
+    if (hasImages) {
+      setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+    }
+  };
+
   return (
     <Card className="overflow-hidden">
+      {/* Food Images for Lunch Day 18 */}
+      {hasImages && (
+        <div className="relative h-48 w-full overflow-hidden bg-muted">
+          <img
+            src={images[currentImageIndex]}
+            alt={`${meal.restaurant} - Ảnh ${currentImageIndex + 1}`}
+            className="h-full w-full object-cover transition-opacity duration-300"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent" />
+
+          {/* Navigation buttons */}
+          {images.length > 1 && (
+            <>
+              <button
+                onClick={prevImage}
+                className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/50 backdrop-blur-sm p-2 text-white hover:bg-black/70 transition-colors"
+                aria-label="Ảnh trước"
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </button>
+              <button
+                onClick={nextImage}
+                className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/50 backdrop-blur-sm p-2 text-white hover:bg-black/70 transition-colors"
+                aria-label="Ảnh sau"
+              >
+                <ChevronRight className="h-4 w-4" />
+              </button>
+
+              {/* Image indicators */}
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5">
+                {images.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={cn(
+                      'h-1.5 rounded-full transition-all',
+                      index === currentImageIndex
+                        ? 'w-6 bg-white'
+                        : 'w-1.5 bg-white/50 hover:bg-white/70'
+                    )}
+                    aria-label={`Xem ảnh ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      )}
+
       <CardHeader className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 pb-4">
         <div className="flex items-start justify-between">
           <div>

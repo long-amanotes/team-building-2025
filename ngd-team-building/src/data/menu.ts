@@ -27,15 +27,15 @@ export const dinnerDay18: Meal = {
 export const lunchDay18: Meal = {
     id: "lunch-18",
     name: "Ăn trưa ngày 18",
-    restaurant: "Quán ăn ở Phan Thiết",
-    address: "Phan Thiết, Bình Thuận",
+    restaurant: "Nhà hàng Sunrise Mũi Né",
+    address: "Mũi Né, Phan Thiết, Bình Thuận",
     date: "18/12/2025",
     time: "12:00 - 14:00",
     items: [
-        { name: "Set Menu 150k/người", quantity: 40, pricePerUnit: 150000, total: 6000000, note: "Dừng chân ăn trưa trên đường đến Mũi Né" },
+        { name: "Trung bình 100k/người", quantity: 40, pricePerUnit: 100000, total: 4000000 },
     ],
-    totalCost: 6000000,
-    perPaxCost: 150000
+    totalCost: 4000000,
+    perPaxCost: 100000
 };
 
 export const lunchDay19: Meal = {
