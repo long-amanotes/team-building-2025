@@ -1,7 +1,7 @@
 import type { Participant } from '@/types';
 
 export const participants: Participant[] = [
-    { employeeId: "AMA00001", name: "Nguyễn Việt Thắng", email: "thang.nguyen@amanotes.com", department: "New Games", division: "Management", designation: "Unit Manager", reportingManager: "Silver Nguyễn" },
+    { employeeId: "AMA00001", name: "Nguyễn Việt Thắng - M4", email: "thang.nguyen@amanotes.com", department: "New Games", division: "Management", designation: "Head of Game", reportingManager: "Silver Nguyễn" },
     { employeeId: "AMA10003", name: "Đỗ Tiến Sỹ", email: "sy.do@amanotes.com", department: "New Games", division: "Rush", designation: "Tech Lead", reportingManager: "Nguyễn Việt Thắng" },
     { employeeId: "AMA10013", name: "Đinh Quốc Tuấn", email: "tuan.dinh@amanotes.com", department: "New Games", division: "Core", designation: "QC Specialist", reportingManager: "Đỗ Thị Tuyết Ngân" },
     { employeeId: "AMA10024", name: "Hoàng Trần Anh Vũ", email: "vu.hoang@amanotes.com", department: "New Games", division: "Artist", designation: "Artist Lead", reportingManager: "Nguyễn Việt Thắng" },
