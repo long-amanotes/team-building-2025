@@ -5,18 +5,17 @@ interface CardProps {
   children: ReactNode;
   className?: string;
   hover?: boolean;
-  gradient?: boolean;
   style?: CSSProperties;
 }
 
-function Card({ children, className, hover = true, gradient = false, style }: CardProps) {
+function Card({ children, className, hover = false, style }: CardProps) {
   return (
     <div
       className={cn(
-        'rounded-2xl border border-border bg-card text-card-foreground shadow-sm',
-        'transition-all duration-300',
-        hover && 'hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-0.5',
-        gradient && 'bg-gradient-to-br from-card to-card/80',
+        'rounded-xl bg-card text-card-foreground',
+        'border border-border/50',
+        'transition-colors duration-200',
+        hover && 'hover:bg-secondary/50',
         className
       )}
       style={style}
@@ -33,7 +32,7 @@ interface CardHeaderProps {
 
 function CardHeader({ children, className }: CardHeaderProps) {
   return (
-    <div className={cn('flex flex-col space-y-1.5 p-5 pb-3', className)}>
+    <div className={cn('flex flex-col space-y-1.5 p-6 pb-4', className)}>
       {children}
     </div>
   );
@@ -74,7 +73,7 @@ interface CardContentProps {
 }
 
 function CardContent({ children, className }: CardContentProps) {
-  return <div className={cn('p-5 pt-0', className)}>{children}</div>;
+  return <div className={cn('p-6 pt-0', className)}>{children}</div>;
 }
 
 interface CardFooterProps {
@@ -84,7 +83,7 @@ interface CardFooterProps {
 
 function CardFooter({ children, className }: CardFooterProps) {
   return (
-    <div className={cn('flex items-center p-5 pt-0', className)}>{children}</div>
+    <div className={cn('flex items-center p-6 pt-0', className)}>{children}</div>
   );
 }
 

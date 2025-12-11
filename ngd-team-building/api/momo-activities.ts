@@ -80,7 +80,7 @@ function parseMoMoActivities(html: string): { activities: MoMoActivity[]; debug?
     const processedLines: string[] = [];
     for (let i = 0; i < activityLines.length; i++) {
         const line = activityLines[i].trim();
-        
+
         // If line is just "+" or "-", combine with next line
         if ((line === '+' || line === '-') && i + 1 < activityLines.length) {
             const nextLine = activityLines[i + 1].trim();
@@ -91,7 +91,7 @@ function parseMoMoActivities(html: string): { activities: MoMoActivity[]; debug?
                 continue;
             }
         }
-        
+
         processedLines.push(line);
     }
 

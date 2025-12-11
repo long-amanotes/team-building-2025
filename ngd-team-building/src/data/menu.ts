@@ -32,9 +32,9 @@ export const lunchDay18: Meal = {
     date: "18/12/2025",
     time: "12:00 - 14:00",
     items: [
-        { name: "Trung bình 100k/người", quantity: 40, pricePerUnit: 100000, total: 4000000 },
+        { name: "Set Menu 100k/người", quantity: 36, pricePerUnit: 100000, total: 3600000 },
     ],
-    totalCost: 4000000,
+    totalCost: 3600000,
     perPaxCost: 100000
 };
 
