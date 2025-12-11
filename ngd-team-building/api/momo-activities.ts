@@ -18,7 +18,7 @@ function parseMoMoActivities(html: string): MoMoActivity[] {
     // Step 1: Find the "Hoạt động gần đây" section in HTML
     // Look for the text "Hoạt động gần đây" and get its parent container
     const activitySectionMatch = html.match(/Hoạt động[\s\S]*?gần đây[\s\S]*?(?=©\s*2025|Trang chủ|Chuyển khoản vào Quỹ|<\/body|$)/i);
-    
+
     if (!activitySectionMatch) {
         return [];
     }
@@ -43,9 +43,11 @@ function parseMoMoActivities(html: string): MoMoActivity[] {
         .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
         .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
         .replace(/<noscript[^>]*>[\s\S]*?<\/noscript>/gi, '')
-        .replace(/<\/?(div|p|li|tr|td|span|h[1-6]|article|section|header|footer|nav|main|br)[^>]*>/gi, '\n')
+        .replace(/<\/?(div|p|li|tr|td|span|h[1-6]|article|section|header|footer|nav|main)[^>]*>/gi, '\n')
+        .replace(/<br\s*\/?>/gi, '\n')
         .replace(/<[^>]+>/g, ' ') // Remove remaining HTML tags
-        .replace(/\s+/g, ' ') // Normalize whitespace
+        .replace(/[ \t]+/g, ' ') // Normalize spaces but keep newlines
+        .replace(/\n\s*\n/g, '\n') // Remove empty lines
         .trim();
 
     // Step 4: Split into lines and find "Hoạt động gần đây"
@@ -67,22 +69,58 @@ function parseMoMoActivities(html: string): MoMoActivity[] {
     const activityLines = stopIdx === -1 ? tail : tail.slice(0, stopIdx);
 
     // Step 6: Parse activities using 3-line pattern: [name, date, amount]
-    for (let i = 0; i < activityLines.length; i += 3) {
-        const name = activityLines[i];
-        const date = activityLines[i + 1];
-        const amountText = activityLines[i + 2] || '';
-
-        if (!name || !date || !amountText) {
-            break;
-        }
-
-        // Validate date format
-        if (!date.match(/\d{1,2}\/\d{1,2}\/\d{4}/)) {
+    // But be flexible - activities might not be exactly 3 lines apart
+    for (let i = 0; i < activityLines.length; i++) {
+        const line = activityLines[i];
+        
+        // Check if this line is a date
+        const dateMatch = line.match(/(\d{1,2}\/\d{1,2}\/\d{4})/);
+        if (!dateMatch) {
             continue;
         }
 
-        // Validate amount format
-        if (!amountText.match(/[+-]\s*[\d.,]+đ/)) {
+        const date = dateMatch[1];
+        
+        // Look for amount in current line or next line
+        let amountText = '';
+        const amountInLine = line.match(/([+-]\s*[\d.,]+đ)/);
+        if (amountInLine) {
+            amountText = amountInLine[1];
+        } else if (i + 1 < activityLines.length) {
+            const nextLine = activityLines[i + 1];
+            const amountInNext = nextLine.match(/([+-]\s*[\d.,]+đ)/);
+            if (amountInNext) {
+                amountText = amountInNext[1];
+            }
+        }
+
+        if (!amountText) {
+            continue;
+        }
+
+        // Look for name before date (previous line or in current line before date)
+        let name = '';
+        if (i > 0) {
+            const prevLine = activityLines[i - 1];
+            // Name should be uppercase letters, possibly with asterisks, not a date or amount
+            if (prevLine && 
+                !prevLine.match(/\d{1,2}\/\d{1,2}\/\d{4}/) && 
+                !prevLine.match(/[+-]\s*[\d.,]+đ/) &&
+                prevLine.length > 1) {
+                name = prevLine;
+            }
+        }
+
+        // If no name in previous line, try to extract from current line before date
+        if (!name) {
+            const beforeDate = line.substring(0, dateMatch.index).trim();
+            if (beforeDate && beforeDate.length > 1 && !beforeDate.match(/\d{1,2}\/\d{1,2}\/\d{4}/)) {
+                name = beforeDate;
+            }
+        }
+
+        // If still no name, skip this activity
+        if (!name || name.length < 2) {
             continue;
         }
 
@@ -146,7 +184,14 @@ export default async function handler(
             if (activitySectionMatch) {
                 const section = activitySectionMatch[0];
                 console.log('Found activity section, length:', section.length);
-                console.log('Activity section sample (first 1000 chars):', section.substring(0, 1000));
+                
+                // Extract text content for debugging
+                let debugText = section
+                    .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
+                    .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
+                    .replace(/<[^>]+>/g, ' ')
+                    .replace(/\s+/g, ' ');
+                console.log('Activity section text sample (first 500 chars):', debugText.substring(0, 500));
 
                 // Try to find patterns in the section
                 const dateInSection = section.match(/\d{1,2}\/\d{1,2}\/\d{4}/g);
