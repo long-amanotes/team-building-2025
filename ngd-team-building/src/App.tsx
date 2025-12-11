@@ -13,19 +13,9 @@ import { cn } from '@/lib/utils';
 
 function App() {
   const [activeTab, setActiveTab] = useState<TabId>('overview');
-  const { theme, setTheme } = useThemeStore();
-
-  // Initialize theme on mount
-  useEffect(() => {
-    // Check if theme is already set, if not set to light
-    const storedTheme = localStorage.getItem('ngd-theme');
-    if (storedTheme) {
-      const parsed = JSON.parse(storedTheme);
-      setTheme(parsed.state.theme);
-    } else {
-      setTheme('light');
-    }
-  }, [setTheme]);
+  const { getThemeInfo } = useThemeStore();
+  const themeInfo = getThemeInfo();
+  const isDark = themeInfo.isDark;
 
   // Auto scroll to top when tab changes
   useEffect(() => {
@@ -54,23 +44,20 @@ function App() {
   };
 
   return (
-    <div className={cn(
-      'min-h-screen bg-background transition-colors duration-300',
-      theme
-    )}>
+    <div className="min-h-screen bg-background transition-colors duration-300">
       {/* Background decorations */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className={cn(
           'absolute -top-40 -right-40 h-96 w-96 rounded-full blur-3xl transition-colors duration-500',
-          'bg-primary/10 dark:bg-primary/5'
+          isDark ? 'bg-primary/5' : 'bg-primary/10'
         )} />
         <div className={cn(
           'absolute top-1/2 -left-40 h-96 w-96 rounded-full blur-3xl transition-colors duration-500',
-          'bg-sky-500/10 dark:bg-sky-500/5'
+          isDark ? 'bg-accent/5' : 'bg-accent/10'
         )} />
         <div className={cn(
           'absolute -bottom-40 right-1/4 h-96 w-96 rounded-full blur-3xl transition-colors duration-500',
-          'bg-emerald-500/10 dark:bg-emerald-500/5'
+          isDark ? 'bg-primary/3' : 'bg-primary/8'
         )} />
       </div>
 

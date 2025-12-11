@@ -1,5 +1,5 @@
 import { MapPin, ExternalLink } from 'lucide-react';
-import { ThemeToggle } from '@/components/ui/theme-toggle';
+import { ThemeSelector } from '@/components/ui/theme-selector';
 import { eventInfo } from '@/data';
 import logo from '@/assets/logo.avif';
 
@@ -51,8 +51,8 @@ function Header() {
             <MapPin className="h-4 w-4 text-muted-foreground" />
           </a>
 
-          {/* Theme Toggle */}
-          <ThemeToggle />
+          {/* Theme Selector */}
+          <ThemeSelector />
         </div>
       </div>
     </header>

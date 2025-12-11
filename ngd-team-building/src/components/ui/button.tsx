@@ -9,14 +9,14 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const variantStyles = {
   default:
-    'bg-gradient-to-r from-primary to-sky-500 text-primary-foreground hover:from-primary/90 hover:to-sky-500/90 shadow-lg shadow-primary/20 dark:shadow-primary/10',
+    'bg-gradient-to-r from-primary to-accent text-primary-foreground hover:opacity-90 shadow-lg shadow-primary/20',
   secondary:
     'bg-secondary text-secondary-foreground hover:bg-secondary/80 border border-border',
-  ghost: 'text-muted-foreground hover:bg-accent hover:text-accent-foreground',
+  ghost: 'text-muted-foreground hover:bg-accent/20 hover:text-accent-foreground',
   outline:
-    'border border-border bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground',
+    'border border-border bg-transparent text-foreground hover:bg-accent/20 hover:text-accent-foreground',
   danger:
-    'bg-rose-500 text-white hover:bg-rose-600 shadow-lg shadow-rose-500/20',
+    'bg-[hsl(var(--danger))] text-white hover:opacity-90 shadow-lg shadow-[hsl(var(--danger))]/20',
 };
 
 const sizeStyles = {

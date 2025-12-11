@@ -131,7 +131,7 @@ function TabNavigation({ activeTab, onTabChange }: TabNavigationProps) {
                     'min-h-[44px] touch-manipulation', // Better touch target for mobile
                     'active:scale-95', // Touch feedback
                     isActive
-                      ? 'bg-gradient-to-r from-primary to-sky-500 text-primary-foreground shadow-lg shadow-primary/20 dark:shadow-primary/10 scale-105'
+                      ? 'bg-gradient-to-r from-primary to-accent text-primary-foreground shadow-lg shadow-primary/20 scale-105'
                       : 'text-muted-foreground hover:text-foreground hover:bg-accent/50'
                   )}
                   style={{
