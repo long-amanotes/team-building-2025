@@ -1,6 +1,13 @@
 /**
  * Room Images Mapping
  * Maps room types to their respective images
+ *
+ * Note: Images are automatically optimized during build via vite-imagetools:
+ * - Converted to WebP format
+ * - Resized to max 1200px width
+ * - Quality set to 80% for optimal balance
+ *
+ * Original images (~25-35MB each) are compressed to ~50-100KB
  */
 
 // Deluxe Twin Images
@@ -26,6 +33,7 @@ import deluxeDoubleSink from '@/assets/Images/Deluxe Double/Sink.jpg';
 
 export interface RoomImage {
     src: string;
+    thumbnail: string;
     alt: string;
     category: 'main' | 'bathroom' | 'balcony' | 'amenities';
 }
@@ -33,39 +41,39 @@ export interface RoomImage {
 export const roomImages = {
     Twin: {
         main: [
-            { src: deluxeTwin1, alt: 'Deluxe Twin Room - Main View 1', category: 'main' as const },
-            { src: deluxeTwin2, alt: 'Deluxe Twin Room - Main View 2', category: 'main' as const },
+            { src: deluxeTwin1, thumbnail: deluxeTwin1, alt: 'Deluxe Twin Room - Main View 1', category: 'main' as const },
+            { src: deluxeTwin2, thumbnail: deluxeTwin2, alt: 'Deluxe Twin Room - Main View 2', category: 'main' as const },
         ],
         bathroom: [
-            { src: deluxeTwinBathroom1, alt: 'Deluxe Twin - Bathroom 1', category: 'bathroom' as const },
-            { src: deluxeTwinBathroom2, alt: 'Deluxe Twin - Bathroom 2', category: 'bathroom' as const },
+            { src: deluxeTwinBathroom1, thumbnail: deluxeTwinBathroom1, alt: 'Deluxe Twin - Bathroom 1', category: 'bathroom' as const },
+            { src: deluxeTwinBathroom2, thumbnail: deluxeTwinBathroom2, alt: 'Deluxe Twin - Bathroom 2', category: 'bathroom' as const },
         ],
         balcony: [
-            { src: deluxeTwinBalcony, alt: 'Deluxe Twin - Balcony View', category: 'balcony' as const },
+            { src: deluxeTwinBalcony, thumbnail: deluxeTwinBalcony, alt: 'Deluxe Twin - Balcony View', category: 'balcony' as const },
         ],
         amenities: [
-            { src: deluxeTwinArmchair, alt: 'Deluxe Twin - Armchair', category: 'amenities' as const },
-            { src: deluxeTwinWardrobe, alt: 'Deluxe Twin - Wardrobe', category: 'amenities' as const },
-            { src: deluxeTwinDesk, alt: 'Deluxe Twin - Working Desk', category: 'amenities' as const },
+            { src: deluxeTwinArmchair, thumbnail: deluxeTwinArmchair, alt: 'Deluxe Twin - Armchair', category: 'amenities' as const },
+            { src: deluxeTwinWardrobe, thumbnail: deluxeTwinWardrobe, alt: 'Deluxe Twin - Wardrobe', category: 'amenities' as const },
+            { src: deluxeTwinDesk, thumbnail: deluxeTwinDesk, alt: 'Deluxe Twin - Working Desk', category: 'amenities' as const },
         ],
     },
     Double: {
         main: [
-            { src: deluxeDouble1, alt: 'Deluxe Double Room - Main View 1', category: 'main' as const },
-            { src: deluxeDouble2, alt: 'Deluxe Double Room - Main View 2', category: 'main' as const },
-            { src: deluxeDouble3, alt: 'Deluxe Double Room - Main View 3', category: 'main' as const },
-            { src: deluxeDoubleGardenView, alt: 'Deluxe Double - Garden View', category: 'main' as const },
+            { src: deluxeDouble1, thumbnail: deluxeDouble1, alt: 'Deluxe Double Room - Main View 1', category: 'main' as const },
+            { src: deluxeDouble2, thumbnail: deluxeDouble2, alt: 'Deluxe Double Room - Main View 2', category: 'main' as const },
+            { src: deluxeDouble3, thumbnail: deluxeDouble3, alt: 'Deluxe Double Room - Main View 3', category: 'main' as const },
+            { src: deluxeDoubleGardenView, thumbnail: deluxeDoubleGardenView, alt: 'Deluxe Double - Garden View', category: 'main' as const },
         ],
         bathroom: [
-            { src: deluxeDoubleBathroom, alt: 'Deluxe Double - Bathroom', category: 'bathroom' as const },
-            { src: deluxeDoubleSink, alt: 'Deluxe Double - Sink', category: 'bathroom' as const },
+            { src: deluxeDoubleBathroom, thumbnail: deluxeDoubleBathroom, alt: 'Deluxe Double - Bathroom', category: 'bathroom' as const },
+            { src: deluxeDoubleSink, thumbnail: deluxeDoubleSink, alt: 'Deluxe Double - Sink', category: 'bathroom' as const },
         ],
         balcony: [
-            { src: deluxeDoubleBalcony, alt: 'Deluxe Double - Balcony View', category: 'balcony' as const },
-            { src: deluxeDoubleSofa, alt: 'Deluxe Double - Sofa and Balcony', category: 'balcony' as const },
+            { src: deluxeDoubleBalcony, thumbnail: deluxeDoubleBalcony, alt: 'Deluxe Double - Balcony View', category: 'balcony' as const },
+            { src: deluxeDoubleSofa, thumbnail: deluxeDoubleSofa, alt: 'Deluxe Double - Sofa and Balcony', category: 'balcony' as const },
         ],
         amenities: [
-            { src: deluxeDoubleDesk, alt: 'Deluxe Double - Desk with Tea & Coffee', category: 'amenities' as const },
+            { src: deluxeDoubleDesk, thumbnail: deluxeDoubleDesk, alt: 'Deluxe Double - Desk with Tea & Coffee', category: 'amenities' as const },
         ],
     },
 } as const;

@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
-import { X, ChevronLeft, ChevronRight, Image as ImageIcon } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Image as ImageIcon, Loader2 } from 'lucide-react';
 import { getRoomImages } from '@/data/room-images';
 import { cn } from '@/lib/utils';
 
@@ -13,14 +13,43 @@ interface RoomImageGalleryProps {
 
 function RoomImageGallery({ roomType, roomId, isOpen, onClose }: RoomImageGalleryProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isImageLoading, setIsImageLoading] = useState(true);
+  const [loadedImages, setLoadedImages] = useState<Set<number>>(new Set());
   const roomImages = getRoomImages(roomType);
 
   // Reset to first image when modal opens
   useEffect(() => {
     if (isOpen) {
       setCurrentImageIndex(0);
+      setIsImageLoading(true);
     }
   }, [isOpen]);
+
+  // Preload adjacent images
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const preloadIndices = [
+      currentImageIndex,
+      (currentImageIndex + 1) % roomImages.length,
+      (currentImageIndex - 1 + roomImages.length) % roomImages.length,
+    ];
+
+    preloadIndices.forEach((idx) => {
+      if (!loadedImages.has(idx)) {
+        const img = new Image();
+        img.src = roomImages[idx].src;
+        img.onload = () => {
+          setLoadedImages(prev => new Set([...prev, idx]));
+        };
+      }
+    });
+  }, [isOpen, currentImageIndex, roomImages, loadedImages]);
+
+  const handleImageLoad = useCallback(() => {
+    setIsImageLoading(false);
+    setLoadedImages(prev => new Set([...prev, currentImageIndex]));
+  }, [currentImageIndex]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -41,14 +70,25 @@ function RoomImageGallery({ roomType, roomId, isOpen, onClose }: RoomImageGaller
   }, [isOpen, roomImages.length, onClose]);
 
   const nextImage = () => {
-    setCurrentImageIndex((prev) => (prev + 1) % roomImages.length);
+    const nextIdx = (currentImageIndex + 1) % roomImages.length;
+    if (!loadedImages.has(nextIdx)) {
+      setIsImageLoading(true);
+    }
+    setCurrentImageIndex(nextIdx);
   };
 
   const prevImage = () => {
-    setCurrentImageIndex((prev) => (prev - 1 + roomImages.length) % roomImages.length);
+    const prevIdx = (currentImageIndex - 1 + roomImages.length) % roomImages.length;
+    if (!loadedImages.has(prevIdx)) {
+      setIsImageLoading(true);
+    }
+    setCurrentImageIndex(prevIdx);
   };
 
   const goToImage = (index: number) => {
+    if (!loadedImages.has(index)) {
+      setIsImageLoading(true);
+    }
     setCurrentImageIndex(index);
   };
 
@@ -96,12 +136,38 @@ function RoomImageGallery({ roomType, roomId, isOpen, onClose }: RoomImageGaller
 
         {/* Main Image Display */}
         <div className="relative flex-1 flex items-center justify-center bg-black/50 p-4 overflow-hidden">
-          {/* Main Image */}
+          {/* Main Image Container */}
           <div className="relative w-full h-full max-w-5xl flex items-center justify-center">
+            {/* Blurred thumbnail as placeholder */}
+            {isImageLoading && currentImage.thumbnail && (
+              <img
+                src={currentImage.thumbnail}
+                alt=""
+                aria-hidden="true"
+                className="absolute max-w-full max-h-full object-contain rounded-lg blur-lg scale-105 opacity-50"
+              />
+            )}
+
+            {/* Loading spinner */}
+            {isImageLoading && (
+              <div className="absolute inset-0 flex items-center justify-center z-10">
+                <div className="bg-black/60 backdrop-blur-sm rounded-full p-4">
+                  <Loader2 className="h-8 w-8 text-white animate-spin" />
+                </div>
+              </div>
+            )}
+
+            {/* Main Image */}
             <img
               src={currentImage.src}
               alt={currentImage.alt}
-              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+              onLoad={handleImageLoad}
+              loading="eager"
+              decoding="async"
+              className={cn(
+                'max-w-full max-h-full object-contain rounded-lg shadow-2xl transition-opacity duration-300',
+                isImageLoading ? 'opacity-0' : 'opacity-100'
+              )}
             />
           </div>
 
@@ -155,13 +221,22 @@ function RoomImageGallery({ roomType, roomId, isOpen, onClose }: RoomImageGaller
                   )}
                   aria-label={`View image ${index + 1}`}
                 >
+                  {/* Use thumbnail for gallery strip - much smaller file size */}
                   <img
-                    src={img.src}
+                    src={img.thumbnail}
                     alt={img.alt}
+                    loading="lazy"
+                    decoding="async"
                     className="h-full w-full object-cover"
                   />
                   {currentImageIndex === index && (
                     <div className="absolute inset-0 bg-primary/20" />
+                  )}
+                  {/* Loading indicator for unloaded images */}
+                  {!loadedImages.has(index) && index !== currentImageIndex && (
+                    <div className="absolute inset-0 bg-black/20 flex items-center justify-center">
+                      <div className="w-2 h-2 bg-white/60 rounded-full animate-pulse" />
+                    </div>
                   )}
                 </button>
               ))}
