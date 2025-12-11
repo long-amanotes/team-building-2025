@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Wallet,
   Receipt,
@@ -9,16 +9,22 @@ import {
   AlertCircle,
   QrCode,
   Smartphone,
+  Activity,
+  RefreshCw,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { budgetItems, budgetSummary, bankInfo } from '@/data/budget';
+import { budgetItems, budgetSummary, bankInfo, momoFundUrl } from '@/data/budget';
 import { formatCurrency } from '@/lib/utils';
 import { cn } from '@/lib/utils';
+import type { MoMoActivity } from '@/types';
 import paymentQRImage from '@/assets/Images/payment-info.png';
 
 function BudgetSection() {
   const [copied, setCopied] = useState<'all' | 'account' | null>(null);
+  const [activities, setActivities] = useState<MoMoActivity[]>([]);
+  const [loadingActivities, setLoadingActivities] = useState(false);
+  const [activitiesError, setActivitiesError] = useState<string | null>(null);
 
   const handleCopyBankInfo = async () => {
     const text = `
@@ -37,6 +43,42 @@ Số TK: ${bankInfo.accountNumber}
     setCopied('account');
     setTimeout(() => setCopied(null), 2000);
   };
+
+  const fetchActivities = async () => {
+    setLoadingActivities(true);
+    setActivitiesError(null);
+    try {
+      const response = await fetch(`/api/momo-activities?url=${encodeURIComponent(momoFundUrl)}`);
+
+      // Check if we got HTML instead of JSON (means API route is not available)
+      const contentType = response.headers.get('content-type');
+      if (contentType && !contentType.includes('application/json')) {
+        throw new Error('API route không khả dụng trong local dev. Dùng "vercel dev" để test API routes.');
+      }
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch activities: ${response.statusText}`);
+      }
+      const data = await response.json();
+      if (data.success && data.activities) {
+        setActivities(data.activities);
+      } else {
+        throw new Error(data.error || 'Failed to parse activities');
+      }
+    } catch (error) {
+      console.error('Error fetching MoMo activities:', error);
+      const errorMessage = error instanceof Error ? error.message : 'Không thể tải hoạt động';
+      setActivitiesError(errorMessage);
+    } finally {
+      setLoadingActivities(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchActivities();
+  }, []);
+
+  const totalReceived = activities.reduce((sum, activity) => sum + (activity.amount > 0 ? activity.amount : 0), 0);
 
   return (
     <div className="space-y-6">
@@ -392,6 +434,132 @@ Số TK: ${bankInfo.accountNumber}
               </Button>
             </div>
           </div>
+        </CardContent>
+      </Card>
+
+      {/* MoMo Fund Recent Activities */}
+      <Card className="border-blue-500/20">
+        <CardHeader>
+          <div className="flex items-center justify-between">
+            <CardTitle className="flex items-center gap-2">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500/15 to-cyan-500/15">
+                <Activity className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+              </div>
+              Hoạt động gần đây (MoMo Fund)
+            </CardTitle>
+            <Button
+              onClick={fetchActivities}
+              variant="ghost"
+              size="sm"
+              disabled={loadingActivities}
+              className="gap-2"
+            >
+              <RefreshCw className={cn("h-4 w-4", loadingActivities && "animate-spin")} />
+              <span className="hidden sm:inline">Làm mới</span>
+            </Button>
+          </div>
+        </CardHeader>
+        <CardContent>
+          {loadingActivities ? (
+            <div className="flex items-center justify-center py-8">
+              <RefreshCw className="h-6 w-6 animate-spin text-muted-foreground" />
+              <span className="ml-2 text-muted-foreground">Đang tải hoạt động...</span>
+            </div>
+          ) : activitiesError ? (
+            <div className="rounded-xl bg-red-500/10 border border-red-500/20 p-4">
+              <div className="flex items-start gap-3">
+                <AlertCircle className="h-5 w-5 text-red-600 dark:text-red-400 shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-medium text-red-600 dark:text-red-400">Lỗi khi tải hoạt động</p>
+                  <p className="text-sm text-muted-foreground mt-1">{activitiesError}</p>
+                  <Button
+                    onClick={fetchActivities}
+                    variant="outline"
+                    size="sm"
+                    className="mt-3"
+                  >
+                    Thử lại
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ) : activities.length === 0 ? (
+            <div className="text-center py-8 text-muted-foreground">
+              <Activity className="h-12 w-12 mx-auto mb-3 opacity-50" />
+              <p>Chưa có hoạt động nào</p>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {/* Summary */}
+              <div className="rounded-xl bg-gradient-to-r from-emerald-500/10 to-teal-500/10 p-4">
+                <div className="flex items-center justify-between">
+                  <span className="text-sm font-medium text-muted-foreground">Tổng đã nhận</span>
+                  <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+                    {formatCurrency(totalReceived)}
+                  </span>
+                </div>
+                <p className="text-xs text-muted-foreground mt-1">
+                  {activities.length} giao dịch
+                </p>
+              </div>
+
+              {/* Activities List */}
+              <div className="space-y-2">
+                {activities.map((activity, index) => (
+                  <div
+                    key={`${activity.date}-${activity.name}-${index}`}
+                    className={cn(
+                      "rounded-xl border border-border bg-muted/30 p-4 transition-colors hover:bg-muted/50",
+                      "animate-fade-in"
+                    )}
+                    style={{ animationDelay: `${index * 50}ms` }}
+                  >
+                    <div className="flex items-start justify-between gap-4">
+                      <div className="flex-1 min-w-0">
+                        <p className="font-semibold text-foreground truncate">
+                          {activity.name}
+                        </p>
+                        <p className="text-sm text-muted-foreground mt-1">
+                          {activity.date}
+                        </p>
+                      </div>
+                      <div className="text-right shrink-0">
+                        <p
+                          className={cn(
+                            "text-lg font-bold",
+                            activity.amount > 0
+                              ? "text-emerald-600 dark:text-emerald-400"
+                              : "text-red-600 dark:text-red-400"
+                          )}
+                        >
+                          {activity.amount > 0 ? "+" : ""}
+                          {formatCurrency(activity.amount)}
+                        </p>
+                        <p className="text-xs text-muted-foreground mt-0.5">
+                          {activity.amountText}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Link to MoMo Fund */}
+              <div className="pt-2">
+                <a
+                  href={momoFundUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm text-blue-600 dark:text-blue-400 hover:underline flex items-center gap-1"
+                >
+                  Xem trên MoMo Fund
+                  <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>

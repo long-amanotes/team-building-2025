@@ -34,3 +34,5 @@ export const bankInfo: BankInfo = {
     bankName: "Ngân hàng Bản Việt (BVBank)",
     accountNumber: "99MM25344MC0002029",
 };
+
+export const momoFundUrl = "https://quy.momo.vn/v2/N3lyQkiNmZ?e14fe";

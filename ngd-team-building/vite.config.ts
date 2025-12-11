@@ -11,4 +11,6 @@ export default defineConfig({
             '@': path.resolve(__dirname, './src'),
         },
     },
+    // Note: API routes in /api directory work automatically on Vercel
+    // For local testing, use `vercel dev` to run serverless functions locally
 })
