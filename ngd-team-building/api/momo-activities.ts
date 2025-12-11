@@ -74,117 +74,67 @@ function parseMoMoActivities(html: string): { activities: MoMoActivity[]; debug?
     console.log('Activity lines found:', activityLines.length);
     console.log('First 10 activity lines:', activityLines.slice(0, 10));
 
-    // Step 6: Parse activities - try multiple approaches
-    // Approach 1: Try 3-line pattern first (most common)
-    if (activityLines.length >= 3) {
-        for (let i = 0; i < activityLines.length; i += 3) {
-            const name = activityLines[i];
-            const date = activityLines[i + 1];
-            const amountText = activityLines[i + 2] || '';
-
-            if (!name || !date || !amountText) {
-                break;
-            }
-
-            // Validate date format
-            if (!date.match(/\d{1,2}\/\d{1,2}\/\d{4}/)) {
+    // Step 6: Pre-process lines - combine sign (+/-) with amount if they're separate
+    // Pattern observed: ["Lê ******", "11/12/2025", "+", "500.000đ", ...]
+    // Need to combine "+" with "500.000đ" to get "+ 500.000đ"
+    const processedLines: string[] = [];
+    for (let i = 0; i < activityLines.length; i++) {
+        const line = activityLines[i].trim();
+        
+        // If line is just "+" or "-", combine with next line
+        if ((line === '+' || line === '-') && i + 1 < activityLines.length) {
+            const nextLine = activityLines[i + 1].trim();
+            // Check if next line looks like an amount (contains numbers and đ)
+            if (nextLine.match(/[\d.,]+đ/)) {
+                processedLines.push(line + ' ' + nextLine);
+                i++; // Skip next line as we've combined it
                 continue;
             }
-
-            // Validate amount format
-            if (!amountText.match(/[+-]\s*[\d.,]+đ/)) {
-                continue;
-            }
-
-            // Parse amount
-            const sign = amountText.includes('-') ? -1 : 1;
-            const numeric = parseInt(amountText.replace(/[^\d]/g, ''), 10) * sign;
-
-            // Get icon by index
-            const icon = icons[activities.length] || null;
-
-            activities.push({
-                name: name.trim(),
-                date: date.trim(),
-                amountText: amountText.trim(),
-                amount: numeric,
-                icon: icon || null,
-            });
         }
+        
+        processedLines.push(line);
     }
 
-    // Approach 2: If 3-line pattern didn't work, try flexible date-based parsing
-    if (activities.length === 0) {
-        for (let i = 0; i < activityLines.length; i++) {
-            const line = activityLines[i];
+    console.log('Processed lines:', processedLines.slice(0, 10));
 
-            // Check if this line contains a date
-            const dateMatch = line.match(/(\d{1,2}\/\d{1,2}\/\d{4})/);
-            if (!dateMatch) {
-                continue;
-            }
+    // Step 7: Parse activities using 3-line pattern: [name, date, amount]
+    // After pre-processing, each activity should be 3 lines
+    for (let i = 0; i < processedLines.length; i += 3) {
+        const name = processedLines[i];
+        const date = processedLines[i + 1];
+        const amountText = processedLines[i + 2] || '';
 
-            const date = dateMatch[1];
-
-            // Look for amount in current line or next line
-            let amountText = '';
-            const amountInLine = line.match(/([+-]\s*[\d.,]+đ)/);
-            if (amountInLine) {
-                amountText = amountInLine[1];
-            } else if (i + 1 < activityLines.length) {
-                const nextLine = activityLines[i + 1];
-                const amountInNext = nextLine.match(/([+-]\s*[\d.,]+đ)/);
-                if (amountInNext) {
-                    amountText = amountInNext[1];
-                }
-            }
-
-            if (!amountText) {
-                continue;
-            }
-
-            // Look for name before date (previous line or in current line before date)
-            let name = '';
-            if (i > 0) {
-                const prevLine = activityLines[i - 1];
-                // Name should not be a date or amount
-                if (prevLine &&
-                    !prevLine.match(/\d{1,2}\/\d{1,2}\/\d{4}/) &&
-                    !prevLine.match(/[+-]\s*[\d.,]+đ/) &&
-                    prevLine.length > 1 &&
-                    prevLine.length < 50) { // Reasonable name length
-                    name = prevLine;
-                }
-            }
-
-            // If no name in previous line, try to extract from current line before date
-            if (!name && dateMatch.index && dateMatch.index > 0) {
-                const beforeDate = line.substring(0, dateMatch.index).trim();
-                if (beforeDate && beforeDate.length > 1 && beforeDate.length < 50) {
-                    name = beforeDate;
-                }
-            }
-
-            // If still no name, skip this activity
-            if (!name || name.length < 2) {
-                continue;
-            }
-
-            // Parse amount
-            const sign = amountText.includes('-') ? -1 : 1;
-            const numeric = parseInt(amountText.replace(/[^\d]/g, ''), 10) * sign;
-
-            // Get icon by index
-            const icon = icons[activities.length] || null;
-
-            activities.push({
-                name: name.trim(),
-                date: date.trim(),
-                amountText: amountText.trim(),
-                amount: numeric,
-                icon: icon || null,
-            });
+        if (!name || !date || !amountText) {
+            break;
         }
+
+        // Validate date format (DD/MM/YYYY)
+        if (!date.match(/\d{1,2}\/\d{1,2}\/\d{4}/)) {
+            console.log('Invalid date format:', date);
+            continue;
+        }
+
+        // Validate amount format (should have number and đ)
+        if (!amountText.match(/[\d.,]+đ/)) {
+            console.log('Invalid amount format:', amountText);
+            continue;
+        }
+
+        // Parse amount - check for sign
+        const sign = amountText.includes('-') ? -1 : 1;
+        const numeric = parseInt(amountText.replace(/[^\d]/g, ''), 10) * sign;
+
+        // Get icon by index (0 → first activity, 1 → second, etc.)
+        const icon = icons[activities.length] || null;
+
+        // Keep name as-is, including asterisks (***)
+        activities.push({
+            name: name.trim(),
+            date: date.trim(),
+            amountText: amountText.trim(),
+            amount: numeric,
+            icon: icon || null,
+        });
     }
 
     console.log('Parsed activities count:', activities.length);
@@ -193,7 +143,9 @@ function parseMoMoActivities(html: string): { activities: MoMoActivity[]; debug?
         activities,
         debug: activities.length === 0 ? {
             activityLinesCount: activityLines.length,
+            processedLinesCount: processedLines.length,
             firstActivityLines: activityLines.slice(0, 10),
+            firstProcessedLines: processedLines.slice(0, 10),
         } : undefined
     };
 }
