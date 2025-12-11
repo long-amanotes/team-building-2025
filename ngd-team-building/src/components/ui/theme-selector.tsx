@@ -1,10 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
-import { Palette, Check, ChevronDown, Sun, Moon } from 'lucide-react';
+import { Palette, Check, ChevronDown, Sun, Moon, Snowflake } from 'lucide-react';
 import { useThemeStore, THEMES, type Theme } from '@/store/theme-store';
 import { cn } from '@/lib/utils';
 
 function ThemeSelector() {
-  const { theme, setTheme, getThemeInfo } = useThemeStore();
+  const { theme, setTheme, getThemeInfo, snowfallEnabled, toggleSnowfall } = useThemeStore();
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const currentTheme = getThemeInfo();
@@ -84,9 +84,12 @@ function ThemeSelector() {
           className={cn(
             'absolute right-0 top-full mt-2 z-[100]',
             'w-64 p-2 rounded-xl',
-            'bg-card border-2 border-border shadow-2xl shadow-black/20',
+            'border-2 border-border shadow-2xl',
             'animate-scale-in origin-top-right'
           )}
+          style={{
+            backgroundColor: currentTheme.colors.background,
+          }}
           role="listbox"
           aria-label="Danh sách themes"
         >
@@ -99,7 +102,7 @@ function ThemeSelector() {
           </div>
 
           {/* Theme options */}
-          <div className="space-y-1 max-h-[320px] overflow-y-auto">
+          <div className="space-y-1 max-h-[280px] overflow-y-auto">
             {THEMES.map((themeOption) => {
               const isSelected = theme === themeOption.id;
               return (
@@ -110,8 +113,8 @@ function ThemeSelector() {
                     'w-full flex items-center gap-3 px-3 py-2.5 rounded-lg',
                     'transition-all duration-150',
                     isSelected
-                      ? 'bg-primary/15 border border-primary/30'
-                      : 'hover:bg-secondary border border-transparent'
+                      ? 'bg-primary/20 border border-primary/40'
+                      : 'hover:bg-secondary/80 border border-transparent'
                   )}
                   role="option"
                   aria-selected={isSelected}
@@ -166,6 +169,37 @@ function ThemeSelector() {
                 </button>
               );
             })}
+          </div>
+
+          {/* Snowfall Toggle */}
+          <div className="mt-2 pt-2 border-t border-border">
+            <button
+              onClick={toggleSnowfall}
+              className={cn(
+                'w-full flex items-center justify-between gap-3 px-3 py-2.5 rounded-lg',
+                'transition-all duration-150',
+                'hover:bg-secondary/80'
+              )}
+            >
+              <div className="flex items-center gap-2">
+                <Snowflake className={cn(
+                  "h-4 w-4",
+                  snowfallEnabled ? "text-[hsl(var(--monokai-blue))]" : "text-muted-foreground"
+                )} />
+                <span className="text-sm font-medium text-foreground">Tuyết rơi</span>
+              </div>
+
+              {/* Toggle switch */}
+              <div className={cn(
+                "relative w-10 h-5 rounded-full transition-colors duration-200",
+                snowfallEnabled ? "bg-[hsl(var(--monokai-green))]" : "bg-muted"
+              )}>
+                <div className={cn(
+                  "absolute top-0.5 w-4 h-4 rounded-full bg-white shadow-sm transition-transform duration-200",
+                  snowfallEnabled ? "translate-x-5" : "translate-x-0.5"
+                )} />
+              </div>
+            </button>
           </div>
 
           {/* Footer hint */}
