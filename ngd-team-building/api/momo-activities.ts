@@ -189,7 +189,7 @@ function parseMoMoActivities(html: string): { activities: MoMoActivity[]; debug?
 
     console.log('Parsed activities count:', activities.length);
 
-    return { 
+    return {
         activities,
         debug: activities.length === 0 ? {
             activityLinesCount: activityLines.length,

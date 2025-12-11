@@ -27,6 +27,11 @@ function App() {
     }
   }, [setTheme]);
 
+  // Auto scroll to top when tab changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [activeTab]);
+
   const renderContent = () => {
     switch (activeTab) {
       case 'overview':
