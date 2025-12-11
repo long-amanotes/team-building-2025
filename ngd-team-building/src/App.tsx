@@ -7,7 +7,7 @@ import { ParticipantsSection } from '@/components/participants';
 import { MenuSection } from '@/components/menu';
 import { TransportSection } from '@/components/transport';
 import { BudgetSection } from '@/components/budget';
-import { Snowfall, ChristmasBanner } from '@/components/christmas';
+import { Snowfall, ChristmasBanner, MusicPlayer } from '@/components/christmas';
 import type { TabId } from '@/types';
 
 function App() {
@@ -41,6 +41,9 @@ function App() {
 
   return (
     <div className="min-h-screen bg-background transition-colors duration-200">
+      {/* Music Player */}
+      <MusicPlayer />
+
       {/* Christmas Snowfall Effect */}
       <Snowfall />
 

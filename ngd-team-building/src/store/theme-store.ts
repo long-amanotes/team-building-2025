@@ -124,9 +124,12 @@ function applyThemeToDOM(theme: Theme) {
 interface ThemeState {
     theme: Theme;
     snowfallEnabled: boolean;
+    musicEnabled: boolean;
     setTheme: (theme: Theme) => void;
     setSnowfallEnabled: (enabled: boolean) => void;
     toggleSnowfall: () => void;
+    setMusicEnabled: (enabled: boolean) => void;
+    toggleMusic: () => void;
     getThemeInfo: () => ThemeInfo;
 }
 
@@ -135,6 +138,7 @@ export const useThemeStore = create<ThemeState>()(
         (set, get) => ({
             theme: 'monokai-light',
             snowfallEnabled: true,
+            musicEnabled: true,
             setTheme: (theme: Theme) => {
                 set({ theme });
                 applyThemeToDOM(theme);
@@ -144,6 +148,12 @@ export const useThemeStore = create<ThemeState>()(
             },
             toggleSnowfall: () => {
                 set((state) => ({ snowfallEnabled: !state.snowfallEnabled }));
+            },
+            setMusicEnabled: (enabled: boolean) => {
+                set({ musicEnabled: enabled });
+            },
+            toggleMusic: () => {
+                set((state) => ({ musicEnabled: !state.musicEnabled }));
             },
             getThemeInfo: () => {
                 const currentTheme = get().theme;
