@@ -12,6 +12,7 @@ import {
   Coffee,
   Sun,
   LogOut,
+  AlertTriangle,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -92,6 +93,16 @@ function EventItem({ event, isLast, index }: EventItemProps) {
         </div>
         <h4 className="mt-1 font-semibold text-foreground">{event.title}</h4>
         <p className="mt-1 text-sm text-muted-foreground">{event.description}</p>
+        {event.warning && (
+          <div className="mt-2 rounded-lg bg-amber-500/15 border border-amber-500/30 p-2.5">
+            <div className="flex items-start gap-2">
+              <AlertTriangle className="h-4 w-4 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+              <p className="text-sm font-medium text-amber-700 dark:text-amber-300">
+                {event.warning}
+              </p>
+            </div>
+          </div>
+        )}
         {event.location && event.location !== '--- di chuyển ---' && (
           <div className="mt-2 flex items-center gap-1.5 text-xs text-muted-foreground/70">
             <MapPin className="h-3 w-3" />

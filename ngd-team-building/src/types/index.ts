@@ -63,6 +63,7 @@ export interface ScheduleEvent {
     location: string;
     icon: string;
     period: TimePeriod;
+    warning?: string;
 }
 
 export interface ScheduleDay {
