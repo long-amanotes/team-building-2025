@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { X, ChevronLeft, ChevronRight, Image as ImageIcon } from 'lucide-react';
+import { X, ChevronLeft, ChevronRight, Image as ImageIcon, TreePine, Gift, Sparkles, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface FoodImageGalleryProps {
@@ -60,32 +60,70 @@ function FoodImageGallery({ images, restaurantName, isOpen, onClose }: FoodImage
       onClick={onClose}
       style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
     >
-      {/* Backdrop */}
-      <div className="absolute inset-0 bg-black/90 backdrop-blur-sm" />
+      {/* Backdrop with Christmas gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[hsl(var(--monokai-red)/0.3)] via-black/90 to-[hsl(var(--monokai-green)/0.3)] backdrop-blur-sm" />
+
+      {/* Decorative Christmas lights on backdrop */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-0 right-0 h-1 flex justify-around">
+          {Array.from({ length: 20 }).map((_, i) => (
+            <div
+              key={i}
+              className={cn(
+                'w-2 h-2 rounded-full christmas-light',
+                i % 3 === 0 ? 'bg-[hsl(var(--monokai-red))]' :
+                i % 3 === 1 ? 'bg-[hsl(var(--monokai-green))]' :
+                'bg-[hsl(var(--monokai-yellow))]'
+              )}
+              style={{ animationDelay: `${i * 0.15}s` }}
+            />
+          ))}
+        </div>
+      </div>
 
       {/* Modal Content */}
       <div
         className="relative z-50 w-full h-full flex flex-col bg-background overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
-        <div className="flex items-center justify-between p-4 sm:p-6 border-b border-border/50 bg-white dark:bg-gray-900 shrink-0 shadow-lg">
-          <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20">
-              <ImageIcon className="h-6 w-6 text-primary" />
+        {/* Header with Christmas theme */}
+        <div className="relative flex items-center justify-between p-4 sm:p-6 border-b-4 border-[hsl(var(--monokai-red))] bg-gradient-to-r from-[hsl(var(--monokai-red)/0.1)] via-card to-[hsl(var(--monokai-green)/0.1)] shrink-0 shadow-lg">
+          {/* Decorative corner elements */}
+          <div className="absolute top-2 left-2 text-lg opacity-60">
+            <TreePine className="h-5 w-5 text-[hsl(var(--monokai-green))] christmas-glow" />
+          </div>
+          <div className="absolute top-2 right-2 text-lg opacity-60">
+            <Gift className="h-5 w-5 text-[hsl(var(--monokai-red))] christmas-light" />
+          </div>
+
+          <div className="flex items-center gap-3 relative z-10">
+            <div className="relative flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-[hsl(var(--monokai-red)/0.2)] to-[hsl(var(--monokai-green)/0.2)] border-2 border-[hsl(var(--monokai-yellow)/0.5)]">
+              <ImageIcon className="h-6 w-6 text-[hsl(var(--monokai-yellow))] christmas-glow" />
+              <Star className="absolute -top-1 -right-1 h-3 w-3 text-[hsl(var(--monokai-yellow))] christmas-light" />
             </div>
             <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
-                {restaurantName}
+              <h2 className="text-xl sm:text-2xl font-bold flex items-center gap-2">
+                <Sparkles className="h-5 w-5 text-[hsl(var(--monokai-yellow))] christmas-glow" />
+                <span className="text-[hsl(var(--monokai-green))]">{restaurantName}</span>
               </h2>
-              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-300 mt-0.5">
+              <p className="text-sm sm:text-base text-muted-foreground mt-0.5 flex items-center gap-1">
+                <Star className="h-3 w-3 text-[hsl(var(--monokai-yellow))] christmas-light" />
                 {currentImageIndex + 1} / {images.length} ảnh
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-red-500 hover:text-white text-gray-700 dark:text-gray-300 transition-all duration-200 shadow-md hover:shadow-lg"
+            className={cn(
+              'relative z-10 flex h-12 w-12 items-center justify-center rounded-full',
+              'bg-gradient-to-br from-[hsl(var(--monokai-red)/0.2)] to-[hsl(var(--monokai-red)/0.1)]',
+              'border-2 border-[hsl(var(--monokai-red)/0.5)]',
+              'hover:from-[hsl(var(--monokai-red)/0.4)] hover:to-[hsl(var(--monokai-red)/0.3)]',
+              'hover:border-[hsl(var(--monokai-red))]',
+              'text-[hsl(var(--monokai-red))]',
+              'hover:text-white hover:bg-[hsl(var(--monokai-red))]',
+              'transition-all duration-200 shadow-md hover:shadow-lg hover:scale-110'
+            )}
             aria-label="Đóng gallery"
           >
             <X className="h-6 w-6" />
@@ -103,7 +141,7 @@ function FoodImageGallery({ images, restaurantName, isOpen, onClose }: FoodImage
             />
           </div>
 
-          {/* Navigation Arrows */}
+          {/* Navigation Arrows with Christmas theme */}
           {images.length > 1 && (
             <>
               <button
@@ -111,7 +149,17 @@ function FoodImageGallery({ images, restaurantName, isOpen, onClose }: FoodImage
                   e.stopPropagation();
                   prevImage();
                 }}
-                className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 backdrop-blur-sm p-3 text-white hover:bg-black/70 transition-colors z-10"
+                className={cn(
+                  'absolute left-4 top-1/2 -translate-y-1/2 z-10',
+                  'flex h-12 w-12 items-center justify-center rounded-full',
+                  'bg-gradient-to-br from-[hsl(var(--monokai-green)/0.6)] to-[hsl(var(--monokai-green)/0.4)]',
+                  'border-2 border-[hsl(var(--monokai-green)/0.8)]',
+                  'backdrop-blur-sm text-white',
+                  'hover:from-[hsl(var(--monokai-green)/0.8)] hover:to-[hsl(var(--monokai-green)/0.6)]',
+                  'hover:border-[hsl(var(--monokai-green))] hover:scale-110',
+                  'transition-all duration-200 shadow-lg',
+                  'christmas-glow'
+                )}
                 aria-label="Ảnh trước"
               >
                 <ChevronLeft className="h-6 w-6" />
@@ -121,7 +169,17 @@ function FoodImageGallery({ images, restaurantName, isOpen, onClose }: FoodImage
                   e.stopPropagation();
                   nextImage();
                 }}
-                className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 backdrop-blur-sm p-3 text-white hover:bg-black/70 transition-colors z-10"
+                className={cn(
+                  'absolute right-4 top-1/2 -translate-y-1/2 z-10',
+                  'flex h-12 w-12 items-center justify-center rounded-full',
+                  'bg-gradient-to-br from-[hsl(var(--monokai-red)/0.6)] to-[hsl(var(--monokai-red)/0.4)]',
+                  'border-2 border-[hsl(var(--monokai-red)/0.8)]',
+                  'backdrop-blur-sm text-white',
+                  'hover:from-[hsl(var(--monokai-red)/0.8)] hover:to-[hsl(var(--monokai-red)/0.6)]',
+                  'hover:border-[hsl(var(--monokai-red))] hover:scale-110',
+                  'transition-all duration-200 shadow-lg',
+                  'christmas-glow'
+                )}
                 aria-label="Ảnh sau"
               >
                 <ChevronRight className="h-6 w-6" />
@@ -130,9 +188,9 @@ function FoodImageGallery({ images, restaurantName, isOpen, onClose }: FoodImage
           )}
         </div>
 
-        {/* Thumbnail Strip */}
+        {/* Thumbnail Strip with Christmas theme */}
         {images.length > 1 && (
-          <div className="border-t border-border/50 bg-white dark:bg-gray-900 p-4 shrink-0 shadow-lg">
+          <div className="border-t-4 border-[hsl(var(--monokai-green))] bg-gradient-to-r from-[hsl(var(--monokai-red)/0.1)] via-card to-[hsl(var(--monokai-green)/0.1)] p-4 shrink-0 shadow-lg">
             <div className="flex items-center justify-center gap-2 overflow-x-auto scrollbar-none">
               {images.map((image, index) => (
                 <button
@@ -142,10 +200,11 @@ function FoodImageGallery({ images, restaurantName, isOpen, onClose }: FoodImage
                     goToImage(index);
                   }}
                   className={cn(
-                    'relative shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all',
+                    'relative shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-200',
+                    'hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--monokai-yellow))]',
                     index === currentImageIndex
-                      ? 'border-primary scale-105'
-                      : 'border-transparent opacity-60 hover:opacity-100'
+                      ? 'border-[hsl(var(--monokai-yellow))] scale-105 shadow-lg shadow-[hsl(var(--monokai-yellow))/0.3]'
+                      : 'border-[hsl(var(--monokai-green)/0.3)] opacity-60 hover:opacity-100 hover:border-[hsl(var(--monokai-green)/0.6)]'
                   )}
                   aria-label={`Xem ảnh ${index + 1}`}
                 >
@@ -154,6 +213,11 @@ function FoodImageGallery({ images, restaurantName, isOpen, onClose }: FoodImage
                     alt={`Thumbnail ${index + 1}`}
                     className="w-full h-full object-cover"
                   />
+                  {index === currentImageIndex && (
+                    <div className="absolute inset-0 bg-[hsl(var(--monokai-yellow))/0.2] flex items-center justify-center">
+                      <Star className="h-4 w-4 text-[hsl(var(--monokai-yellow))] christmas-glow" />
+                    </div>
+                  )}
                 </button>
               ))}
             </div>
