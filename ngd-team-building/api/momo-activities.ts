@@ -63,62 +63,68 @@ function parseMoMoActivities(html: string): MoMoActivity[] {
 
     // Step 5: For each date, extract name and amount from context
     for (const dateInfo of dates) {
-        // Extract context: 100 chars before date, 80 chars after
-        const start = Math.max(0, dateInfo.index - 100);
-        const end = Math.min(activitySection.length, dateInfo.index + 80);
+        // Extract wider context: 150 chars before date, 100 chars after
+        const start = Math.max(0, dateInfo.index - 150);
+        const end = Math.min(activitySection.length, dateInfo.index + 100);
         const context = activitySection.substring(start, end);
 
-        // Find name before date (should be uppercase letters, possibly with asterisks)
-        // Look for pattern like "CHAU" or "CHAU ******" or "CHAU \*\*\*\*\*\*"
-        const nameMatch = context.match(/([A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]{2,20})(?:\s*[*\\*]+)?\s*(\d{1,2}\/\d{1,2}\/\d{4})/);
-
-        // Find amount after date
+        // Find amount after date (most reliable pattern)
         const amountMatch = context.match(/(\d{1,2}\/\d{1,2}\/\d{4})\s*([+-]\s*[\d.,]+đ)/);
+        
+        if (!amountMatch) {
+            continue; // Skip if no amount found
+        }
 
-        if (nameMatch && amountMatch) {
-            let name = nameMatch[1].trim();
-            const date = dateInfo.date;
-            const amountText = amountMatch[2].trim();
+        const amountText = amountMatch[2].trim();
+        const sign = amountText.includes('-') ? -1 : 1;
+        const numeric = parseInt(amountText.replace(/[^\d]/g, ''), 10) * sign;
 
-            // Filter out invalid names
-            if (name.length >= 2 &&
-                !name.match(/^(THAM|GÓP|CHUYỂN|HOẠT|TRANG|CHỦ|MOMO|BVBANK|NGÂN|HÀNG)/i)) {
-                const sign = amountText.includes('-') ? -1 : 1;
-                const numeric = parseInt(amountText.replace(/[^\d]/g, ''), 10) * sign;
+        // Try multiple strategies to find the name
+        let name = '';
 
-                activities.push({
-                    name,
-                    date,
-                    amountText,
-                    amount: numeric,
-                });
-            }
-        } else if (amountMatch) {
-            // If we found amount but not name, try to find name in wider context
-            const widerStart = Math.max(0, dateInfo.index - 200);
+        // Strategy 1: Look for name before date in context (uppercase letters, possibly with asterisks)
+        const nameBeforeDate = context.match(/([A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]{2,25})(?:\s*[*\\*]+)?\s*(\d{1,2}\/\d{1,2}\/\d{4})/);
+        if (nameBeforeDate) {
+            name = nameBeforeDate[1].trim();
+        }
+
+        // Strategy 2: If not found, look in wider context before date
+        if (!name || name.length < 2) {
+            const widerStart = Math.max(0, dateInfo.index - 300);
             const widerContext = activitySection.substring(widerStart, dateInfo.index);
+            
+            // Look for name pattern at the end of wider context
+            const nameInWider = widerContext.match(/([A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]{2,25})(?:\s*[*\\*]+)?\s*$/);
+            if (nameInWider) {
+                name = nameInWider[1].trim();
+            }
+        }
 
-            // Look for name pattern in wider context
-            const widerNameMatch = widerContext.match(/([A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]{2,20})(?:\s*[*\\*]+)?\s*$/);
-
-            if (widerNameMatch) {
-                let name = widerNameMatch[1].trim();
-                const date = dateInfo.date;
-                const amountText = amountMatch[2].trim();
-
-                if (name.length >= 2 &&
-                    !name.match(/^(THAM|GÓP|CHUYỂN|HOẠT|TRANG|CHỦ|MOMO|BVBANK)/i)) {
-                    const sign = amountText.includes('-') ? -1 : 1;
-                    const numeric = parseInt(amountText.replace(/[^\d]/g, ''), 10) * sign;
-
-                    activities.push({
-                        name,
-                        date,
-                        amountText,
-                        amount: numeric,
-                    });
+        // Strategy 3: Look for any uppercase word before date (more flexible)
+        if (!name || name.length < 2) {
+            const beforeDate = activitySection.substring(Math.max(0, dateInfo.index - 200), dateInfo.index);
+            // Match any sequence of uppercase letters (2-25 chars) that's not a date or amount
+            const flexibleNameMatch = beforeDate.match(/([A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]{2,25})(?:\s*[*\\*]*)?\s*$/);
+            if (flexibleNameMatch) {
+                const candidate = flexibleNameMatch[1].trim();
+                // Validate it's not a common word
+                if (!candidate.match(/^(THAM|GÓP|CHUYỂN|HOẠT|TRANG|CHỦ|MOMO|BVBANK|NGÂN|HÀNG|QUỸ|TRÊN|GẦN|ĐÂY)/i) &&
+                    !candidate.match(/^\d+$/) && // Not just numbers
+                    candidate.match(/[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]/)) {
+                    name = candidate;
                 }
             }
+        }
+
+        // If we found a valid name, add the activity
+        if (name && name.length >= 2 &&
+            !name.match(/^(THAM|GÓP|CHUYỂN|HOẠT|TRANG|CHỦ|MOMO|BVBANK|NGÂN|HÀNG|QUỸ|TRÊN|GẦN|ĐÂY)/i)) {
+            activities.push({
+                name: name.trim(),
+                date: dateInfo.date,
+                amountText,
+                amount: numeric,
+            });
         }
     }
 
