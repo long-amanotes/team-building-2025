@@ -12,15 +12,16 @@ interface MoMoActivity {
  * Parses HTML content from MoMo Fund page to extract Recent Activity
  * Based on browser script: find section, parse 3-line pattern, extract icons
  */
-function parseMoMoActivities(html: string): MoMoActivity[] {
+function parseMoMoActivities(html: string): { activities: MoMoActivity[]; debug?: any } {
     const activities: MoMoActivity[] = [];
+    let activityLines: string[] = [];
 
     // Step 1: Find the "Hoạt động gần đây" section in HTML
     // Look for the text "Hoạt động gần đây" and get its parent container
     const activitySectionMatch = html.match(/Hoạt động[\s\S]*?gần đây[\s\S]*?(?=©\s*2025|Trang chủ|Chuyển khoản vào Quỹ|<\/body|$)/i);
 
     if (!activitySectionMatch) {
-        return [];
+        return { activities: [] };
     }
 
     const activitySectionHTML = activitySectionMatch[0];
@@ -58,7 +59,9 @@ function parseMoMoActivities(html: string): MoMoActivity[] {
 
     const idx = lines.findIndex(l => l.toLowerCase().includes('hoạt động gần đây'));
     if (idx === -1) {
-        return [];
+        console.log('Could not find "Hoạt động gần đây" in lines. Total lines:', lines.length);
+        console.log('First 20 lines:', lines.slice(0, 20));
+        return { activities: [], debug: { linesCount: lines.length, firstLines: lines.slice(0, 20) } };
     }
 
     // Step 5: Get lines after "Hoạt động gần đây"
@@ -66,82 +69,133 @@ function parseMoMoActivities(html: string): MoMoActivity[] {
 
     // Stop at footer if present
     const stopIdx = tail.findIndex(l => l.startsWith('© ') || l.toLowerCase().includes('trang chủ'));
-    const activityLines = stopIdx === -1 ? tail : tail.slice(0, stopIdx);
+    activityLines = stopIdx === -1 ? tail : tail.slice(0, stopIdx);
 
-    // Step 6: Parse activities using 3-line pattern: [name, date, amount]
-    // But be flexible - activities might not be exactly 3 lines apart
-    for (let i = 0; i < activityLines.length; i++) {
-        const line = activityLines[i];
-        
-        // Check if this line is a date
-        const dateMatch = line.match(/(\d{1,2}\/\d{1,2}\/\d{4})/);
-        if (!dateMatch) {
-            continue;
-        }
+    console.log('Activity lines found:', activityLines.length);
+    console.log('First 10 activity lines:', activityLines.slice(0, 10));
 
-        const date = dateMatch[1];
-        
-        // Look for amount in current line or next line
-        let amountText = '';
-        const amountInLine = line.match(/([+-]\s*[\d.,]+đ)/);
-        if (amountInLine) {
-            amountText = amountInLine[1];
-        } else if (i + 1 < activityLines.length) {
-            const nextLine = activityLines[i + 1];
-            const amountInNext = nextLine.match(/([+-]\s*[\d.,]+đ)/);
-            if (amountInNext) {
-                amountText = amountInNext[1];
+    // Step 6: Parse activities - try multiple approaches
+    // Approach 1: Try 3-line pattern first (most common)
+    if (activityLines.length >= 3) {
+        for (let i = 0; i < activityLines.length; i += 3) {
+            const name = activityLines[i];
+            const date = activityLines[i + 1];
+            const amountText = activityLines[i + 2] || '';
+
+            if (!name || !date || !amountText) {
+                break;
             }
-        }
 
-        if (!amountText) {
-            continue;
-        }
-
-        // Look for name before date (previous line or in current line before date)
-        let name = '';
-        if (i > 0) {
-            const prevLine = activityLines[i - 1];
-            // Name should be uppercase letters, possibly with asterisks, not a date or amount
-            if (prevLine && 
-                !prevLine.match(/\d{1,2}\/\d{1,2}\/\d{4}/) && 
-                !prevLine.match(/[+-]\s*[\d.,]+đ/) &&
-                prevLine.length > 1) {
-                name = prevLine;
+            // Validate date format
+            if (!date.match(/\d{1,2}\/\d{1,2}\/\d{4}/)) {
+                continue;
             }
-        }
 
-        // If no name in previous line, try to extract from current line before date
-        if (!name) {
-            const beforeDate = line.substring(0, dateMatch.index).trim();
-            if (beforeDate && beforeDate.length > 1 && !beforeDate.match(/\d{1,2}\/\d{1,2}\/\d{4}/)) {
-                name = beforeDate;
+            // Validate amount format
+            if (!amountText.match(/[+-]\s*[\d.,]+đ/)) {
+                continue;
             }
+
+            // Parse amount
+            const sign = amountText.includes('-') ? -1 : 1;
+            const numeric = parseInt(amountText.replace(/[^\d]/g, ''), 10) * sign;
+
+            // Get icon by index
+            const icon = icons[activities.length] || null;
+
+            activities.push({
+                name: name.trim(),
+                date: date.trim(),
+                amountText: amountText.trim(),
+                amount: numeric,
+                icon: icon || null,
+            });
         }
-
-        // If still no name, skip this activity
-        if (!name || name.length < 2) {
-            continue;
-        }
-
-        // Parse amount
-        const sign = amountText.includes('-') ? -1 : 1;
-        const numeric = parseInt(amountText.replace(/[^\d]/g, ''), 10) * sign;
-
-        // Get icon by index (0 → first activity, 1 → second, etc.)
-        const icon = icons[activities.length] || null;
-
-        // Keep name as-is, including asterisks (***)
-        activities.push({
-            name: name.trim(), // Keep asterisks in name
-            date: date.trim(),
-            amountText: amountText.trim(),
-            amount: numeric,
-            icon: icon || null,
-        });
     }
 
-    return activities;
+    // Approach 2: If 3-line pattern didn't work, try flexible date-based parsing
+    if (activities.length === 0) {
+        for (let i = 0; i < activityLines.length; i++) {
+            const line = activityLines[i];
+
+            // Check if this line contains a date
+            const dateMatch = line.match(/(\d{1,2}\/\d{1,2}\/\d{4})/);
+            if (!dateMatch) {
+                continue;
+            }
+
+            const date = dateMatch[1];
+
+            // Look for amount in current line or next line
+            let amountText = '';
+            const amountInLine = line.match(/([+-]\s*[\d.,]+đ)/);
+            if (amountInLine) {
+                amountText = amountInLine[1];
+            } else if (i + 1 < activityLines.length) {
+                const nextLine = activityLines[i + 1];
+                const amountInNext = nextLine.match(/([+-]\s*[\d.,]+đ)/);
+                if (amountInNext) {
+                    amountText = amountInNext[1];
+                }
+            }
+
+            if (!amountText) {
+                continue;
+            }
+
+            // Look for name before date (previous line or in current line before date)
+            let name = '';
+            if (i > 0) {
+                const prevLine = activityLines[i - 1];
+                // Name should not be a date or amount
+                if (prevLine &&
+                    !prevLine.match(/\d{1,2}\/\d{1,2}\/\d{4}/) &&
+                    !prevLine.match(/[+-]\s*[\d.,]+đ/) &&
+                    prevLine.length > 1 &&
+                    prevLine.length < 50) { // Reasonable name length
+                    name = prevLine;
+                }
+            }
+
+            // If no name in previous line, try to extract from current line before date
+            if (!name && dateMatch.index && dateMatch.index > 0) {
+                const beforeDate = line.substring(0, dateMatch.index).trim();
+                if (beforeDate && beforeDate.length > 1 && beforeDate.length < 50) {
+                    name = beforeDate;
+                }
+            }
+
+            // If still no name, skip this activity
+            if (!name || name.length < 2) {
+                continue;
+            }
+
+            // Parse amount
+            const sign = amountText.includes('-') ? -1 : 1;
+            const numeric = parseInt(amountText.replace(/[^\d]/g, ''), 10) * sign;
+
+            // Get icon by index
+            const icon = icons[activities.length] || null;
+
+            activities.push({
+                name: name.trim(),
+                date: date.trim(),
+                amountText: amountText.trim(),
+                amount: numeric,
+                icon: icon || null,
+            });
+        }
+    }
+
+    console.log('Parsed activities count:', activities.length);
+
+    return { 
+        activities,
+        debug: activities.length === 0 ? {
+            activityLinesCount: activityLines.length,
+            firstActivityLines: activityLines.slice(0, 10),
+        } : undefined
+    };
 }
 
 export default async function handler(
@@ -173,7 +227,8 @@ export default async function handler(
         }
 
         const html = await response.text();
-        const activities = parseMoMoActivities(html);
+        const parseResult = parseMoMoActivities(html);
+        const activities = parseResult.activities;
 
         // Debug logging (only in development or when no activities found)
         if (activities.length === 0) {
@@ -184,7 +239,7 @@ export default async function handler(
             if (activitySectionMatch) {
                 const section = activitySectionMatch[0];
                 console.log('Found activity section, length:', section.length);
-                
+
                 // Extract text content for debugging
                 let debugText = section
                     .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
@@ -211,15 +266,19 @@ export default async function handler(
         // Set cache headers (cache for 5 minutes)
         res.setHeader('Cache-Control', 'public, s-maxage=300, stale-while-revalidate=600');
 
+        // Enhanced debug info
+        const debugInfo = activities.length === 0 ? {
+            htmlLength: html.length,
+            hasActivitySection: html.includes('Hoạt động'),
+            ...parseResult.debug,
+        } : undefined;
+
         return res.status(200).json({
             success: true,
             activities,
             count: activities.length,
             fetchedAt: new Date().toISOString(),
-            debug: activities.length === 0 ? {
-                htmlLength: html.length,
-                hasActivitySection: html.includes('Hoạt động'),
-            } : undefined,
+            debug: debugInfo,
         });
     } catch (error) {
         console.error('Error fetching MoMo activities:', error);
