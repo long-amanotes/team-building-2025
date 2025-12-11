@@ -1,5 +1,5 @@
 import { useState, useCallback } from 'react';
-import { Bed, Users, Star, Crown, Heart, Sparkles, Snowflake, Gift, TreePine, Music, Bell, Candy } from 'lucide-react';
+import { Bed, Users, Star, Crown, Heart, Sparkles, Snowflake, Gift, TreePine, Bell, Candy } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { cn } from '@/lib/utils';
 import type { RoomAssignment } from '@/types';
