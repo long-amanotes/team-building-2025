@@ -1,14 +1,16 @@
 import { cn } from '@/lib/utils';
-import type { ReactNode, CSSProperties } from 'react';
+import type { ReactNode, CSSProperties, MouseEvent } from 'react';
 
 interface CardProps {
   children: ReactNode;
   className?: string;
   hover?: boolean;
   style?: CSSProperties;
+  onClick?: (e: MouseEvent<HTMLDivElement>) => void;
+  onDoubleClick?: (e: MouseEvent<HTMLDivElement>) => void;
 }
 
-function Card({ children, className, hover = false, style }: CardProps) {
+function Card({ children, className, hover = false, style, onClick, onDoubleClick }: CardProps) {
   return (
     <div
       className={cn(
@@ -19,6 +21,8 @@ function Card({ children, className, hover = false, style }: CardProps) {
         className
       )}
       style={style}
+      onClick={onClick}
+      onDoubleClick={onDoubleClick}
     >
       {children}
     </div>
