@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { MapPin, Clock, Users, ExternalLink, Phone, Menu, Images } from 'lucide-react';
+import { MapPin, Clock, Users, ExternalLink, Phone, Menu, Images, ChevronDown, ChevronUp } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
 import { formatCurrency } from '@/lib/utils';
 import { cn } from '@/lib/utils';
 import { FoodImageGallery } from './food-image-gallery';
@@ -20,9 +21,12 @@ const lunchDay18Images = [foodImage1, foodImage2, foodImage3];
 
 function MealCard({ meal }: MealCardProps) {
   const [isImageGalleryOpen, setIsImageGalleryOpen] = useState(false);
+  const [isMenuExpanded, setIsMenuExpanded] = useState(meal.items.length <= 3);
+
   const isLunchDay18 = meal.id === 'lunch-18';
   const images = isLunchDay18 ? lunchDay18Images : [];
   const hasImages = images.length > 0;
+  const hasMultipleItems = meal.items.length > 3;
 
   const googleMapsUrl = meal.mapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
     meal.restaurant + ' ' + meal.address
@@ -115,52 +119,95 @@ function MealCard({ meal }: MealCardProps) {
 
         {/* Menu Items */}
         <div className="space-y-2">
-          <h4 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-            Thực đơn
-          </h4>
-          <div className="rounded-xl border border-border overflow-hidden">
-            <table className="w-full text-sm">
-              <thead>
-                <tr className="border-b border-border bg-muted/30">
-                  <th className="px-4 py-2 text-left font-medium text-muted-foreground">Món</th>
-                  <th className="px-4 py-2 text-center font-medium text-muted-foreground">SL</th>
-                  <th className="hidden px-4 py-2 text-right font-medium text-muted-foreground sm:table-cell">
-                    Đơn giá
-                  </th>
-                  <th className="px-4 py-2 text-right font-medium text-muted-foreground">Thành tiền</th>
-                </tr>
-              </thead>
-              <tbody>
-                {meal.items.map((item, index) => (
-                  <tr
-                    key={index}
-                    className={cn(
-                      'border-b border-border/50 last:border-0',
-                      'transition-colors hover:bg-muted/30'
-                    )}
-                  >
-                    <td className="px-4 py-2.5 text-foreground">
-                      {item.name}
-                      {item.note && (
-                        <span className="ml-1 text-xs text-muted-foreground">
-                          ({item.note})
-                        </span>
-                      )}
-                    </td>
-                    <td className="px-4 py-2.5 text-center text-muted-foreground">
-                      {item.quantity}
-                    </td>
-                    <td className="hidden px-4 py-2.5 text-right text-muted-foreground sm:table-cell">
-                      {formatCurrency(item.pricePerUnit)}
-                    </td>
-                    <td className="px-4 py-2.5 text-right font-medium text-foreground">
-                      {formatCurrency(item.total)}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+          <div className="flex items-center justify-between">
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
+              Thực đơn ({meal.items.length} món)
+            </h4>
+            {hasMultipleItems && (
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setIsMenuExpanded(!isMenuExpanded);
+                }}
+                className="gap-1 text-xs"
+              >
+                {isMenuExpanded ? (
+                  <>
+                    <ChevronUp className="h-4 w-4" />
+                    Thu gọn
+                  </>
+                ) : (
+                  <>
+                    <ChevronDown className="h-4 w-4" />
+                    Xem chi tiết
+                  </>
+                )}
+              </Button>
+            )}
           </div>
+
+          {isMenuExpanded ? (
+            <div className="rounded-xl border border-border overflow-hidden">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b border-border bg-muted/30">
+                    <th className="px-4 py-2 text-left font-medium text-muted-foreground">Món</th>
+                    <th className="px-4 py-2 text-center font-medium text-muted-foreground">SL</th>
+                    <th className="hidden px-4 py-2 text-right font-medium text-muted-foreground sm:table-cell">
+                      Đơn giá
+                    </th>
+                    <th className="px-4 py-2 text-right font-medium text-muted-foreground">Thành tiền</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {meal.items.map((item, index) => (
+                    <tr
+                      key={index}
+                      className={cn(
+                        'border-b border-border/50 last:border-0',
+                        'transition-colors hover:bg-muted/30'
+                      )}
+                    >
+                      <td className="px-4 py-2.5 text-foreground">
+                        {item.name}
+                        {item.note && (
+                          <span className="ml-1 text-xs text-muted-foreground">
+                            ({item.note})
+                          </span>
+                        )}
+                      </td>
+                      <td className="px-4 py-2.5 text-center text-muted-foreground">
+                        {item.quantity}
+                      </td>
+                      <td className="hidden px-4 py-2.5 text-right text-muted-foreground sm:table-cell">
+                        {formatCurrency(item.pricePerUnit)}
+                      </td>
+                      <td className="px-4 py-2.5 text-right font-medium text-foreground">
+                        {formatCurrency(item.total)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="rounded-xl border border-border bg-muted/20 p-3">
+              <div className="flex flex-wrap gap-2">
+                {meal.items.slice(0, 4).map((item, index) => (
+                  <Badge key={index} variant="secondary" className="text-xs">
+                    {item.name}
+                  </Badge>
+                ))}
+                {meal.items.length > 4 && (
+                  <Badge variant="outline" className="text-xs">
+                    +{meal.items.length - 4} món khác
+                  </Badge>
+                )}
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Summary */}
