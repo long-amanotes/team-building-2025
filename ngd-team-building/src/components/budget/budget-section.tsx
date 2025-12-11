@@ -515,13 +515,31 @@ Số TK: ${bankInfo.accountNumber}
                     style={{ animationDelay: `${index * 50}ms` }}
                   >
                     <div className="flex items-start justify-between gap-4">
-                      <div className="flex-1 min-w-0">
-                        <p className="font-semibold text-foreground truncate">
-                          {activity.name}
-                        </p>
-                        <p className="text-sm text-muted-foreground mt-1">
-                          {activity.date}
-                        </p>
+                      <div className="flex items-start gap-3 flex-1 min-w-0">
+                        {/* Avatar/Icon */}
+                        {activity.icon ? (
+                          <img
+                            src={activity.icon}
+                            alt={activity.name}
+                            className="w-10 h-10 rounded-full object-cover shrink-0 border-2 border-border"
+                            onError={(e) => {
+                              // Hide image if it fails to load
+                              e.currentTarget.style.display = 'none';
+                            }}
+                          />
+                        ) : (
+                          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500/20 to-cyan-500/20 flex items-center justify-center shrink-0 border-2 border-border">
+                            <Users className="h-5 w-5 text-blue-600 dark:text-blue-400" />
+                          </div>
+                        )}
+                        <div className="flex-1 min-w-0">
+                          <p className="font-semibold text-foreground">
+                            {activity.name}
+                          </p>
+                          <p className="text-sm text-muted-foreground mt-1">
+                            {activity.date}
+                          </p>
+                        </div>
                       </div>
                       <div className="text-right shrink-0">
                         <p

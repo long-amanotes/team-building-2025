@@ -154,6 +154,7 @@ export interface MoMoActivity {
     date: string;
     amountText: string;
     amount: number;
+    icon?: string | null;
 }
 
 // Tab Types

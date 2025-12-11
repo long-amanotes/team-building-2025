@@ -19,3 +19,4 @@ echo "$response" | jq '.' 2>/dev/null || echo "$response"
 echo ""
 echo "---"
 echo "If you see 'No activities found', check Vercel logs for debug info"
+

@@ -5,139 +5,105 @@ interface MoMoActivity {
     date: string;
     amountText: string;
     amount: number;
+    icon?: string | null;
 }
 
 /**
  * Parses HTML content from MoMo Fund page to extract Recent Activity
- * Simple approach: Extract text content and find patterns directly
+ * Based on browser script: find section, parse 3-line pattern, extract icons
  */
 function parseMoMoActivities(html: string): MoMoActivity[] {
     const activities: MoMoActivity[] = [];
 
-    // Step 1: Extract clean text content from HTML
-    // Remove all HTML tags but preserve text structure
-    let textContent = html
+    // Step 1: Find the "Hoạt động gần đây" section in HTML
+    // Look for the text "Hoạt động gần đây" and get its parent container
+    const activitySectionMatch = html.match(/Hoạt động[\s\S]*?gần đây[\s\S]*?(?=©\s*2025|Trang chủ|Chuyển khoản vào Quỹ|<\/body|$)/i);
+    
+    if (!activitySectionMatch) {
+        return [];
+    }
+
+    const activitySectionHTML = activitySectionMatch[0];
+
+    // Step 2: Extract all images (icons/avatars) from the activity section
+    // These will be matched with activities by index
+    const iconMatches = activitySectionHTML.matchAll(/<img[^>]+src=["']([^"']+)["'][^>]*>/gi);
+    const icons: string[] = [];
+    for (const match of iconMatches) {
+        const src = match[1];
+        // Filter out common non-avatar images (logos, etc.)
+        if (src && !src.match(/(logo|icon|favicon|og-image)/i)) {
+            icons.push(src);
+        }
+    }
+
+    // Step 3: Extract text content from the section (preserve line structure)
+    // Convert block elements to newlines to preserve structure
+    let textContent = activitySectionHTML
         .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
         .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
         .replace(/<noscript[^>]*>[\s\S]*?<\/noscript>/gi, '')
-        .replace(/<[^>]+>/g, ' ') // Remove all HTML tags
+        .replace(/<\/?(div|p|li|tr|td|span|h[1-6]|article|section|header|footer|nav|main|br)[^>]*>/gi, '\n')
+        .replace(/<[^>]+>/g, ' ') // Remove remaining HTML tags
         .replace(/\s+/g, ' ') // Normalize whitespace
         .trim();
 
-    // Step 2: Find the "Hoạt động gần đây" section
-    const activityIndex = textContent.toLowerCase().indexOf('hoạt động gần đây');
-    if (activityIndex === -1) {
+    // Step 4: Split into lines and find "Hoạt động gần đây"
+    const lines = textContent
+        .split('\n')
+        .map(l => l.trim())
+        .filter(Boolean);
+
+    const idx = lines.findIndex(l => l.toLowerCase().includes('hoạt động gần đây'));
+    if (idx === -1) {
         return [];
     }
 
-    // Step 3: Extract section after "Hoạt động gần đây" until footer
-    let activitySection = textContent.substring(activityIndex);
+    // Step 5: Get lines after "Hoạt động gần đây"
+    const tail = lines.slice(idx + 1);
 
-    // Stop at footer or other sections
-    const stopPatterns = [
-        /©\s*2025/i,
-        /trang chủ/i,
-        /chuyển khoản vào quỹ/i,
-    ];
+    // Stop at footer if present
+    const stopIdx = tail.findIndex(l => l.startsWith('© ') || l.toLowerCase().includes('trang chủ'));
+    const activityLines = stopIdx === -1 ? tail : tail.slice(0, stopIdx);
 
-    for (const pattern of stopPatterns) {
-        const match = activitySection.match(pattern);
-        if (match) {
-            activitySection = activitySection.substring(0, match.index);
+    // Step 6: Parse activities using 3-line pattern: [name, date, amount]
+    for (let i = 0; i < activityLines.length; i += 3) {
+        const name = activityLines[i];
+        const date = activityLines[i + 1];
+        const amountText = activityLines[i + 2] || '';
+
+        if (!name || !date || !amountText) {
             break;
         }
-    }
 
-    // Step 4: Find all dates in the section
-    const dateRegex = /(\d{1,2}\/\d{1,2}\/\d{4})/g;
-    const dates: Array<{ date: string; index: number }> = [];
-    let dateMatch;
-
-    while ((dateMatch = dateRegex.exec(activitySection)) !== null) {
-        dates.push({ date: dateMatch[1], index: dateMatch.index });
-    }
-
-    if (dates.length === 0) {
-        return [];
-    }
-
-    // Step 5: For each date, extract name and amount from context
-    for (const dateInfo of dates) {
-        // Extract wider context: 150 chars before date, 100 chars after
-        const start = Math.max(0, dateInfo.index - 150);
-        const end = Math.min(activitySection.length, dateInfo.index + 100);
-        const context = activitySection.substring(start, end);
-
-        // Find amount after date (most reliable pattern)
-        const amountMatch = context.match(/(\d{1,2}\/\d{1,2}\/\d{4})\s*([+-]\s*[\d.,]+đ)/);
-        
-        if (!amountMatch) {
-            continue; // Skip if no amount found
+        // Validate date format
+        if (!date.match(/\d{1,2}\/\d{1,2}\/\d{4}/)) {
+            continue;
         }
 
-        const amountText = amountMatch[2].trim();
+        // Validate amount format
+        if (!amountText.match(/[+-]\s*[\d.,]+đ/)) {
+            continue;
+        }
+
+        // Parse amount
         const sign = amountText.includes('-') ? -1 : 1;
         const numeric = parseInt(amountText.replace(/[^\d]/g, ''), 10) * sign;
 
-        // Try multiple strategies to find the name
-        let name = '';
+        // Get icon by index (0 → first activity, 1 → second, etc.)
+        const icon = icons[activities.length] || null;
 
-        // Strategy 1: Look for name before date in context (uppercase letters, possibly with asterisks)
-        const nameBeforeDate = context.match(/([A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]{2,25})(?:\s*[*\\*]+)?\s*(\d{1,2}\/\d{1,2}\/\d{4})/);
-        if (nameBeforeDate) {
-            name = nameBeforeDate[1].trim();
-        }
-
-        // Strategy 2: If not found, look in wider context before date
-        if (!name || name.length < 2) {
-            const widerStart = Math.max(0, dateInfo.index - 300);
-            const widerContext = activitySection.substring(widerStart, dateInfo.index);
-            
-            // Look for name pattern at the end of wider context
-            const nameInWider = widerContext.match(/([A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]{2,25})(?:\s*[*\\*]+)?\s*$/);
-            if (nameInWider) {
-                name = nameInWider[1].trim();
-            }
-        }
-
-        // Strategy 3: Look for any uppercase word before date (more flexible)
-        if (!name || name.length < 2) {
-            const beforeDate = activitySection.substring(Math.max(0, dateInfo.index - 200), dateInfo.index);
-            // Match any sequence of uppercase letters (2-25 chars) that's not a date or amount
-            const flexibleNameMatch = beforeDate.match(/([A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]{2,25})(?:\s*[*\\*]*)?\s*$/);
-            if (flexibleNameMatch) {
-                const candidate = flexibleNameMatch[1].trim();
-                // Validate it's not a common word
-                if (!candidate.match(/^(THAM|GÓP|CHUYỂN|HOẠT|TRANG|CHỦ|MOMO|BVBANK|NGÂN|HÀNG|QUỸ|TRÊN|GẦN|ĐÂY)/i) &&
-                    !candidate.match(/^\d+$/) && // Not just numbers
-                    candidate.match(/[A-ZÀÁẠẢÃÂẦẤẬẨẪĂẰẮẶẲẴÈÉẸẺẼÊỀẾỆỂỄÌÍỊỈĨÒÓỌỎÕÔỒỐỘỔỖƠỜỚỢỞỠÙÚỤỦŨƯỪỨỰỬỮỲÝỴỶỸĐ]/)) {
-                    name = candidate;
-                }
-            }
-        }
-
-        // If we found a valid name, add the activity
-        if (name && name.length >= 2 &&
-            !name.match(/^(THAM|GÓP|CHUYỂN|HOẠT|TRANG|CHỦ|MOMO|BVBANK|NGÂN|HÀNG|QUỸ|TRÊN|GẦN|ĐÂY)/i)) {
-            activities.push({
-                name: name.trim(),
-                date: dateInfo.date,
-                amountText,
-                amount: numeric,
-            });
-        }
+        // Keep name as-is, including asterisks (***)
+        activities.push({
+            name: name.trim(), // Keep asterisks in name
+            date: date.trim(),
+            amountText: amountText.trim(),
+            amount: numeric,
+            icon: icon || null,
+        });
     }
 
-    // Remove duplicates (same name + date + amount)
-    const unique = activities.filter((activity, index, self) =>
-        index === self.findIndex(a =>
-            a.name === activity.name &&
-            a.date === activity.date &&
-            a.amount === activity.amount
-        )
-    );
-
-    return unique;
+    return activities;
 }
 
 export default async function handler(
