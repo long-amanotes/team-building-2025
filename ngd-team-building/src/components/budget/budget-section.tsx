@@ -11,6 +11,8 @@ import {
   Smartphone,
   Activity,
   RefreshCw,
+  Eye,
+  EyeOff,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -25,6 +27,9 @@ function BudgetSection() {
   const [activities, setActivities] = useState<MoMoActivity[]>([]);
   const [loadingActivities, setLoadingActivities] = useState(false);
   const [activitiesError, setActivitiesError] = useState<string | null>(null);
+  const [isBlurred, setIsBlurred] = useState(true);
+
+  const toggleBlur = () => setIsBlurred(!isBlurred);
 
   const handleCopyBankInfo = async () => {
     const text = `
@@ -136,7 +141,7 @@ Số TK: ${bankInfo.accountNumber}
                 {formatCurrency(budgetSummary.additionalPerPaxRounded)}
               </p>
               <p className="text-xs text-muted-foreground">
-                Dự kiến: {formatCurrency(budgetSummary.additionalPerPax)}
+                Dự kiến ~400k
               </p>
               <p className="text-sm text-muted-foreground">Đóng thêm / người</p>
             </div>
@@ -234,18 +239,41 @@ Số TK: ${bankInfo.accountNumber}
       <div className="grid gap-4 lg:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/15">
-                <Users className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
-              </div>
-              Tính toán đóng góp
-            </CardTitle>
+            <div className="flex items-center justify-between">
+              <CardTitle className="flex items-center gap-2">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/15">
+                  <Users className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
+                </div>
+                Tính toán đóng góp
+              </CardTitle>
+              <Button
+                onClick={toggleBlur}
+                variant="ghost"
+                size="sm"
+                className="gap-2"
+              >
+                {isBlurred ? (
+                  <>
+                    <Eye className="h-4 w-4" />
+                    <span className="hidden sm:inline">Hiện</span>
+                  </>
+                ) : (
+                  <>
+                    <EyeOff className="h-4 w-4" />
+                    <span className="hidden sm:inline">Ẩn</span>
+                  </>
+                )}
+              </Button>
+            </div>
           </CardHeader>
           <CardContent className="space-y-4">
             <div className="space-y-3">
               <div className="flex items-center justify-between rounded-xl bg-muted/50 p-3">
                 <span className="text-muted-foreground">NGD Headcount</span>
-                <span className="font-semibold text-foreground">{budgetSummary.ngdHeadcount} người</span>
+                <span className={cn(
+                  "font-semibold text-foreground transition-all duration-300",
+                  isBlurred && "blur-sm select-none"
+                )}>{budgetSummary.ngdHeadcount} người</span>
               </div>
               <div className="flex items-center justify-between rounded-xl bg-muted/50 p-3">
                 <span className="text-muted-foreground">Budget từ công ty</span>
@@ -255,7 +283,10 @@ Số TK: ${bankInfo.accountNumber}
               </div>
               <div className="flex items-center justify-between rounded-xl bg-muted/50 p-3">
                 <span className="text-muted-foreground">Chi phí cần thêm</span>
-                <span className="font-semibold text-amber-600 dark:text-amber-400">
+                <span className={cn(
+                  "font-semibold text-amber-600 dark:text-amber-400 transition-all duration-300",
+                  isBlurred && "blur-sm select-none"
+                )}>
                   {formatCurrency(budgetSummary.additionalCost)}
                 </span>
               </div>
@@ -267,7 +298,7 @@ Số TK: ${bankInfo.accountNumber}
                   </span>
                 </div>
                 <p className="text-xs text-muted-foreground mt-1">
-                  (Chi phí dự kiến: {formatCurrency(budgetSummary.additionalPerPax)} → làm tròn)
+                  Chi phí dự kiến ~400k, phần còn dư sẽ được đưa vào quỹ team NGD
                 </p>
               </div>
             </div>
