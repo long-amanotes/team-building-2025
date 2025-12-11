@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { Search, Users, Building2 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { SectionHeader } from '@/components/christmas';
 import { ParticipantCard } from './participant-card';
 import { cn } from '@/lib/utils';
 import {
@@ -67,6 +68,14 @@ function ParticipantsSection() {
 
   return (
     <div className="space-y-6">
+      <SectionHeader
+        icon={Users}
+        title="Thành viên"
+        subtitle={`${participants.length} người từ ${divisionOrder.length} teams`}
+        emoji="👥"
+        gradient="from-purple-500 to-pink-500"
+      />
+
       {/* Summary */}
       <div className="flex flex-wrap items-center gap-4">
         <Card className="flex-1 min-w-[160px]" hover={false}>

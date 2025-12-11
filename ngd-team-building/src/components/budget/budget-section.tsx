@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { SectionHeader } from '@/components/christmas';
 import { budgetItems, budgetSummary, bankInfo, momoFundUrl } from '@/data/budget';
 import { formatCurrency } from '@/lib/utils';
 import { cn } from '@/lib/utils';
@@ -82,6 +83,14 @@ Số TK: ${bankInfo.accountNumber}
 
   return (
     <div className="space-y-6">
+      <SectionHeader
+        icon={Wallet}
+        title="Ngân sách"
+        subtitle="Chi tiết chi phí & thanh toán"
+        emoji="💰"
+        gradient="from-indigo-500 to-violet-500"
+      />
+
       {/* Summary Cards */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Card hover={false}>

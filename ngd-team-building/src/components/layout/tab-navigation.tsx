@@ -120,14 +120,17 @@ function TabNavigation({ activeTab, onTabChange }: TabNavigationProps) {
                   onClick={() => onTabChange(tab.id)}
                   className={cn(
                     'relative flex shrink-0 items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium',
-                    'transition-colors duration-150',
+                    'transition-all duration-200',
                     'min-h-[40px] touch-manipulation',
                     isActive
-                      ? 'bg-primary text-primary-foreground'
+                      ? 'bg-gradient-to-r from-[hsl(var(--monokai-green))] to-[hsl(var(--monokai-green)/0.8)] text-white shadow-lg shadow-[hsl(var(--monokai-green)/0.3)]'
                       : 'text-muted-foreground hover:text-foreground hover:bg-secondary'
                   )}
                 >
-                  <Icon className="h-4 w-4 shrink-0" />
+                  {isActive && (
+                    <span className="absolute -top-1 -right-1 text-xs">✨</span>
+                  )}
+                  <Icon className={cn("h-4 w-4 shrink-0", isActive && "text-white")} />
                   <span className="hidden sm:inline whitespace-nowrap">{tab.label}</span>
                   <span className="sm:hidden text-xs">{tab.label}</span>
                 </button>

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { UtensilsCrossed, Coffee, Calendar } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { SectionHeader } from '@/components/christmas';
 import { MealCard } from './meal-card';
 import { lunchDay18, dinnerDay18, lunchDay19 } from '@/data/menu';
 import { formatCurrency } from '@/lib/utils';
@@ -40,6 +41,14 @@ function MenuSection() {
 
   return (
     <div className="space-y-6">
+      <SectionHeader
+        icon={UtensilsCrossed}
+        title="Ăn uống"
+        subtitle="3 bữa chính + Buffet sáng"
+        emoji="🍽️"
+        gradient="from-emerald-500 to-teal-500"
+      />
+
       {/* Summary */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <Card className="sm:col-span-1" hover={false}>

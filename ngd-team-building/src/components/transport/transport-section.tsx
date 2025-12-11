@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { SectionHeader } from '@/components/christmas';
 import { cn } from '@/lib/utils';
 import { vehicles, transportInfo } from '@/data/transport';
 import { formatCurrency } from '@/lib/utils';
@@ -19,6 +20,14 @@ function TransportSection() {
 
   return (
     <div className="space-y-6">
+      <SectionHeader
+        icon={Bus}
+        title="Di chuyển"
+        subtitle="Sài Gòn → Mũi Né → Sài Gòn"
+        emoji="🚌"
+        gradient="from-rose-500 to-pink-500"
+      />
+
       {/* Quick Info Cards */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         <Card hover={false} className="animate-fade-in" style={{ animationDelay: '0ms' }}>

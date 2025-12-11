@@ -398,3 +398,85 @@ h1, h2, h3, h4, h5, h6 {
 .theme-transition *::after {
   transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease !important;
 }
+
+/* ===== CHRISTMAS SNOWFALL ===== */
+@keyframes snowfall {
+  0% {
+    transform: translateY(-10vh) translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) translateX(20px) rotate(360deg);
+    opacity: 0.3;
+  }
+}
+
+@keyframes snowfall-drift {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(15px);
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px currentColor);
+  }
+  50% {
+    filter: drop-shadow(0 0 8px currentColor) drop-shadow(0 0 12px currentColor);
+  }
+}
+
+.snowflake {
+  position: fixed;
+  top: -10vh;
+  color: hsl(var(--foreground) / 0.6);
+  font-size: 1rem;
+  pointer-events: none;
+  z-index: 9999;
+  animation: snowfall linear infinite, snowfall-drift ease-in-out infinite;
+}
+
+.snowflake:nth-child(1) { left: 5%; animation-duration: 15s, 3s; animation-delay: 0s; font-size: 0.8rem; }
+.snowflake:nth-child(2) { left: 15%; animation-duration: 12s, 4s; animation-delay: 1s; font-size: 1.2rem; }
+.snowflake:nth-child(3) { left: 25%; animation-duration: 18s, 2.5s; animation-delay: 2s; font-size: 0.6rem; }
+.snowflake:nth-child(4) { left: 35%; animation-duration: 14s, 3.5s; animation-delay: 0.5s; font-size: 1rem; }
+.snowflake:nth-child(5) { left: 45%; animation-duration: 16s, 4.5s; animation-delay: 3s; font-size: 0.9rem; }
+.snowflake:nth-child(6) { left: 55%; animation-duration: 13s, 3s; animation-delay: 1.5s; font-size: 1.1rem; }
+.snowflake:nth-child(7) { left: 65%; animation-duration: 17s, 2s; animation-delay: 2.5s; font-size: 0.7rem; }
+.snowflake:nth-child(8) { left: 75%; animation-duration: 11s, 4s; animation-delay: 0s; font-size: 1.3rem; }
+.snowflake:nth-child(9) { left: 85%; animation-duration: 19s, 3.5s; animation-delay: 4s; font-size: 0.5rem; }
+.snowflake:nth-child(10) { left: 95%; animation-duration: 15s, 2.5s; animation-delay: 1s; font-size: 0.8rem; }
+.snowflake:nth-child(11) { left: 10%; animation-duration: 20s, 3s; animation-delay: 5s; font-size: 0.6rem; }
+.snowflake:nth-child(12) { left: 30%; animation-duration: 13s, 4s; animation-delay: 2s; font-size: 1rem; }
+.snowflake:nth-child(13) { left: 50%; animation-duration: 16s, 2.5s; animation-delay: 3.5s; font-size: 0.9rem; }
+.snowflake:nth-child(14) { left: 70%; animation-duration: 14s, 3.5s; animation-delay: 1s; font-size: 0.7rem; }
+.snowflake:nth-child(15) { left: 90%; animation-duration: 18s, 4.5s; animation-delay: 4.5s; font-size: 1.1rem; }
+
+/* Christmas lights animation */
+.christmas-light {
+  animation: twinkle 2s ease-in-out infinite;
+}
+
+.christmas-light:nth-child(odd) {
+  animation-delay: 0.5s;
+}
+
+.christmas-glow {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Christmas colors that work with all themes */
+.text-xmas-red { color: hsl(var(--monokai-red)); }
+.text-xmas-green { color: hsl(var(--monokai-green)); }
+.text-xmas-gold { color: hsl(var(--monokai-yellow)); }
+.bg-xmas-red { background-color: hsl(var(--monokai-red) / 0.15); }
+.bg-xmas-green { background-color: hsl(var(--monokai-green) / 0.15); }
+.bg-xmas-gold { background-color: hsl(var(--monokai-yellow) / 0.15); }

@@ -13,9 +13,11 @@ import {
   Sun,
   LogOut,
   AlertTriangle,
+  Calendar,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { SectionHeader } from '@/components/christmas';
 import { cn } from '@/lib/utils';
 import { schedule } from '@/data/schedule';
 import type { ScheduleEvent, TimePeriod } from '@/types';
@@ -129,6 +131,14 @@ function ScheduleSection() {
 
   return (
     <div className="space-y-6">
+      <SectionHeader
+        icon={Calendar}
+        title="Lịch trình"
+        subtitle="2 ngày 1 đêm tại Mũi Né"
+        emoji="📅"
+        gradient="from-sky-500 to-cyan-500"
+      />
+
       {/* Day Selector */}
       <div className="flex gap-3">
         {schedule.map((day, index) => (

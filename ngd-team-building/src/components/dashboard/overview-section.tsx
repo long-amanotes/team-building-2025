@@ -13,6 +13,8 @@ import {
   Navigation,
   FileText,
   Download,
+  Gift,
+  TreePine,
 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -26,10 +28,22 @@ function OverviewSection() {
 
   return (
     <div className="space-y-8">
-      {/* Hero Card */}
-      <Card>
+      {/* Hero Card with Christmas Theme */}
+      <Card className="relative overflow-hidden">
+        {/* Christmas decorative corner */}
+        <div className="absolute top-0 right-0 text-4xl opacity-20 -rotate-12 translate-x-2 -translate-y-2">
+          🎄
+        </div>
+        <div className="absolute bottom-0 left-0 text-3xl opacity-20 rotate-12 -translate-x-2 translate-y-2">
+          🎁
+        </div>
+
         <CardHeader className="pb-4">
           <div className="flex flex-wrap items-center gap-2">
+            <Badge className="gap-1.5 bg-[hsl(var(--monokai-green))]/15 text-[hsl(var(--monokai-green))]">
+              <TreePine className="h-3 w-3" />
+              Christmas Edition
+            </Badge>
             <Badge className="gap-1.5">
               <Waves className="h-3 w-3" />
               {eventInfo.nightsLabel}
@@ -43,11 +57,16 @@ function OverviewSection() {
 
         <CardContent className="space-y-6">
           <div>
-            <h1 className="text-2xl font-semibold text-foreground sm:text-3xl">
-              {eventInfo.eventName}
-            </h1>
-            <p className="mt-2 text-base text-primary">
+            <div className="flex items-center gap-3">
+              <h1 className="text-2xl font-semibold text-foreground sm:text-3xl">
+                {eventInfo.eventName}
+              </h1>
+              <span className="text-2xl">🎅</span>
+            </div>
+            <p className="mt-2 text-base text-primary flex items-center gap-2">
+              <Sparkles className="h-4 w-4 text-[hsl(var(--monokai-yellow))] christmas-glow" />
               {eventInfo.themeTagline}
+              <Sparkles className="h-4 w-4 text-[hsl(var(--monokai-yellow))] christmas-glow" />
             </p>
           </div>
 
@@ -58,8 +77,8 @@ function OverviewSection() {
               rel="noopener noreferrer"
               className="flex items-center gap-3 group"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[hsl(var(--warning))]/10">
-                <Sun className="h-5 w-5 text-[hsl(var(--warning))]" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[hsl(var(--monokai-yellow))]/10">
+                <Sun className="h-5 w-5 text-[hsl(var(--monokai-yellow))]" />
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Resort</p>
@@ -75,8 +94,8 @@ function OverviewSection() {
               rel="noopener noreferrer"
               className="flex items-center gap-3 group"
             >
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[hsl(var(--danger))]/10">
-                <MapPin className="h-5 w-5 text-[hsl(var(--danger))]" />
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-[hsl(var(--monokai-red))]/10">
+                <MapPin className="h-5 w-5 text-[hsl(var(--monokai-red))]" />
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Địa điểm</p>
@@ -98,6 +117,11 @@ function OverviewSection() {
               <Clock className="h-4 w-4 text-muted-foreground" />
               <span className="text-sm text-muted-foreground">Check-out:</span>
               <span className="text-sm font-medium text-foreground">{eventInfo.checkOutTime}</span>
+            </div>
+            {/* Christmas countdown hint */}
+            <div className="flex items-center gap-2 rounded-lg bg-[hsl(var(--monokai-red))]/10 px-3 py-2">
+              <Gift className="h-4 w-4 text-[hsl(var(--monokai-red))] christmas-light" />
+              <span className="text-sm text-[hsl(var(--monokai-red))]">1 tuần trước Noel!</span>
             </div>
           </div>
         </CardContent>
@@ -135,11 +159,12 @@ function OverviewSection() {
       <div className="grid gap-4 lg:grid-cols-2">
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-3 text-[hsl(var(--success))]">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[hsl(var(--success))]/10">
+            <CardTitle className="flex items-center gap-3 text-[hsl(var(--monokai-green))]">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[hsl(var(--monokai-green))]/10">
                 <CheckCircle2 className="h-5 w-5" />
               </div>
               Gói BB bao gồm
+              <span className="text-lg">🎁</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -148,7 +173,7 @@ function OverviewSection() {
                 const isPickleball = item === 'Pickleball';
                 return (
                   <li key={index} className="flex items-start gap-3 text-sm">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[hsl(var(--success))]" />
+                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[hsl(var(--monokai-green))]" />
                     <div className="flex-1">
                       <span className="text-muted-foreground">{item}</span>
                       {isPickleball && (
@@ -166,8 +191,8 @@ function OverviewSection() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-3 text-[hsl(var(--danger))]">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[hsl(var(--danger))]/10">
+            <CardTitle className="flex items-center gap-3 text-[hsl(var(--monokai-red))]">
+              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[hsl(var(--monokai-red))]/10">
                 <XCircle className="h-5 w-5" />
               </div>
               Không bao gồm
@@ -177,7 +202,7 @@ function OverviewSection() {
             <ul className="space-y-3">
               {resortPackage.notIncluded.map((item, index) => (
                 <li key={index} className="flex items-start gap-3 text-sm">
-                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[hsl(var(--danger))]" />
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[hsl(var(--monokai-red))]" />
                   <span className="text-muted-foreground">{item}</span>
                 </li>
               ))}
@@ -229,6 +254,7 @@ function OverviewSection() {
               <Navigation className="h-5 w-5 text-primary" />
             </div>
             Vị trí trên bản đồ
+            <span className="text-lg">📍</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="p-0">

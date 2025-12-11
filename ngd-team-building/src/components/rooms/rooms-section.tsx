@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { BedDouble, Users, Plus, Home, Images } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
+import { SectionHeader } from '@/components/christmas';
 import { RoomCard } from './room-card';
 import { RoomImageGallery } from './room-image-gallery';
 import { getRoomPrimaryImage, getRoomImages } from '@/data/room-images';
@@ -23,6 +24,14 @@ function RoomsSection() {
 
   return (
     <div className="space-y-6">
+      <SectionHeader
+        icon={BedDouble}
+        title="Xếp phòng"
+        subtitle={`${roomSummary.total} phòng cho ${roomSummary.twin * 2 + roomSummary.double * 2 + roomSummary.extraBed} người`}
+        emoji="🏨"
+        gradient="from-amber-500 to-orange-500"
+      />
+
       {/* Room Type Showcase */}
       <div className="grid gap-6 lg:grid-cols-2">
         {/* Deluxe Twin Showcase */}
