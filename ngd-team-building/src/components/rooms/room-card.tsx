@@ -116,7 +116,7 @@ function RoomCard({ room, className }: RoomCardProps) {
   const [escapeOffset, setEscapeOffset] = useState({ x: 0, y: 0 });
   const [isEscaping, setIsEscaping] = useState(false);
   const [escapeMessage, setEscapeMessage] = useState('');
-  const [escapeCount, setEscapeCount] = useState(0);
+  const [, setEscapeCount] = useState(0);
 
   // Trigger escape animation - used for both click and hover
   const triggerEscape = useCallback(() => {
