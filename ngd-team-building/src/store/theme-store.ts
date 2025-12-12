@@ -162,6 +162,11 @@ export const useThemeStore = create<ThemeState>()(
         }),
         {
             name: 'ngd-theme',
+            partialize: (state) => ({
+                theme: state.theme,
+                musicEnabled: state.musicEnabled,
+                snowfallEnabled: state.snowfallEnabled,
+            }),
             onRehydrateStorage: () => (state) => {
                 if (state) {
                     applyThemeToDOM(state.theme);
