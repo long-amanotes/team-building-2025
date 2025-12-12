@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { UtensilsCrossed, Coffee, Calendar } from 'lucide-react';
+import { UtensilsCrossed, Coffee, Calendar, Images } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { SectionHeader } from '@/components/christmas';
@@ -7,6 +7,8 @@ import { MealCard } from './meal-card';
 import { lunchDay18, dinnerDay18, lunchDay19 } from '@/data/menu';
 import { formatCurrency } from '@/lib/utils';
 import { cn } from '@/lib/utils';
+import { FoodImageGallery } from './food-image-gallery';
+import { sandoraImages } from '@/data/sandora-images';
 
 const days = [
   {
@@ -34,6 +36,7 @@ const days = [
 
 function MenuSection() {
   const [activeDay, setActiveDay] = useState<string>('day1');
+  const [isSandoraGalleryOpen, setIsSandoraGalleryOpen] = useState(false);
   const currentDay = days.find((d) => d.id === activeDay) || days[0];
 
   const allMeals = days.flatMap(d => d.meals);
@@ -48,6 +51,67 @@ function MenuSection() {
         emoji="🍽️"
         gradient="from-emerald-500 to-teal-500"
       />
+
+      {/* Sandora Restaurant Showcase */}
+      <Card
+        className={cn(
+          "border-emerald-500/30 bg-gradient-to-br from-emerald-500/10 to-teal-500/10 cursor-pointer transition-all",
+          "hover:shadow-xl hover:scale-[1.01] hover:border-emerald-500/50"
+        )}
+        onClick={() => setIsSandoraGalleryOpen(true)}
+      >
+        <CardContent className="p-6">
+          <div className="flex flex-col md:flex-row gap-6">
+            <div className="flex-1">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 shadow-lg">
+                  <UtensilsCrossed className="h-6 w-6 text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-foreground">Nhà hàng Sandora</h3>
+                  <p className="text-sm text-muted-foreground">Buffet sáng tại resort</p>
+                </div>
+                <Badge variant="outline" className="gap-1.5 text-xs border-emerald-500/30 text-emerald-700 dark:text-emerald-300 bg-emerald-500/10 ml-auto">
+                  <Images className="h-3 w-3" />
+                  {sandoraImages.length} hình ảnh
+                </Badge>
+              </div>
+              <p className="text-sm text-muted-foreground mb-4">
+                Khám phá không gian và thực đơn phong phú của nhà hàng Sandora với hơn {sandoraImages.length} hình ảnh về buffet, không gian nhà hàng, và các món ăn đặc trưng.
+              </p>
+              <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+                <span>📍 Tầng 3, Toà nhà 1</span>
+                <span>⏰ 06:30 - 09:30</span>
+                <span>✅ Đã bao gồm trong gói BB</span>
+              </div>
+            </div>
+            <div className="md:w-64 flex-shrink-0">
+              <div className="grid grid-cols-3 gap-2">
+                {sandoraImages.slice(0, 6).map((img, index) => (
+                  <div
+                    key={index}
+                    className="relative aspect-square rounded-lg overflow-hidden border-2 border-emerald-500/20 hover:border-emerald-500/50 transition-colors"
+                  >
+                    <img
+                      src={img}
+                      alt={`Sandora ${index + 1}`}
+                      className="w-full h-full object-cover"
+                    />
+                    {index === 5 && sandoraImages.length > 6 && (
+                      <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+                        <span className="text-white text-xs font-bold">+{sandoraImages.length - 6}</span>
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+              <p className="text-xs text-center text-muted-foreground mt-2">
+                Click để xem tất cả hình ảnh
+              </p>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Summary */}
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -149,13 +213,26 @@ function MenuSection() {
 
         {/* Buffet note for day 2 */}
         {currentDay.hasBuffet && (
-          <Card className="border-primary/20 bg-gradient-to-r from-primary/5 to-sky-500/5 animate-fade-in" hover={false}>
+          <Card
+            className={cn(
+              "border-primary/20 bg-gradient-to-r from-primary/5 to-sky-500/5 animate-fade-in cursor-pointer transition-all",
+              "hover:shadow-xl hover:scale-[1.02] hover:border-primary/30"
+            )}
+            hover={false}
+            onClick={() => setIsSandoraGalleryOpen(true)}
+          >
             <CardContent className="flex items-start gap-4 p-5">
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/15">
                 <Coffee className="h-6 w-6 text-primary" />
               </div>
-              <div>
-                <p className="text-lg font-semibold text-foreground">🍳 Buffet sáng tại resort</p>
+              <div className="flex-1">
+                <div className="flex items-center gap-2 mb-1">
+                  <p className="text-lg font-semibold text-foreground">🍳 Buffet sáng tại resort</p>
+                  <Badge variant="outline" className="gap-1.5 text-xs border-primary/30 text-primary bg-primary/5">
+                    <Images className="h-3 w-3" />
+                    Click để xem hình ({sandoraImages.length})
+                  </Badge>
+                </div>
                 <p className="mt-1 text-muted-foreground">
                   Đã bao gồm trong gói Bed & Breakfast của resort
                 </p>
@@ -168,6 +245,16 @@ function MenuSection() {
           </Card>
         )}
       </div>
+
+      {/* Sandora Restaurant Image Gallery */}
+      {isSandoraGalleryOpen && (
+        <FoodImageGallery
+          images={sandoraImages}
+          restaurantName="Nhà hàng Sandora"
+          isOpen={isSandoraGalleryOpen}
+          onClose={() => setIsSandoraGalleryOpen(false)}
+        />
+      )}
     </div>
   );
 }

@@ -62,7 +62,13 @@ export const roomTypes = {
 export const policies = {
     checkIn: "Thời gian nhận phòng từ 15:00",
     checkOut: "Trả phòng trước 12:00 trưa",
-    earlyCheckIn: "Nhận phòng sớm hoặc trả phòng trễ sẽ tùy thuộc vào tình trạng phòng và sẽ phụ phí theo quy định",
+    checkInOut: "Thời gian nhận phòng từ 15:00 và trả phòng trước 12:00 trưa (Nhận phòng sớm hoặc trả phòng trễ sẽ tùy thuộc vào tình trạng phòng có sẵn tại resort và sẽ phụ phí theo quy định).",
+    notes: [
+        "Qúy khách không được hút thuốc trong phòng nghỉ",
+        "Qúy khách không đem theo vật nuôi vào Khu nghỉ mát",
+        "Qúy khách thực hiện các quy định của Khu nghỉ mát trong suốt trình lưu trú",
+        "Qúy khách vui lòng mặc đồ bơi khi sử dụng dịch vụ hồ bơi",
+    ],
     cancellation: [
         { days: "Từ 10 ngày trước", penalty: "50% phí dựa trên số lượng phòng giảm" },
         { days: "Từ dưới 07 ngày", penalty: "75% phí dựa trên số lượng phòng giảm" },

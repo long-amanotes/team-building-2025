@@ -123,3 +123,4 @@ echo ""
 echo -e "${YELLOW}Next steps:${NC}"
 echo "1. Update src/data/room-images.ts to use optimized images"
 echo "2. Delete original large images from src/assets/Images"
+
