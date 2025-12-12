@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/avif" href="/logo.avif" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="description" content="NGD Team Building 2025 - Asteria Mui Ne Resort - 18-19/12/2025" />
     <meta name="theme-color" content="#0f172a" />
 
@@ -27,6 +27,356 @@
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- Event Expiration Check - runs BEFORE any app code -->
+    <script>
+      (function() {
+        var EXPIRY = new Date('2025-12-19T21:00:00+07:00').getTime();
+
+        if (Date.now() > EXPIRY) {
+          document.write('\
+            <style>\
+              * { margin: 0; padding: 0; box-sizing: border-box; }\
+              html, body {\
+                min-height: 100%;\
+                min-height: 100dvh;\
+                background: radial-gradient(ellipse at center, #1a1a2e 0%, #0d0d1a 50%, #000 100%);\
+                font-family: Inter, sans-serif;\
+                overflow: hidden;\
+                position: relative;\
+                -webkit-overflow-scrolling: touch;\
+              }\
+              .container {\
+                min-height: 100vh;\
+                min-height: 100dvh;\
+                display: flex;\
+                flex-direction: column;\
+                align-items: center;\
+                justify-content: center;\
+                padding: 1rem;\
+                position: relative;\
+                z-index: 10;\
+                overflow-y: auto;\
+              }\
+              .card {\
+                background: rgba(255,255,255,0.06);\
+                backdrop-filter: blur(25px);\
+                -webkit-backdrop-filter: blur(25px);\
+                border-radius: 20px;\
+                padding: 1.5rem;\
+                width: 100%;\
+                max-width: 550px;\
+                text-align: center;\
+                border: 1px solid rgba(255,255,255,0.1);\
+                box-shadow: 0 25px 50px -12px rgba(0,0,0,0.7), 0 0 100px rgba(255,215,0,0.1);\
+                animation: cardFloat 4s ease-in-out infinite;\
+              }\
+              @keyframes cardFloat {\
+                0%, 100% { transform: translateY(0) rotate(0deg); }\
+                25% { transform: translateY(-8px) rotate(0.5deg); }\
+                75% { transform: translateY(-8px) rotate(-0.5deg); }\
+              }\
+              .thumbnail {\
+                width: 100%;\
+                max-width: 100%;\
+                border-radius: 12px;\
+                margin-bottom: 1rem;\
+                box-shadow: 0 15px 30px rgba(0,0,0,0.5);\
+                animation: imgGlow 2s ease-in-out infinite alternate;\
+              }\
+              @keyframes imgGlow {\
+                from { box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 30px rgba(255,215,0,0.2); }\
+                to { box-shadow: 0 15px 30px rgba(0,0,0,0.5), 0 0 50px rgba(255,215,0,0.4); }\
+              }\
+              h1 {\
+                color: #ffd700;\
+                font-size: 1.5rem;\
+                margin-bottom: 0.5rem;\
+                text-shadow: 0 0 20px rgba(255,215,0,0.8), 0 0 40px rgba(255,215,0,0.4);\
+                animation: titlePulse 1.5s ease-in-out infinite;\
+              }\
+              @keyframes titlePulse {\
+                0%, 100% { text-shadow: 0 0 20px rgba(255,215,0,0.8), 0 0 40px rgba(255,215,0,0.4); }\
+                50% { text-shadow: 0 0 30px rgba(255,215,0,1), 0 0 60px rgba(255,215,0,0.6); }\
+              }\
+              .message {\
+                color: rgba(255,255,255,0.9);\
+                font-size: 0.85rem;\
+                line-height: 1.7;\
+                margin-bottom: 0.8rem;\
+              }\
+              .footer-text {\
+                color: rgba(255,255,255,0.5);\
+                font-size: 0.75rem;\
+              }\
+              .emoji-row {\
+                font-size: 1.3rem;\
+                margin: 0.5rem 0;\
+                letter-spacing: 0.2rem;\
+              }\
+              .particles {\
+                position: fixed;\
+                top: 0;\
+                left: 0;\
+                width: 100%;\
+                height: 100%;\
+                pointer-events: none;\
+                overflow: hidden;\
+                z-index: 1;\
+              }\
+              .particle {\
+                position: absolute;\
+                will-change: transform;\
+              }\
+\
+              @media (min-width: 480px) {\
+                .container { padding: 1.5rem; }\
+                .card { padding: 2rem; border-radius: 24px; }\
+                .thumbnail { border-radius: 14px; margin-bottom: 1.2rem; }\
+                h1 { font-size: 1.8rem; }\
+                .message { font-size: 0.9rem; }\
+                .footer-text { font-size: 0.8rem; }\
+                .emoji-row { font-size: 1.5rem; letter-spacing: 0.25rem; }\
+              }\
+              @media (min-width: 640px) {\
+                .container { padding: 2rem; }\
+                .card { padding: 2.5rem; }\
+                .thumbnail { border-radius: 16px; margin-bottom: 1.5rem; max-width: 380px; }\
+                h1 { font-size: 2.2rem; margin-bottom: 0.8rem; }\
+                .message { font-size: 1rem; line-height: 1.8; margin-bottom: 1rem; }\
+                .footer-text { font-size: 0.85rem; }\
+                .emoji-row { font-size: 1.8rem; margin: 0.8rem 0; letter-spacing: 0.3rem; }\
+                .test-toggle { bottom: 1rem; right: 1rem; padding: 0.5rem 1rem; font-size: 0.75rem; }\
+              }\
+            </style>\
+            <div class="particles" id="particles"></div>\
+            <div class="container">\
+              <div class="card">\
+                <img src="/og-image.jpg" alt="NGD Team Building 2025" class="thumbnail" />\
+                <h1>NGD Team Building 2025</h1>\
+                <div class="emoji-row">🎄 ⛄ 🎁 🎅 ❄️</div>\
+                <p class="message">\
+                  Cảm ơn tất cả các thành viên NGD đã cùng nhau tạo nên những kỷ niệm tuyệt vời tại Mũi Né!<br><br>\
+                  Chuyến đi đã kết thúc nhưng những khoảnh khắc đáng nhớ sẽ mãi trong tim chúng ta.<br><br>\
+                  Hẹn gặp lại trong những chuyến đi tiếp theo! 🚀\
+                </p>\
+                <div class="emoji-row">🧧 💰 🌸 🍂 ✨</div>\
+                <p class="footer-text">18-19/12/2025 • Asteria Mui Ne Resort</p>\
+              </div>\
+            </div>\
+            <script>\
+              (function() {\
+                var container = document.getElementById("particles");\
+                var W = window.innerWidth;\
+                var H = window.innerHeight;\
+                var centerX = W / 2;\
+                var centerY = H / 2;\
+                var pointerX = W / 2;\
+                var pointerY = H / 2;\
+                var isMobile = W < 640;\
+                \
+                var items = [\
+                  "❄️", "❅", "❆", "✻", "✼",\
+                  "🌸", "🌺", "💮", "🏵️", "🌷", "🌹",\
+                  "🍂", "🍁", "🍃", "🌿", "☘️",\
+                  "🪙", "💰", "💵", "💎", "👑",\
+                  "🧧", "🎊", "🎉", "🎀", "💝", "❤️", "💖",\
+                  "✨", "⭐", "💫", "🌟", "⚡", "🔥", "💥",\
+                  "🎄", "🎁", "🎅", "⛄", "🔔", "🦌",\
+                  "🚀", "🎈", "🎆", "🎇", "🌈"\
+                ];\
+                var particles = [];\
+                var count = isMobile ? 80 : 200;\
+                var baseFontSize = isMobile ? 0.6 : 0.8;\
+                var fontSizeRange = isMobile ? 1.5 : 2.5;\
+                \
+                for (var i = 0; i < count; i++) {\
+                  var el = document.createElement("div");\
+                  el.className = "particle";\
+                  el.textContent = items[Math.floor(Math.random() * items.length)];\
+                  el.style.fontSize = (baseFontSize + Math.random() * fontSizeRange) + "rem";\
+                  el.style.opacity = 0.5 + Math.random() * 0.5;\
+                  container.appendChild(el);\
+                  \
+                  var angle = Math.random() * Math.PI * 2;\
+                  var speed = 1 + Math.random() * (isMobile ? 2.5 : 4);\
+                  \
+                  particles.push({\
+                    el: el,\
+                    x: Math.random() * W,\
+                    y: Math.random() * H,\
+                    vx: Math.cos(angle) * speed,\
+                    vy: Math.sin(angle) * speed,\
+                    rot: Math.random() * 360,\
+                    rotSpeed: (Math.random() - 0.5) * (isMobile ? 10 : 15),\
+                    baseSpeed: speed,\
+                    scale: 0.8 + Math.random() * 0.4,\
+                    scaleDir: Math.random() > 0.5 ? 1 : -1,\
+                    behavior: Math.floor(Math.random() * 5),\
+                    phase: Math.random() * Math.PI * 2,\
+                    orbitRadius: 50 + Math.random() * (isMobile ? 80 : 150),\
+                    orbitSpeed: 0.5 + Math.random() * 2,\
+                    orbitCenter: { x: Math.random() * W, y: Math.random() * H }\
+                  });\
+                }\
+                \
+                function updatePointer(x, y) {\
+                  pointerX = x;\
+                  pointerY = y;\
+                }\
+                document.addEventListener("mousemove", function(e) {\
+                  updatePointer(e.clientX, e.clientY);\
+                });\
+                document.addEventListener("touchmove", function(e) {\
+                  if (e.touches.length > 0) {\
+                    updatePointer(e.touches[0].clientX, e.touches[0].clientY);\
+                  }\
+                }, { passive: true });\
+                \
+                var time = 0;\
+                var explosionTimer = 0;\
+                \
+                function animate() {\
+                  time += 0.02;\
+                  explosionTimer += 0.02;\
+                  \
+                  var explosionInterval = isMobile ? 3 : 2;\
+                  if (explosionTimer > explosionInterval + Math.random() * 3) {\
+                    explosionTimer = 0;\
+                    var ex = Math.random() * W;\
+                    var ey = Math.random() * H;\
+                    var explosionRadius = isMobile ? 200 : 300;\
+                    for (var i = 0; i < particles.length; i++) {\
+                      var p = particles[i];\
+                      var dx = p.x - ex;\
+                      var dy = p.y - ey;\
+                      var dist = Math.sqrt(dx * dx + dy * dy);\
+                      if (dist < explosionRadius && dist > 0) {\
+                        var force = (explosionRadius - dist) / 30;\
+                        p.vx += (dx / dist) * force;\
+                        p.vy += (dy / dist) * force;\
+                      }\
+                    }\
+                  }\
+                  \
+                  for (var i = 0; i < particles.length; i++) {\
+                    var p = particles[i];\
+                    \
+                    switch(p.behavior) {\
+                      case 0:\
+                        p.vx += (Math.random() - 0.5) * 0.8;\
+                        p.vy += (Math.random() - 0.5) * 0.8;\
+                        break;\
+                      case 1:\
+                        p.orbitCenter.x += (Math.random() - 0.5) * 2;\
+                        p.orbitCenter.y += (Math.random() - 0.5) * 2;\
+                        var targetX = p.orbitCenter.x + Math.cos(time * p.orbitSpeed + p.phase) * p.orbitRadius;\
+                        var targetY = p.orbitCenter.y + Math.sin(time * p.orbitSpeed + p.phase) * p.orbitRadius;\
+                        p.vx += (targetX - p.x) * 0.02;\
+                        p.vy += (targetY - p.y) * 0.02;\
+                        break;\
+                      case 2:\
+                        p.vx += Math.sin(time * 3 + p.phase) * 0.5;\
+                        p.vy += Math.cos(time * 2 + p.phase) * 0.5;\
+                        break;\
+                      case 3:\
+                        var dx = centerX - p.x;\
+                        var dy = centerY - p.y;\
+                        var dist = Math.sqrt(dx * dx + dy * dy);\
+                        if (dist > 50) {\
+                          var perpX = -dy / dist;\
+                          var perpY = dx / dist;\
+                          p.vx += perpX * 0.3 + dx * 0.001;\
+                          p.vy += perpY * 0.3 + dy * 0.001;\
+                        }\
+                        break;\
+                      case 4:\
+                        if (Math.random() < 0.05) {\
+                          var newAngle = Math.random() * Math.PI * 2;\
+                          p.vx = Math.cos(newAngle) * p.baseSpeed * 3;\
+                          p.vy = Math.sin(newAngle) * p.baseSpeed * 3;\
+                        }\
+                        break;\
+                    }\
+                    \
+                    var mdx = p.x - pointerX;\
+                    var mdy = p.y - pointerY;\
+                    var mDist = Math.sqrt(mdx * mdx + mdy * mdy);\
+                    var repelRadius = isMobile ? 100 : 150;\
+                    if (mDist < repelRadius && mDist > 0) {\
+                      var repel = (repelRadius - mDist) / 15;\
+                      p.vx += (mdx / mDist) * repel;\
+                      p.vy += (mdy / mDist) * repel;\
+                    }\
+                    \
+                    var mag = Math.sqrt(p.vx * p.vx + p.vy * p.vy);\
+                    var maxSpeed = p.baseSpeed * 5;\
+                    if (mag > maxSpeed) {\
+                      p.vx = (p.vx / mag) * maxSpeed;\
+                      p.vy = (p.vy / mag) * maxSpeed;\
+                    }\
+                    \
+                    p.vx *= 0.99;\
+                    p.vy *= 0.99;\
+                    \
+                    p.x += p.vx;\
+                    p.y += p.vy;\
+                    p.rot += p.rotSpeed;\
+                    \
+                    p.scale += p.scaleDir * 0.01;\
+                    if (p.scale > 1.3 || p.scale < 0.7) p.scaleDir *= -1;\
+                    \
+                    if (p.x < -50) p.x = W + 50;\
+                    if (p.x > W + 50) p.x = -50;\
+                    if (p.y < -50) p.y = H + 50;\
+                    if (p.y > H + 50) p.y = -50;\
+                    \
+                    p.el.style.transform = "translate(" + p.x + "px," + p.y + "px) rotate(" + p.rot + "deg) scale(" + p.scale + ")";\
+                  }\
+                  requestAnimationFrame(animate);\
+                }\
+                animate();\
+                \
+                window.addEventListener("resize", function() {\
+                  W = window.innerWidth;\
+                  H = window.innerHeight;\
+                  centerX = W / 2;\
+                  centerY = H / 2;\
+                });\
+                \
+                function handleTap(x, y) {\
+                  var tapRadius = isMobile ? 250 : 400;\
+                  for (var i = 0; i < particles.length; i++) {\
+                    var p = particles[i];\
+                    var dx = p.x - x;\
+                    var dy = p.y - y;\
+                    var dist = Math.sqrt(dx * dx + dy * dy);\
+                    if (dist < tapRadius && dist > 0) {\
+                      var force = (tapRadius - dist) / 20;\
+                      p.vx += (dx / dist) * force;\
+                      p.vy += (dy / dist) * force;\
+                    }\
+                  }\
+                }\
+                document.addEventListener("click", function(e) {\
+                  handleTap(e.clientX, e.clientY);\
+                });\
+                document.addEventListener("touchstart", function(e) {\
+                  if (e.touches.length > 0) {\
+                    handleTap(e.touches[0].clientX, e.touches[0].clientY);\
+                  }\
+                }, { passive: true });\
+              })();\
+            <\/script>\
+          ');
+          document.close();
+        } else {
+          var script = document.createElement('script');
+          script.type = 'module';
+          script.src = '/src/main.tsx';
+          document.body.appendChild(script);
+        }
+      })();
+    </script>
   </body>
 </html>

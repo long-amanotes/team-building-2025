@@ -34,3 +34,4 @@ declare module '*.avif' {
     export default src
 }
 
+
