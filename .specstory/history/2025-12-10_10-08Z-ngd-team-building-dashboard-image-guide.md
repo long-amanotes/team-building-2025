@@ -380,7 +380,7 @@ For consistent card design, crop images to **16:9** or **1:1** ratio. Recommende
 
 - **Accommodation Card:** Senior Deluxe room interior
 
-- **Dining Card:** Phố Mũi Né seafood platter  
+- **Dining Card:** Phố Mũi Né seafood platter
 
 - **Activity Card:** Beach campfire group shot
 
@@ -492,7 +492,7 @@ Since this is an **internal team use** dashboard (not public commercial), all so
 
 <!-- Footer attribution for transparency -->
 
-<small>Resort images courtesy of Asteria Mui Ne Resort. 
+<small>Resort images courtesy of Asteria Mui Ne Resort.
 
 Stock photos from Unsplash and Pexels contributors.</small>
 
@@ -7978,7 +7978,7 @@ Status: **completed**
 ### 4. Di chuyển — Cập nhật tổng số chỗ
 - Cập nhật xe 29 chỗ: capacity từ 29 → 28 (28 khách + 1 tài xế)
 - Thêm note "28 khách + 1 tài xế" cho xe buýt
-- Cập nhật tổng số chỗ hiển thị: 37 (28 khách + 1 tài xế + 8 xe riêng)
+- Cập nhật tổng số chỗ hiển thị: 37 (28 khách + 1 tài xế + 3 xe riêng)
 - Thêm giải thích chi tiết trong card tổng số chỗ
 
 ### 5. Ngân sách — Thêm note về Excel file
@@ -7992,7 +7992,7 @@ Tất cả thay đổi đã được build thành công và sẵn sàng sử d�
 
 _**User (2025-12-10 08:16Z)**_
 
-add ngd-team-building/src/assets/services/BB-service-pack.pdf into tab `Tổng Quan` để mọi người có thể preview file PDF 
+add ngd-team-building/src/assets/services/BB-service-pack.pdf into tab `Tổng Quan` để mọi người có thể preview file PDF
 
 ---
 
@@ -19933,7 +19933,7 @@ Tất cả hình ảnh đã được áp dụng vào web và đã được commi
 
 _**User (2025-12-10 08:16Z)**_
 
-update hình ảnh và phòng cho tab `Xếp phòng` Deluxe Double, Deluxe Twin. Hình ảnh sẽ được nằm đây:  @Deluxe Twin @Deluxe Double 
+update hình ảnh và phòng cho tab `Xếp phòng` Deluxe Double, Deluxe Twin. Hình ảnh sẽ được nằm đây:  @Deluxe Twin @Deluxe Double
 
 
 
@@ -21252,7 +21252,7 @@ Khi click đổi ảnh, transition sẽ mượt hơn với fade effect thay vì 
 
 _**User (2025-12-10 08:16Z)**_
 
-suggest không nên làm thành mỗi card như vậy một ảnh, cho một button xem thêm gìđó rồi coi   
+suggest không nên làm thành mỗi card như vậy một ảnh, cho một button xem thêm gìđó rồi coi
 
 ---
 
@@ -36007,7 +36007,7 @@ Result:
             "column": 1
           }
         },
-        "contents": "function TransportSection() {\n\n\n        &lt;Card hover={false} className=\"animate-fade-in\" style={{ animationDelay: '100ms' }}&gt;\n          &lt;CardContent className=\"flex items-center gap-4 p-5\"&gt;\n            &lt;div className=\"flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 shadow-lg shadow-amber-500/25\"&gt;\n              &lt;Users className=\"h-6 w-6 text-white\" /&gt;\n            &lt;/div&gt;\n            &lt;div&gt;\n              &lt;p className=\"text-2xl font-bold text-foreground\"&gt;37&lt;/p&gt;\n              &lt;p className=\"text-sm text-muted-foreground\"&gt;Tổng số chỗ&lt;/p&gt;\n              &lt;p className=\"text-xs text-muted-foreground/70\"&gt;(28 khách + 1 tài xế + 8 xe riêng)&lt;/p&gt;\n            &lt;/div&gt;\n          &lt;/CardContent&gt;\n        &lt;/Card&gt;\n\n        &lt;Card hover={false} className=\"animate-fade-in\" style={{ animationDelay: '150ms' }}&gt;\n          &lt;CardContent className=\"flex items-center gap-4 p-5\"&gt;\n            &lt;div className=\"flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-rose-500 to-pink-500 shadow-lg shadow-rose-500/25\"&gt;\n              &lt;span className=\"text-lg font-bold text-white\"&gt;₫&lt;/span&gt;\n            &lt;/div&gt;\n            &lt;div&gt;\n              &lt;p className=\"text-lg font-bold text-foreground\"&gt;\n                {formatCurrency(transportInfo.busCost)}\n              &lt;/p&gt;\n              &lt;p className=\"text-sm text-muted-foreground\"&gt;Chi phí xe buýt&lt;/p&gt;\n            &lt;/div&gt;\n          &lt;/CardContent&gt;\n        &lt;/Card&gt;\n      &lt;/div&gt;\n\n      {/* Meeting Point */}\n      &lt;Card className=\"border-primary/20 bg-gradient-to-r from-primary/5 to-sky-500/5\" hover={false}&gt;\n        &lt;CardContent className=\"p-5\"&gt;\n}",
+        "contents": "function TransportSection() {\n\n\n        &lt;Card hover={false} className=\"animate-fade-in\" style={{ animationDelay: '100ms' }}&gt;\n          &lt;CardContent className=\"flex items-center gap-4 p-5\"&gt;\n            &lt;div className=\"flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 shadow-lg shadow-amber-500/25\"&gt;\n              &lt;Users className=\"h-6 w-6 text-white\" /&gt;\n            &lt;/div&gt;\n            &lt;div&gt;\n              &lt;p className=\"text-2xl font-bold text-foreground\"&gt;37&lt;/p&gt;\n              &lt;p className=\"text-sm text-muted-foreground\"&gt;Tổng số chỗ&lt;/p&gt;\n              &lt;p className=\"text-xs text-muted-foreground/70\"&gt;(28 khách + 1 tài xế + 3 xe riêng)&lt;/p&gt;\n            &lt;/div&gt;\n          &lt;/CardContent&gt;\n        &lt;/Card&gt;\n\n        &lt;Card hover={false} className=\"animate-fade-in\" style={{ animationDelay: '150ms' }}&gt;\n          &lt;CardContent className=\"flex items-center gap-4 p-5\"&gt;\n            &lt;div className=\"flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-rose-500 to-pink-500 shadow-lg shadow-rose-500/25\"&gt;\n              &lt;span className=\"text-lg font-bold text-white\"&gt;₫&lt;/span&gt;\n            &lt;/div&gt;\n            &lt;div&gt;\n              &lt;p className=\"text-lg font-bold text-foreground\"&gt;\n                {formatCurrency(transportInfo.busCost)}\n              &lt;/p&gt;\n              &lt;p className=\"text-sm text-muted-foreground\"&gt;Chi phí xe buýt&lt;/p&gt;\n            &lt;/div&gt;\n          &lt;/CardContent&gt;\n        &lt;/Card&gt;\n      &lt;/div&gt;\n\n      {/* Meeting Point */}\n      &lt;Card className=\"border-primary/20 bg-gradient-to-r from-primary/5 to-sky-500/5\" hover={false}&gt;\n        &lt;CardContent className=\"p-5\"&gt;\n}",
         "signatures": {
           "ranges": [
             {
@@ -36067,7 +36067,7 @@ Result:
             "lineNumber": 55
           },
           {
-            "text": "              &lt;p className=\"text-xs text-muted-foreground/70\"&gt;(28 khách + 1 tài xế + 8 xe riêng)&lt;/p&gt;",
+            "text": "              &lt;p className=\"text-xs text-muted-foreground/70\"&gt;(28 khách + 1 tài xế + 3 xe riêng)&lt;/p&gt;",
             "lineNumber": 56
           },
           {
@@ -41053,13 +41053,13 @@ Phần ăn uống hôm ăn trưa lấy hình ảnh từ `ngd-team-building/src/a
 
 
 
-Nhà hàng Sunrise Mũi Né			
+Nhà hàng Sunrise Mũi Né
 
-			
 
-	Số lượng	Tổng	
 
-Trung bình 100k/người	40	4,000,000 ₫	
+	Số lượng	Tổng
+
+Trung bình 100k/người	40	4,000,000 ₫
 
 ---
 
@@ -52000,7 +52000,7 @@ Tất cả nhà hàng đã đồng bộ và modal hiển thị fullscreen.
 _**User (2025-12-10 08:16Z)**_
 
 <Card className="overflow-hidden" children="[Array]"></Card>
-<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div> phần này nè 
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div> phần này nè
 
 ---
 
@@ -52661,7 +52661,7 @@ _**User (2025-12-10 08:16Z)**_
 
 <CardHeader className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 pb-4" children="[Object]">Xem Menu</CardHeader>
 <a href="https://dungjuntvhk.my.canva.site/setmenu" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-xs text-primary hover:underline px-2 py-1 rounded-md bg-primary/10 hover:bg-primary/20 transition-colors">Xem Menu</a> <CardHeader className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 pb-4" children="[Object]">Xem Menu</CardHeader>
-<a href="https://dungjuntvhk.my.canva.site/setmenu" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-xs text-primary hover:underline px-2 py-1 rounded-md bg-primary/10 hover:bg-primary/20 transition-colors">Xem Menu</a> 2 button của 2 quán này không nên hiện vì không có link 
+<a href="https://dungjuntvhk.my.canva.site/setmenu" target="_blank" rel="noopener noreferrer" class="flex items-center gap-1.5 text-xs text-primary hover:underline px-2 py-1 rounded-md bg-primary/10 hover:bg-primary/20 transition-colors">Xem Menu</a> 2 button của 2 quán này không nên hiện vì không có link
 
 ---
 
@@ -52906,7 +52906,7 @@ Button "Xem Menu" chỉ hiển thị cho nhà hàng có menu thực sự.
 _**User (2025-12-10 08:16Z)**_
 
 <CardHeader className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 pb-4" children="[Object]">18/12/2025 Ăn trưa ngày 18 Nhà hàng Sunrise Mũi Né</CardHeader>
-<div class="flex flex-col space-y-1.5 p-5 bg-gradient-to-r from-amber-500/10 to-orange-500/10 pb-4">18/12/2025 Ăn trưa ngày 18 Nhà hàng Sunrise Mũi Né</div> hiện tại không show cho mọi người biết là có thể click vô được 
+<div class="flex flex-col space-y-1.5 p-5 bg-gradient-to-r from-amber-500/10 to-orange-500/10 pb-4">18/12/2025 Ăn trưa ngày 18 Nhà hàng Sunrise Mũi Né</div> hiện tại không show cho mọi người biết là có thể click vô được
 
 ---
 
@@ -53128,7 +53128,7 @@ Card giờ có visual indicator rõ ràng, người dùng sẽ biết có thể 
 _**User (2025-12-10 08:16Z)**_
 
 click show ra popup full màn hình luôn ấy, hiện tại nó vẫn đang nằm bên trong <App>3 Bữa ăn chính 20.440.000 ₫ Tổng chi phí ăn uống Buffet sáng ngày 19/12 Đã bao gồm trong gói Bed & Breakfast của resort. Dùng tại Nhà hàng Sandora, Tầng 3, Toà nhà 1 từ 06:30 - 09:30. 18/12/2025</App>
-<main class="container mx-auto px-3 sm:px-4 py-4 sm:py-6">3 Bữa ăn chính 20.440.000 ₫ Tổng chi phí ăn uống Buffet sáng ngày 19/12 Đã bao gồm trong gói Bed & Breakfast của resort. Dùng tại Nhà hàng Sandora, Tầng 3, Toà nhà 1 từ 06:30 - 09:30. 18/12/2025</main> 
+<main class="container mx-auto px-3 sm:px-4 py-4 sm:py-6">3 Bữa ăn chính 20.440.000 ₫ Tổng chi phí ăn uống Buffet sáng ngày 19/12 Đã bao gồm trong gói Bed & Breakfast của resort. Dùng tại Nhà hàng Sandora, Tầng 3, Toà nhà 1 từ 06:30 - 09:30. 18/12/2025</main>
 
 ---
 
@@ -53405,7 +53405,7 @@ Popup giờ hiển thị fullscreen, không bị giới hạn bởi App componen
 _**User (2025-12-10 08:16Z)**_
 
 <CardContent className="p-5" children="[Object]">Văn phòng Amanotes - 141-143 Nguyễn Cơ Thạch, P. An Khánh, TP. HCM</CardContent>
-<p class="font-semibold text-foreground group-hover:text-primary transition-colors flex items-center gap-1">Văn phòng Amanotes - 141-143 Nguyễn Cơ Thạch, P. An Khánh, TP. HCM</p> nên đổi link lại là: https://maps.app.goo.gl/qKZhVG9MJc6tz7hh8 
+<p class="font-semibold text-foreground group-hover:text-primary transition-colors flex items-center gap-1">Văn phòng Amanotes - 141-143 Nguyễn Cơ Thạch, P. An Khánh, TP. HCM</p> nên đổi link lại là: https://maps.app.goo.gl/qKZhVG9MJc6tz7hh8
 
 ---
 
@@ -57274,7 +57274,7 @@ Result:
 
 ```json
 {
-  "contents": "import {\n  Bus,\n  Car,\n  Clock,\n  Users,\n  ArrowRight,\n  Building2,\n  ExternalLink,\n} from 'lucide-react';\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\nimport { Badge } from '@/components/ui/badge';\nimport { cn } from '@/lib/utils';\nimport { vehicles, transportInfo } from '@/data/transport';\nimport { formatCurrency } from '@/lib/utils';\n\nfunction TransportSection() {\n  const mainBus = vehicles.find((v) =&gt; v.isMain);\n  const privateCars = vehicles.filter((v) =&gt; !v.isMain);\n\n  return (\n    &lt;div className=\"space-y-6\"&gt;\n      {/* Quick Info Cards */}\n      &lt;div className=\"grid gap-4 sm:grid-cols-2 lg:grid-cols-4\"&gt;\n        &lt;Card hover={false} className=\"animate-fade-in\" style={{ animationDelay: '0ms' }}&gt;\n          &lt;CardContent className=\"flex items-center gap-4 p-5\"&gt;\n            &lt;div className=\"flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-sky-500 shadow-lg shadow-primary/25\"&gt;\n              &lt;Bus className=\"h-6 w-6 text-white\" /&gt;\n            &lt;/div&gt;\n            &lt;div&gt;\n              &lt;p className=\"text-2xl font-bold text-foreground\"&gt;1&lt;/p&gt;\n              &lt;p className=\"text-sm text-muted-foreground\"&gt;Xe buýt chính&lt;/p&gt;\n            &lt;/div&gt;\n          &lt;/CardContent&gt;\n        &lt;/Card&gt;\n\n        &lt;Card hover={false} className=\"animate-fade-in\" style={{ animationDelay: '50ms' }}&gt;\n          &lt;CardContent className=\"flex items-center gap-4 p-5\"&gt;\n            &lt;div className=\"flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 shadow-lg shadow-emerald-500/25\"&gt;\n              &lt;Car className=\"h-6 w-6 text-white\" /&gt;\n            &lt;/div&gt;\n            &lt;div&gt;\n              &lt;p className=\"text-2xl font-bold text-foreground\"&gt;{privateCars.length}&lt;/p&gt;\n              &lt;p className=\"text-sm text-muted-foreground\"&gt;Xe riêng&lt;/p&gt;\n            &lt;/div&gt;\n          &lt;/CardContent&gt;\n        &lt;/Card&gt;\n\n        &lt;Card hover={false} className=\"animate-fade-in\" style={{ animationDelay: '100ms' }}&gt;\n          &lt;CardContent className=\"flex items-center gap-4 p-5\"&gt;\n            &lt;div className=\"flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 shadow-lg shadow-amber-500/25\"&gt;\n              &lt;Users className=\"h-6 w-6 text-white\" /&gt;\n            &lt;/div&gt;\n            &lt;div&gt;\n              &lt;p className=\"text-2xl font-bold text-foreground\"&gt;37&lt;/p&gt;\n              &lt;p className=\"text-sm text-muted-foreground\"&gt;Tổng số chỗ&lt;/p&gt;\n              &lt;p className=\"text-xs text-muted-foreground/70\"&gt;(28 khách + 1 tài xế + 8 xe riêng)&lt;/p&gt;\n            &lt;/div&gt;\n          &lt;/CardContent&gt;\n        &lt;/Card&gt;\n\n        &lt;Card hover={false} className=\"animate-fade-in\" style={{ animationDelay: '150ms' }}&gt;\n          &lt;CardContent className=\"flex items-center gap-4 p-5\"&gt;\n            &lt;div className=\"flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-rose-500 to-pink-500 shadow-lg shadow-rose-500/25\"&gt;\n              &lt;span className=\"text-lg font-bold text-white\"&gt;₫&lt;/span&gt;\n            &lt;/div&gt;\n            &lt;div&gt;\n              &lt;p className=\"text-lg font-bold text-foreground\"&gt;\n                {formatCurrency(transportInfo.busCost)}\n              &lt;/p&gt;\n              &lt;p className=\"text-sm text-muted-foreground\"&gt;Chi phí xe buýt&lt;/p&gt;\n            &lt;/div&gt;\n          &lt;/CardContent&gt;\n        &lt;/Card&gt;\n      &lt;/div&gt;\n\n      {/* Meeting Point */}\n      &lt;Card className=\"border-primary/20 bg-gradient-to-r from-primary/5 to-sky-500/5\" hover={false}&gt;\n        &lt;CardContent className=\"p-5\"&gt;\n          &lt;div className=\"flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between\"&gt;\n            &lt;a\n              href={transportInfo.meetPointMapsUrl}\n              target=\"_blank\"\n              rel=\"noopener noreferrer\"\n              className=\"flex items-start gap-3 group\"\n            &gt;\n              &lt;div className=\"flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/15 group-hover:scale-110 transition-transform\"&gt;\n                &lt;Building2 className=\"h-5 w-5 text-primary\" /&gt;\n              &lt;/div&gt;\n              &lt;div&gt;\n                &lt;p className=\"text-sm text-muted-foreground\"&gt;Điểm tập trung&lt;/p&gt;\n                &lt;p className=\"font-semibold text-foreground group-hover:text-primary transition-colors flex items-center gap-1\"&gt;\n                  {transportInfo.meetPoint}\n                  &lt;ExternalLink className=\"h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity\" /&gt;\n                &lt;/p&gt;\n              &lt;/div&gt;\n            &lt;/a&gt;\n            &lt;div className=\"flex flex-wrap gap-4\"&gt;\n              &lt;div className=\"flex items-center gap-2 rounded-lg bg-card border border-border px-3 py-2\"&gt;\n                &lt;Clock className=\"h-4 w-4 text-amber-500\" /&gt;\n                &lt;div&gt;\n                  &lt;p className=\"text-xs text-muted-foreground\"&gt;Tập trung&lt;/p&gt;\n                  &lt;p className=\"text-sm font-medium text-foreground\"&gt;08:30&lt;/p&gt;\n                &lt;/div&gt;\n              &lt;/div&gt;\n              &lt;div className=\"flex items-center gap-2 rounded-lg bg-card border border-border px-3 py-2\"&gt;\n                &lt;ArrowRight className=\"h-4 w-4 text-emerald-500\" /&gt;\n                &lt;div&gt;\n                  &lt;p className=\"text-xs text-muted-foreground\"&gt;Xuất phát&lt;/p&gt;\n                  &lt;p className=\"text-sm font-medium text-foreground\"&gt;09:00&lt;/p&gt;\n                &lt;/div&gt;\n              &lt;/div&gt;\n            &lt;/div&gt;\n          &lt;/div&gt;\n        &lt;/CardContent&gt;\n      &lt;/Card&gt;\n\n      {/* Main Bus */}\n      {mainBus &amp;&amp; (\n        &lt;Card className=\"overflow-hidden border-primary/30\"&gt;\n          &lt;CardHeader className=\"bg-gradient-to-r from-primary/10 to-sky-500/10\"&gt;\n            &lt;CardTitle className=\"flex items-center gap-2\"&gt;\n              &lt;div className=\"flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15\"&gt;\n                &lt;Bus className=\"h-5 w-5 text-primary\" /&gt;\n              &lt;/div&gt;\n              Xe chính - {mainBus.name}\n            &lt;/CardTitle&gt;\n          &lt;/CardHeader&gt;\n          &lt;CardContent className=\"space-y-4 pt-4\"&gt;\n            &lt;div className=\"flex flex-wrap gap-2\"&gt;\n              &lt;Badge className=\"gap-1\"&gt;\n                &lt;Users className=\"h-3 w-3\" /&gt;\n                {mainBus.capacity} chỗ khách\n              &lt;/Badge&gt;\n              {mainBus.note &amp;&amp; (\n                &lt;Badge variant=\"outline\" className=\"text-xs\"&gt;\n                  {mainBus.note}\n                &lt;/Badge&gt;\n              )}\n              &lt;Badge variant=\"success\"&gt;Khứ hồi Sài Gòn - Mũi Né&lt;/Badge&gt;\n            &lt;/div&gt;\n            &lt;div className=\"rounded-xl bg-muted/50 p-4\"&gt;\n              &lt;p className=\"text-sm text-muted-foreground\"&gt;{transportInfo.busCostNote}&lt;/p&gt;\n            &lt;/div&gt;\n            &lt;div className=\"grid gap-4 sm:grid-cols-2\"&gt;\n              &lt;div className=\"flex items-center gap-3 rounded-xl border border-border p-3 bg-card\"&gt;\n                &lt;div className=\"flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-500/15\"&gt;\n                  &lt;ArrowRight className=\"h-4 w-4 text-emerald-600 dark:text-emerald-400\" /&gt;\n                &lt;/div&gt;\n                &lt;div&gt;\n                  &lt;p className=\"text-xs text-muted-foreground\"&gt;Lượt đi&lt;/p&gt;\n                  &lt;p className=\"text-sm font-medium text-foreground\"&gt;\n                    {transportInfo.departTime}\n                  &lt;/p&gt;\n                &lt;/div&gt;\n              &lt;/div&gt;\n              &lt;div className=\"flex items-center gap-3 rounded-xl border border-border p-3 bg-card\"&gt;\n                &lt;div className=\"flex h-9 w-9 items-center justify-center rounded-lg bg-rose-500/15\"&gt;\n                  &lt;ArrowRight className=\"h-4 w-4 rotate-180 text-rose-600 dark:text-rose-400\" /&gt;\n                &lt;/div&gt;\n                &lt;div&gt;\n                  &lt;p className=\"text-xs text-muted-foreground\"&gt;Lượt về&lt;/p&gt;\n                  &lt;p className=\"text-sm font-medium text-foreground\"&gt;\n                    {transportInfo.returnTime}\n                  &lt;/p&gt;\n                &lt;/div&gt;\n              &lt;/div&gt;\n            &lt;/div&gt;\n          &lt;/CardContent&gt;\n        &lt;/Card&gt;\n      )}\n\n      {/* Private Cars */}\n      &lt;Card&gt;\n        &lt;CardHeader&gt;\n          &lt;CardTitle className=\"flex items-center gap-2\"&gt;\n            &lt;div className=\"flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/15\"&gt;\n              &lt;Car className=\"h-5 w-5 text-emerald-600 dark:text-emerald-400\" /&gt;\n            &lt;/div&gt;\n            Xe riêng ({privateCars.length} xe)\n          &lt;/CardTitle&gt;\n        &lt;/CardHeader&gt;\n        &lt;CardContent&gt;\n          &lt;div className=\"grid gap-4 sm:grid-cols-2 lg:grid-cols-3\"&gt;\n            {privateCars.map((car, index) =&gt; (\n              &lt;div\n                key={car.id}\n                className={cn(\n                  'flex items-center gap-4 rounded-xl border border-border bg-card p-4',\n                  'transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5',\n                  'animate-fade-in'\n                )}\n                style={{ animationDelay: &#96;${index * 50}ms&#96; }}\n              &gt;\n                &lt;div className=\"flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/15\"&gt;\n                  &lt;Car className=\"h-5 w-5 text-emerald-600 dark:text-emerald-400\" /&gt;\n                &lt;/div&gt;\n                &lt;div&gt;\n                  &lt;p className=\"font-semibold text-foreground\"&gt;{car.name}&lt;/p&gt;\n                  &lt;div className=\"flex items-center gap-2 mt-0.5\"&gt;\n                    &lt;Badge variant=\"outline\" size=\"sm\"&gt;\n                      {car.capacity} chỗ\n                    &lt;/Badge&gt;\n                    {car.note &amp;&amp; (\n                      &lt;span className=\"text-xs text-muted-foreground\"&gt;{car.note}&lt;/span&gt;\n                    )}\n                  &lt;/div&gt;\n                &lt;/div&gt;\n              &lt;/div&gt;\n            ))}\n          &lt;/div&gt;\n        &lt;/CardContent&gt;\n      &lt;/Card&gt;\n    &lt;/div&gt;\n  );\n}\n\nexport { TransportSection };\n",
+  "contents": "import {\n  Bus,\n  Car,\n  Clock,\n  Users,\n  ArrowRight,\n  Building2,\n  ExternalLink,\n} from 'lucide-react';\nimport { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';\nimport { Badge } from '@/components/ui/badge';\nimport { cn } from '@/lib/utils';\nimport { vehicles, transportInfo } from '@/data/transport';\nimport { formatCurrency } from '@/lib/utils';\n\nfunction TransportSection() {\n  const mainBus = vehicles.find((v) =&gt; v.isMain);\n  const privateCars = vehicles.filter((v) =&gt; !v.isMain);\n\n  return (\n    &lt;div className=\"space-y-6\"&gt;\n      {/* Quick Info Cards */}\n      &lt;div className=\"grid gap-4 sm:grid-cols-2 lg:grid-cols-4\"&gt;\n        &lt;Card hover={false} className=\"animate-fade-in\" style={{ animationDelay: '0ms' }}&gt;\n          &lt;CardContent className=\"flex items-center gap-4 p-5\"&gt;\n            &lt;div className=\"flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-sky-500 shadow-lg shadow-primary/25\"&gt;\n              &lt;Bus className=\"h-6 w-6 text-white\" /&gt;\n            &lt;/div&gt;\n            &lt;div&gt;\n              &lt;p className=\"text-2xl font-bold text-foreground\"&gt;1&lt;/p&gt;\n              &lt;p className=\"text-sm text-muted-foreground\"&gt;Xe buýt chính&lt;/p&gt;\n            &lt;/div&gt;\n          &lt;/CardContent&gt;\n        &lt;/Card&gt;\n\n        &lt;Card hover={false} className=\"animate-fade-in\" style={{ animationDelay: '50ms' }}&gt;\n          &lt;CardContent className=\"flex items-center gap-4 p-5\"&gt;\n            &lt;div className=\"flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 shadow-lg shadow-emerald-500/25\"&gt;\n              &lt;Car className=\"h-6 w-6 text-white\" /&gt;\n            &lt;/div&gt;\n            &lt;div&gt;\n              &lt;p className=\"text-2xl font-bold text-foreground\"&gt;{privateCars.length}&lt;/p&gt;\n              &lt;p className=\"text-sm text-muted-foreground\"&gt;Xe riêng&lt;/p&gt;\n            &lt;/div&gt;\n          &lt;/CardContent&gt;\n        &lt;/Card&gt;\n\n        &lt;Card hover={false} className=\"animate-fade-in\" style={{ animationDelay: '100ms' }}&gt;\n          &lt;CardContent className=\"flex items-center gap-4 p-5\"&gt;\n            &lt;div className=\"flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 shadow-lg shadow-amber-500/25\"&gt;\n              &lt;Users className=\"h-6 w-6 text-white\" /&gt;\n            &lt;/div&gt;\n            &lt;div&gt;\n              &lt;p className=\"text-2xl font-bold text-foreground\"&gt;37&lt;/p&gt;\n              &lt;p className=\"text-sm text-muted-foreground\"&gt;Tổng số chỗ&lt;/p&gt;\n              &lt;p className=\"text-xs text-muted-foreground/70\"&gt;(28 khách + 1 tài xế + 3 xe riêng)&lt;/p&gt;\n            &lt;/div&gt;\n          &lt;/CardContent&gt;\n        &lt;/Card&gt;\n\n        &lt;Card hover={false} className=\"animate-fade-in\" style={{ animationDelay: '150ms' }}&gt;\n          &lt;CardContent className=\"flex items-center gap-4 p-5\"&gt;\n            &lt;div className=\"flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-rose-500 to-pink-500 shadow-lg shadow-rose-500/25\"&gt;\n              &lt;span className=\"text-lg font-bold text-white\"&gt;₫&lt;/span&gt;\n            &lt;/div&gt;\n            &lt;div&gt;\n              &lt;p className=\"text-lg font-bold text-foreground\"&gt;\n                {formatCurrency(transportInfo.busCost)}\n              &lt;/p&gt;\n              &lt;p className=\"text-sm text-muted-foreground\"&gt;Chi phí xe buýt&lt;/p&gt;\n            &lt;/div&gt;\n          &lt;/CardContent&gt;\n        &lt;/Card&gt;\n      &lt;/div&gt;\n\n      {/* Meeting Point */}\n      &lt;Card className=\"border-primary/20 bg-gradient-to-r from-primary/5 to-sky-500/5\" hover={false}&gt;\n        &lt;CardContent className=\"p-5\"&gt;\n          &lt;div className=\"flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between\"&gt;\n            &lt;a\n              href={transportInfo.meetPointMapsUrl}\n              target=\"_blank\"\n              rel=\"noopener noreferrer\"\n              className=\"flex items-start gap-3 group\"\n            &gt;\n              &lt;div className=\"flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/15 group-hover:scale-110 transition-transform\"&gt;\n                &lt;Building2 className=\"h-5 w-5 text-primary\" /&gt;\n              &lt;/div&gt;\n              &lt;div&gt;\n                &lt;p className=\"text-sm text-muted-foreground\"&gt;Điểm tập trung&lt;/p&gt;\n                &lt;p className=\"font-semibold text-foreground group-hover:text-primary transition-colors flex items-center gap-1\"&gt;\n                  {transportInfo.meetPoint}\n                  &lt;ExternalLink className=\"h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity\" /&gt;\n                &lt;/p&gt;\n              &lt;/div&gt;\n            &lt;/a&gt;\n            &lt;div className=\"flex flex-wrap gap-4\"&gt;\n              &lt;div className=\"flex items-center gap-2 rounded-lg bg-card border border-border px-3 py-2\"&gt;\n                &lt;Clock className=\"h-4 w-4 text-amber-500\" /&gt;\n                &lt;div&gt;\n                  &lt;p className=\"text-xs text-muted-foreground\"&gt;Tập trung&lt;/p&gt;\n                  &lt;p className=\"text-sm font-medium text-foreground\"&gt;08:30&lt;/p&gt;\n                &lt;/div&gt;\n              &lt;/div&gt;\n              &lt;div className=\"flex items-center gap-2 rounded-lg bg-card border border-border px-3 py-2\"&gt;\n                &lt;ArrowRight className=\"h-4 w-4 text-emerald-500\" /&gt;\n                &lt;div&gt;\n                  &lt;p className=\"text-xs text-muted-foreground\"&gt;Xuất phát&lt;/p&gt;\n                  &lt;p className=\"text-sm font-medium text-foreground\"&gt;09:00&lt;/p&gt;\n                &lt;/div&gt;\n              &lt;/div&gt;\n            &lt;/div&gt;\n          &lt;/div&gt;\n        &lt;/CardContent&gt;\n      &lt;/Card&gt;\n\n      {/* Main Bus */}\n      {mainBus &amp;&amp; (\n        &lt;Card className=\"overflow-hidden border-primary/30\"&gt;\n          &lt;CardHeader className=\"bg-gradient-to-r from-primary/10 to-sky-500/10\"&gt;\n            &lt;CardTitle className=\"flex items-center gap-2\"&gt;\n              &lt;div className=\"flex h-8 w-8 items-center justify-center rounded-lg bg-primary/15\"&gt;\n                &lt;Bus className=\"h-5 w-5 text-primary\" /&gt;\n              &lt;/div&gt;\n              Xe chính - {mainBus.name}\n            &lt;/CardTitle&gt;\n          &lt;/CardHeader&gt;\n          &lt;CardContent className=\"space-y-4 pt-4\"&gt;\n            &lt;div className=\"flex flex-wrap gap-2\"&gt;\n              &lt;Badge className=\"gap-1\"&gt;\n                &lt;Users className=\"h-3 w-3\" /&gt;\n                {mainBus.capacity} chỗ khách\n              &lt;/Badge&gt;\n              {mainBus.note &amp;&amp; (\n                &lt;Badge variant=\"outline\" className=\"text-xs\"&gt;\n                  {mainBus.note}\n                &lt;/Badge&gt;\n              )}\n              &lt;Badge variant=\"success\"&gt;Khứ hồi Sài Gòn - Mũi Né&lt;/Badge&gt;\n            &lt;/div&gt;\n            &lt;div className=\"rounded-xl bg-muted/50 p-4\"&gt;\n              &lt;p className=\"text-sm text-muted-foreground\"&gt;{transportInfo.busCostNote}&lt;/p&gt;\n            &lt;/div&gt;\n            &lt;div className=\"grid gap-4 sm:grid-cols-2\"&gt;\n              &lt;div className=\"flex items-center gap-3 rounded-xl border border-border p-3 bg-card\"&gt;\n                &lt;div className=\"flex h-9 w-9 items-center justify-center rounded-lg bg-emerald-500/15\"&gt;\n                  &lt;ArrowRight className=\"h-4 w-4 text-emerald-600 dark:text-emerald-400\" /&gt;\n                &lt;/div&gt;\n                &lt;div&gt;\n                  &lt;p className=\"text-xs text-muted-foreground\"&gt;Lượt đi&lt;/p&gt;\n                  &lt;p className=\"text-sm font-medium text-foreground\"&gt;\n                    {transportInfo.departTime}\n                  &lt;/p&gt;\n                &lt;/div&gt;\n              &lt;/div&gt;\n              &lt;div className=\"flex items-center gap-3 rounded-xl border border-border p-3 bg-card\"&gt;\n                &lt;div className=\"flex h-9 w-9 items-center justify-center rounded-lg bg-rose-500/15\"&gt;\n                  &lt;ArrowRight className=\"h-4 w-4 rotate-180 text-rose-600 dark:text-rose-400\" /&gt;\n                &lt;/div&gt;\n                &lt;div&gt;\n                  &lt;p className=\"text-xs text-muted-foreground\"&gt;Lượt về&lt;/p&gt;\n                  &lt;p className=\"text-sm font-medium text-foreground\"&gt;\n                    {transportInfo.returnTime}\n                  &lt;/p&gt;\n                &lt;/div&gt;\n              &lt;/div&gt;\n            &lt;/div&gt;\n          &lt;/CardContent&gt;\n        &lt;/Card&gt;\n      )}\n\n      {/* Private Cars */}\n      &lt;Card&gt;\n        &lt;CardHeader&gt;\n          &lt;CardTitle className=\"flex items-center gap-2\"&gt;\n            &lt;div className=\"flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/15\"&gt;\n              &lt;Car className=\"h-5 w-5 text-emerald-600 dark:text-emerald-400\" /&gt;\n            &lt;/div&gt;\n            Xe riêng ({privateCars.length} xe)\n          &lt;/CardTitle&gt;\n        &lt;/CardHeader&gt;\n        &lt;CardContent&gt;\n          &lt;div className=\"grid gap-4 sm:grid-cols-2 lg:grid-cols-3\"&gt;\n            {privateCars.map((car, index) =&gt; (\n              &lt;div\n                key={car.id}\n                className={cn(\n                  'flex items-center gap-4 rounded-xl border border-border bg-card p-4',\n                  'transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5',\n                  'animate-fade-in'\n                )}\n                style={{ animationDelay: &#96;${index * 50}ms&#96; }}\n              &gt;\n                &lt;div className=\"flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/15\"&gt;\n                  &lt;Car className=\"h-5 w-5 text-emerald-600 dark:text-emerald-400\" /&gt;\n                &lt;/div&gt;\n                &lt;div&gt;\n                  &lt;p className=\"font-semibold text-foreground\"&gt;{car.name}&lt;/p&gt;\n                  &lt;div className=\"flex items-center gap-2 mt-0.5\"&gt;\n                    &lt;Badge variant=\"outline\" size=\"sm\"&gt;\n                      {car.capacity} chỗ\n                    &lt;/Badge&gt;\n                    {car.note &amp;&amp; (\n                      &lt;span className=\"text-xs text-muted-foreground\"&gt;{car.note}&lt;/span&gt;\n                    )}\n                  &lt;/div&gt;\n                &lt;/div&gt;\n              &lt;/div&gt;\n            ))}\n          &lt;/div&gt;\n        &lt;/CardContent&gt;\n      &lt;/Card&gt;\n    &lt;/div&gt;\n  );\n}\n\nexport { TransportSection };\n",
   "totalLinesInFile": 218
 }
 ```
@@ -58017,7 +58017,7 @@ Các popup giờ có text dễ đọc và button close rõ ràng.
 
 _**User (2025-12-10 08:16Z)**_
 
-font chữ, màu chữ và button close của popup khó đọc 
+font chữ, màu chữ và button close của popup khó đọc
 
 ---
 
@@ -58486,7 +58486,7 @@ Các popup giờ có text và button close dễ đọc hơn.
 _**User (2025-12-10 08:16Z)**_
 
 <Header></Header>
-<a href="https://www.google.com/maps/place/Asteria+Mui+Ne+Resort/@10.9385,108.2872,17z" target="_blank" rel="noopener noreferrer" class="flex lg:hidden items-center justify-center h-9 w-9 rounded-full bg-secondary/50 hover:bg-secondary/80 transition-colors" aria-label="Asteria Mui Ne Resort"></a> đang bị sai link, đổi lại: https://maps.app.goo.gl/Cbn88Jz4tbH2eA7h7 
+<a href="https://www.google.com/maps/place/Asteria+Mui+Ne+Resort/@10.9385,108.2872,17z" target="_blank" rel="noopener noreferrer" class="flex lg:hidden items-center justify-center h-9 w-9 rounded-full bg-secondary/50 hover:bg-secondary/80 transition-colors" aria-label="Asteria Mui Ne Resort"></a> đang bị sai link, đổi lại: https://maps.app.goo.gl/Cbn88Jz4tbH2eA7h7
 
 ---
 
@@ -58825,7 +58825,7 @@ _**User (2025-12-10 08:16Z)**_
 
 <CardContent className="relative space-y-6" children="[Array]">Asteria Mui Ne Resort</CardContent>
 <p class="font-semibold text-foreground group-hover:text-primary transition-colors flex items-center gap-1">Asteria Mui Ne Resort</p> và <CardContent className="relative space-y-6" children="[Array]">Mũi Né, Phan Thiết, Bình Thuận</CardContent>
-<p class="font-semibold text-foreground group-hover:text-primary transition-colors flex items-center gap-1">Mũi Né, Phan Thiết, Bình Thuận</p> cũng vậy, https://maps.app.goo.gl/Cbn88Jz4tbH2eA7h7  
+<p class="font-semibold text-foreground group-hover:text-primary transition-colors flex items-center gap-1">Mũi Né, Phan Thiết, Bình Thuận</p> cũng vậy, https://maps.app.goo.gl/Cbn88Jz4tbH2eA7h7
 
 ---
 
@@ -64530,7 +64530,7 @@ Khi share link website, ảnh `unnamed.jpg` sẽ hiển thị làm preview thumb
 
 _**User (2025-12-10 08:16Z)**_
 
-xong thì commit luôn 
+xong thì commit luôn
 
 ---
 
@@ -64719,4 +64719,3 @@ Status: **completed**
 Khi share link website, ảnh `og-image.jpg` sẽ hiển thị làm preview thumbnail trên các nền tảng social media.
 
 ---
-

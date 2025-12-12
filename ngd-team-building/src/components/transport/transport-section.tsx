@@ -60,9 +60,9 @@ function TransportSection() {
               <Users className="h-6 w-6 text-white" />
             </div>
             <div>
-              <p className="text-2xl font-bold text-foreground">37</p>
+              <p className="text-2xl font-bold text-foreground">39</p>
               <p className="text-sm text-muted-foreground">Tổng số chỗ</p>
-              <p className="text-xs text-muted-foreground/70">(28 khách + 1 tài xế + 8 xe riêng)</p>
+              <p className="text-xs text-muted-foreground/70">(28 khách + 3 xe riêng)</p>
             </div>
           </CardContent>
         </Card>
