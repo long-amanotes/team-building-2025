@@ -118,10 +118,8 @@ function RoomCard({ room, className }: RoomCardProps) {
   const [escapeMessage, setEscapeMessage] = useState('');
   const [escapeCount, setEscapeCount] = useState(0);
 
-  // Handle click - make card "run away"
-  const handleClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
-
+  // Trigger escape animation - used for both click and hover
+  const triggerEscape = useCallback(() => {
     // Random direction to escape
     const angle = Math.random() * Math.PI * 2;
     const distance = 100 + Math.random() * 150; // 100-250px
@@ -130,30 +128,50 @@ function RoomCard({ room, className }: RoomCardProps) {
     const newY = Math.sin(angle) * distance;
 
     // Clamp to not go too far off screen
-    const clampedX = Math.max(-200, Math.min(200, escapeOffset.x + newX));
-    const clampedY = Math.max(-150, Math.min(150, escapeOffset.y + newY));
+    setEscapeOffset(prev => {
+      const clampedX = Math.max(-200, Math.min(200, prev.x + newX));
+      const clampedY = Math.max(-150, Math.min(150, prev.y + newY));
+      return { x: clampedX, y: clampedY };
+    });
 
-    setEscapeOffset({ x: clampedX, y: clampedY });
     setIsEscaping(true);
     setEscapeMessage(escapeMessages[Math.floor(Math.random() * escapeMessages.length)]);
-    setEscapeCount(prev => prev + 1);
+    setEscapeCount(prev => {
+      const newCount = prev + 1;
 
-    // Reset escaping animation state
-    setTimeout(() => setIsEscaping(false), 300);
+      // Reset escaping animation state
+      setTimeout(() => setIsEscaping(false), 300);
 
-    // After 5 escapes, slowly return home
-    if (escapeCount >= 4) {
-      setTimeout(() => {
-        setEscapeOffset({ x: 0, y: 0 });
-        setEscapeCount(0);
-        setEscapeMessage('😌 Về nhà thôi~');
-        setTimeout(() => setEscapeMessage(''), 1500);
-      }, 2000);
-    }
-  }, [escapeOffset, escapeCount]);
+      // After 5 escapes, slowly return home
+      if (newCount >= 5) {
+        setTimeout(() => {
+          setEscapeOffset({ x: 0, y: 0 });
+          setEscapeCount(0);
+          setEscapeMessage('😌 Về nhà thôi~');
+          setTimeout(() => setEscapeMessage(''), 1500);
+        }, 2000);
+      }
+
+      return newCount;
+    });
+  }, []);
+
+  // Handle click - make card "run away"
+  const handleClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    triggerEscape();
+  }, [triggerEscape]);
+
+  // Handle hover - make card "run away"
+  const handleMouseEnter = useCallback(() => {
+    triggerEscape();
+  }, [triggerEscape]);
 
   // Double click to reset
-  const handleDoubleClick = useCallback(() => {
+  const handleDoubleClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
     setEscapeOffset({ x: 0, y: 0 });
     setEscapeCount(0);
     setEscapeMessage('🏠 Về vị trí cũ!');
@@ -178,6 +196,7 @@ function RoomCard({ room, className }: RoomCardProps) {
         transition: isEscaping ? 'transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)' : 'transform 0.8s ease-out',
         zIndex: isEscaping ? 50 : 1,
       }}
+      onMouseEnter={handleMouseEnter}
     >
       {/* Escape message bubble */}
       {escapeMessage && (
@@ -195,7 +214,7 @@ function RoomCard({ room, className }: RoomCardProps) {
       <Card
         className={cn(
           'group transition-all duration-500 overflow-hidden relative cursor-pointer select-none',
-          'hover:shadow-2xl hover:-translate-y-3 hover:scale-[1.02]',
+          'hover:shadow-2xl',
           isEscaping && 'animate-pulse scale-95 rotate-3',
           borderStyle,
           `border-[hsl(var(--${colorTheme.primary}))]/40`,
@@ -215,7 +234,7 @@ function RoomCard({ room, className }: RoomCardProps) {
         )} />
 
         {/* Corner decorations */}
-        <div className="absolute top-2 left-2 text-lg opacity-60 group-hover:opacity-100 group-hover:scale-125 transition-all">
+        <div className="absolute top-2 left-2 text-lg opacity-60 group-hover:opacity-100 transition-all">
           {decorElement.corner}
         </div>
         <div className="absolute top-2 right-2 text-sm opacity-40 group-hover:opacity-80 transition-all christmas-light">
@@ -248,7 +267,7 @@ function RoomCard({ room, className }: RoomCardProps) {
                   'rounded-full bg-gradient-to-br',
                   `from-[hsl(var(--${colorTheme.primary}))]`,
                   `to-[hsl(var(--${colorTheme.secondary}))]`,
-                  'group-hover:scale-110 group-hover:rotate-6 transition-all'
+                  'transition-all'
                 )}>
                   {room.roomId}
                 </div>
@@ -338,7 +357,7 @@ function RoomCard({ room, className }: RoomCardProps) {
                   {/* Avatar */}
                   <div className={cn(
                     'w-8 h-8 flex items-center justify-center font-bold text-xs text-white shadow-md',
-                    'bg-gradient-to-br transition-transform group-hover/person:scale-110',
+                    'bg-gradient-to-br transition-colors',
                     avatarStyle,
                     index % 3 === 0 && `from-[hsl(var(--${colorTheme.primary}))] to-[hsl(var(--${colorTheme.secondary}))]`,
                     index % 3 === 1 && `from-[hsl(var(--${colorTheme.secondary}))] to-[hsl(var(--${colorTheme.accent}))]`,
