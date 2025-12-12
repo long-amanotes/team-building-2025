@@ -33,7 +33,7 @@ function RoomsSection() {
       <SectionHeader
         icon={BedDouble}
         title="Xếp phòng"
-        subtitle={`${roomSummary.total} phòng cho ${roomSummary.twin * 2 + roomSummary.double * 2 + roomSummary.extraBed} người`}
+        subtitle={`${roomSummary.total} phòng cho 36 người lớn và 3 trẻ em`}
         emoji="🎄"
         gradient="from-[hsl(var(--monokai-green))] to-[hsl(var(--monokai-green)/0.7)]"
       />
